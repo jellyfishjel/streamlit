@@ -61,16 +61,6 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# ===== NAVIGATION BAR =====
-st.markdown("""
-    <div class="navbar">
-        <a href="#home">Homepage</a>
-        <a href="#dataset">Dataset Overview</a>
-        <a href="#plot">Plot</a>
-        <a href="#code">Code</a>
-    </div>
-""", unsafe_allow_html=True)
-
 # ===== HOMEPAGE SECTION =====
 st.markdown('<a name="home"></a>', unsafe_allow_html=True)
 st.markdown("""
