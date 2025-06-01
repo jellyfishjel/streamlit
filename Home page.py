@@ -2,21 +2,22 @@ import streamlit as st
 from PIL import Image
 import base64
 
-# ===== SETUP PAGE =====
 st.set_page_config(page_title="Education Career App", layout="wide")
 
-# ===== EMBED BACKGROUND IMAGE IN BASE64 =====
-def get_base64(file_path):
-    with open(file_path, "rb") as f:
+# ========== Helper: Convert image to base64 ==========
+def get_base64(path):
+    with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-bg_image = get_base64("images/homepage_bg.png")
+# ========== Background images ==========
+home_bg = get_base64("images/homepage_bg.png")
+team_bg = get_base64("images/team_section_bg.png")
 
-# ===== CSS STYLES =====
+# ========== CSS ==========
 st.markdown(f"""
     <style>
     .stApp {{
-        background-image: url("data:image/png;base64,{bg_image}");
+        background-image: url("data:image/png;base64,{home_bg}");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -50,17 +51,34 @@ st.markdown(f"""
         border-radius: 12px;
         cursor: pointer;
     }}
-    .team-img {{
+    .team-section {{
+        background-image: url("data:image/png;base64,{team_bg}");
+        background-size: cover;
+        background-position: center;
+        padding: 50px 20px;
         border-radius: 16px;
-        width: 180px;
-        height: 240px;
+        margin-top: 30px;
+    }}
+    .team-img {{
+        width: 200px;
+        height: 200px;
         object-fit: cover;
-        margin-bottom: 8px;
+        border-radius: 10px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }}
+    .team-name {{
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        margin-top: 8px;
+        font-size: 16px;
     }}
     </style>
 """, unsafe_allow_html=True)
 
-# ===== NAVIGATION BAR =====
+# ========== Navigation ==========
 st.markdown("""
     <div class="navbar">
         <a href="#home">Homepage</a>
@@ -70,7 +88,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# ===== HOMEPAGE SECTION =====
+# ========== Homepage ==========
 st.markdown('<a name="home"></a>', unsafe_allow_html=True)
 st.markdown("""
     <div class="homepage-box">
@@ -82,11 +100,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# ===== TEAM SECTION =====
-st.markdown('<a name="team"></a>', unsafe_allow_html=True)
-st.subheader("Our Team")
-
-# ===== TEAM DATA =====
+# ========== Team Data ==========
 team_members = [
     {"name": "Kiều Anh", "image": "images/Nguyễn Kiều Anh.png"},
     {"name": "Khánh Phương", "image": "images/Lê Nguyễn Khánh Phương.png"},
@@ -96,14 +110,21 @@ team_members = [
     {"name": "Thu Thảo", "image": "images/Vũ Thị Thu Thảo.png"},
 ]
 
-# ===== PAGINATION STATE =====
+# ========== Pagination ==========
 if "team_page" not in st.session_state:
     st.session_state.team_page = 1
 
-# ===== SHOW TEAM MEMBERS =====
+members_per_page = 3
+total_pages = (len(team_members) + members_per_page - 1) // members_per_page
+
+# ========== Team Section ==========
+st.markdown('<a name="team"></a>', unsafe_allow_html=True)
+st.markdown('<div class="team-section">', unsafe_allow_html=True)
+st.subheader("Our Team", anchor=False)
+
 def show_team(page):
-    start = 0 if page == 1 else 4
-    end = 4 if page == 1 else len(team_members)
+    start = (page - 1) * members_per_page
+    end = start + members_per_page
     members = team_members[start:end]
 
     cols = st.columns(len(members))
@@ -111,22 +132,22 @@ def show_team(page):
         with col:
             try:
                 with open(member["image"], "rb") as f:
-                    data = f.read()
-                b64_img = base64.b64encode(data).decode()
+                    img_data = base64.b64encode(f.read()).decode()
                 st.markdown(
-                    f'<img class="team-img" src="data:image/png;base64,{b64_img}"/>',
+                    f'<img class="team-img" src="data:image/png;base64,{img_data}"/>',
                     unsafe_allow_html=True,
                 )
             except FileNotFoundError:
                 st.warning(f"Không tìm thấy ảnh: {member['image']}")
-            st.markdown(f"<div style='text-align: center; font-weight: bold;'>{member['name']}</div>", unsafe_allow_html=True)
+            st.markdown(f'<div class="team-name">{member["name"]}</div>', unsafe_allow_html=True)
 
     col1, col2 = st.columns([1, 9])
     with col1:
-        if page == 2 and st.button("⬅️", key="prev"):
-            st.session_state.team_page = 1
+        if page > 1 and st.button("⬅️", key="prev"):
+            st.session_state.team_page -= 1
     with col2:
-        if page == 1 and st.button("➡️", key="next"):
-            st.session_state.team_page = 2
+        if page < total_pages and st.button("➡️", key="next"):
+            st.session_state.team_page += 1
 
 show_team(st.session_state.team_page)
+st.markdown('</div>', unsafe_allow_html=True)
