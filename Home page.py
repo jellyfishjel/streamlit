@@ -50,17 +50,12 @@ st.markdown(f"""
         border-radius: 12px;
         cursor: pointer;
     }}
-    .team-member-name {{
-        text-align: center;
-        font-weight: bold;
-        font-size: 22px;
-        margin-top: 10px;
-        color: white;
-    }}
-    .team-section {{
-        background: rgba(0,0,0,0.5);
-        padding: 60px 20px;
-        border-radius: 15px;
+    .team-img {{
+        border-radius: 16px;
+        width: 180px;
+        height: 240px;
+        object-fit: cover;
+        margin-bottom: 8px;
     }}
     </style>
 """, unsafe_allow_html=True)
@@ -89,8 +84,7 @@ st.markdown("""
 
 # ===== TEAM SECTION =====
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
-st.markdown("<div class='team-section'>", unsafe_allow_html=True)
-st.markdown("### Our Team")
+st.subheader("Our Team")
 
 # ===== TEAM DATA =====
 team_members = [
@@ -100,7 +94,7 @@ team_members = [
     {"name": "Khánh Linh", "image": "images/Nguyễn Trần Khánh Linh.png"},
     {"name": "Bảo Nguyên", "image": "images/Nguyễn Huỳnh Bảo Nguyên.png"},
     {"name": "Thu Thảo", "image": "images/Vũ Thị Thu Thảo.png"},
-    {"name": "Sazahng", "image": "images/Sazahng.png"},
+    {"name": "Bội Ngọc", "image": "images/Sazahng.png"},
 ]
 
 # ===== PAGINATION STATE =====
@@ -109,33 +103,31 @@ if "team_page" not in st.session_state:
 
 # ===== SHOW TEAM MEMBERS =====
 def show_team(page):
-    per_page = 3
-    start = (page - 1) * per_page
-    end = start + per_page
+    start = 0 if page == 1 else 4
+    end = 4 if page == 1 else len(team_members)
     members = team_members[start:end]
 
-    cols = st.columns(3)
+    cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
             try:
-                img = Image.open(member["image"])
-                st.image(img, width=200)
-            except:
+                with open(member["image"], "rb") as f:
+                    data = f.read()
+                b64_img = base64.b64encode(data).decode()
+                st.markdown(
+                    f'<img class="team-img" src="data:image/png;base64,{b64_img}"/>',
+                    unsafe_allow_html=True,
+                )
+            except FileNotFoundError:
                 st.warning(f"Không tìm thấy ảnh: {member['image']}")
-            st.markdown(f"<div class='team-member-name'>{member['name']}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div style='text-align: center; font-weight: bold;'>{member['name']}</div>", unsafe_allow_html=True)
 
-    # Pagination buttons
-    col1, col2, col3 = st.columns([1, 8, 1])
+    col1, col2 = st.columns([1, 9])
     with col1:
-        if page > 1:
-            if st.button("◀️", key="prev"):
-                st.session_state.team_page -= 1
-    with col3:
-        if end < len(team_members):
-            if st.button("▶️", key="next"):
-                st.session_state.team_page += 1
+        if page == 2 and st.button("⬅️", key="prev"):
+            st.session_state.team_page = 1
+    with col2:
+        if page == 1 and st.button("➡️", key="next"):
+            st.session_state.team_page = 2
 
 show_team(st.session_state.team_page)
-
-# ===== CLOSE TEAM SECTION DIV =====
-st.markdown("</div>", unsafe_allow_html=True)
