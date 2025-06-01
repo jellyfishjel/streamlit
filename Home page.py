@@ -51,11 +51,12 @@ st.markdown(f"""
         cursor: pointer;
     }}
     .team-img {{
-        border-radius: 16px;
-        width: 180px;
-        height: 240px;
-        object-fit: cover;
-        margin-bottom: 8px;
+    border-radius: 8px;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 8px auto;
     }}
     </style>
 """, unsafe_allow_html=True)
@@ -120,7 +121,14 @@ def show_team(page):
                 )
             except FileNotFoundError:
                 st.warning(f"Không tìm thấy ảnh: {member['image']}")
-            st.markdown(f"<div style='text-align: center; font-weight: bold;'>{member['name']}</div>", unsafe_allow_html=True)
+            st.markdown(
+                f"""
+                <div style='text-align: center; margin-top: 4px; font-weight: bold;'>
+                {member['name']}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
     col1, col2 = st.columns([1, 9])
     with col1:
