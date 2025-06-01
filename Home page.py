@@ -10,8 +10,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("
-        images/homepage_bg.png");
+        background-image: url("https://github.com/jellyfishjel/python/blob/main/homepage/images/homepage_bg.png?raw=true");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -83,40 +82,16 @@ st.markdown("""
 team_members = [
     {"name": "Kiều Anh", "image": "images/Nguyễn Kiều Anh.png"},
     {"name": "Khánh Phương", "image": "images/Lê Nguyễn Khánh Phương.png"},
-    {"name": "Bảo Ngọc", "image": "images/Nguyễn Bảo Ngọc.png"},
+    {"name": "Bảo Ngọc", "image": "images/NguyễnBaoNgoc.png"},
     {"name": "Khánh Linh", "image": "images/Nguyễn Trần Khánh Linh.png"},
     {"name": "Bảo Nguyên", "image": "images/Nguyễn Huỳnh Bảo Nguyên.png"},
     {"name": "Thu Thảo", "image": "images/Vũ Thị Thu Thảo.png"},
-    {"name": "Bội Ngọc", "image": "images/Sazahng.png"},
+    {"name": "Bội Ngọc", "image": "images/Nguyễn Bội Ngọc.png"},
 ]
 
 # ===== PAGINATION =====
 if "team_page" not in st.session_state:
     st.session_state.team_page = 1
-
-def show_team(page):
-    start = 0 if page == 1 else 4
-    end = 4 if page == 1 else len(team_members)
-    members = team_members[start:end]
-
-    cols = st.columns(len(members))
-    for col, member in zip(cols, members):
-        with col:
-            try:
-                st.image(member["image"], width=180)
-            except Exception as e:
-                st.error(f"Không thể hiển thị ảnh: {member['name']} - {e}")
-            st.markdown(f"<div style='text-align: center; font-weight: bold;'>{member['name']}</div>", unsafe_allow_html=True)
-
-    col1, col2 = st.columns([1, 9])
-    with col1:
-        if st.session_state.team_page == 2:
-            if st.button("⬅️", key="prev"):
-                st.session_state.team_page = 1
-    with col2:
-        if st.session_state.team_page == 1:
-            if st.button("➡️", key="next"):
-                st.session_state.team_page = 2
 
 def show_team(page):
     start = 0 if page == 1 else 4
