@@ -108,6 +108,7 @@ team_members = [
     {"name": "Khánh Linh", "image": "images/Nguyễn Trần Khánh Linh.png"},
     {"name": "Bảo Nguyên", "image": "images/Nguyễn Huỳnh Bảo Nguyên.png"},
     {"name": "Thu Thảo", "image": "images/Vũ Thị Thu Thảo.png"},
+    {"name": "Bội Ngọc", "image": "images/Nguyễn Bội Ngọc.png"},
 ]
 
 # ========== Pagination ==========
