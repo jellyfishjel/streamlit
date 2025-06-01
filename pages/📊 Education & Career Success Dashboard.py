@@ -145,24 +145,43 @@ with st.expander("📊 Entrepreneurship by Age & Job Level", expanded=True):
         fig_bar.update_layout(margin=dict(t=40, l=40, r=40, b=40), xaxis_tickangle=90, bargap=0.1)
         fig_bar.update_yaxes(tickformat=".0%")
 
+        # === Area Chart with spike/hover enhancements ===
         fig_area = px.area(
             data, x='Age', y='Count', color='Entrepreneurship', markers=True,
             color_discrete_map=color_map, height=400, width=chart_width,
             title=f"{level} Level – Entrepreneurship by Age (Count)"
         )
 
-        for status in ['Yes', 'No']:
-            avg_age = data[data['Entrepreneurship'] == status]['Age'].mean()
-            fig_area.add_vline(x=avg_age, line_dash="dot", line_color=color_map[status], line_width=1.2)
-            fig_area.add_trace(go.Scatter(x=[None], y=[None], mode='markers',
-                                          marker=dict(symbol='circle', size=10, color=color_map[status]),
-                                          name=f"{status} Avg Age: {avg_age:.1f}"))
+        fig_area.update_layout(
+            hovermode='x',
+            spikedistance=-1,
+            xaxis=dict(
+                showspikes=True,
+                spikemode='across',
+                spikesnap='cursor',
+                showline=True,
+                spikethickness=1,
+                spikecolor="gray",
+                spikedash="dot"
+            ),
+            yaxis=dict(
+                showspikes=True,
+                spikemode='across',
+                spikesnap='cursor',
+                showline=True,
+                spikethickness=1,
+                spikecolor="gray",
+                spikedash="dot"
+            )
+        )
 
         col1, col2 = st.columns(2)
         with col1:
             st.plotly_chart(fig_bar, use_container_width=True)
         with col2:
             st.plotly_chart(fig_area, use_container_width=True)
+
+
 
 # === SECTION 3: GPA vs. Salary Scatter Plot ===
 with st.expander("🎓 GPA vs. Starting Salary", expanded=True):
@@ -190,39 +209,73 @@ with st.expander("🎓 GPA vs. Starting Salary", expanded=True):
 
 # === SECTION 4: Work-Life Balance Line Chart ===
 with st.expander("⚖️ Work-Life Balance by Promotion Time", expanded=True):
-    avg_balance = df.groupby(['Current_Job_Level', 'Years_to_Promotion'])['Work_Life_Balance'].mean().reset_index()
-    job_levels_order = ['Entry', 'Mid', 'Senior', 'Executive']
-    avg_balance['Current_Job_Level'] = pd.Categorical(avg_balance['Current_Job_Level'],
-                                                      categories=job_levels_order, ordered=True)
+    avg_balance = (
+        df.groupby(['Current_Job_Level', 'Years_to_Promotion'])['Work_Life_Balance']
+        .mean()
+        .reset_index()
+    )
 
-    selected_levels = st.sidebar.multiselect("Select Job Levels to Display (Work-Life Balance)",
-                                             options=job_levels_order + ["All"], default=["All"])
+    job_levels_order = ['Entry', 'Mid', 'Senior', 'Executive']
+    avg_balance['Current_Job_Level'] = pd.Categorical(
+        avg_balance['Current_Job_Level'], categories=job_levels_order, ordered=True
+    )
+
+    selected_levels = st.sidebar.multiselect(
+        "Select Job Levels to Display (Work-Life Balance)",
+        options=job_levels_order + ["All"],
+        default=["All"]
+    )
+
     if "All" in selected_levels or not selected_levels:
         filtered_data = avg_balance
     else:
         filtered_data = avg_balance[avg_balance["Current_Job_Level"].isin(selected_levels)]
 
-    fig4 = go.Figure()
-    colors = {"Entry": "#1f77b4", "Mid": "#ff7f0e", "Senior": "#2ca02c", "Executive": "#d62728"}
+    fig = go.Figure()
+    colors = {
+        "Entry": "#1f77b4",      # blue
+        "Mid": "#ff7f0e",        # orange
+        "Senior": "#2ca02c",     # green
+        "Executive": "#d62728"   # red
+    }
 
     for level in job_levels_order:
         if "All" in selected_levels or level in selected_levels:
             data_level = filtered_data[filtered_data["Current_Job_Level"] == level]
-            fig4.add_trace(go.Scatter(
+            fig.add_trace(go.Scatter(
                 x=data_level["Years_to_Promotion"],
                 y=data_level["Work_Life_Balance"],
                 mode="lines+markers",
                 name=level,
                 line=dict(color=colors[level]),
-                hovertemplate=f"%{{y:.2f}}"
+                hovertemplate="%{y:.2f}"
             ))
 
-    fig4.update_layout(
+    fig.update_layout(
         title="Average Work-Life Balance by Years to Promotion",
         xaxis_title="Years to Promotion",
         yaxis_title="Average Work-Life Balance",
         height=600,
+        width=900,
+        title_x=0.5,
         legend_title_text="Job Level",
-        hovermode="x unified"
+        hovermode="x unified",
+        xaxis=dict(
+            showspikes=True,
+            spikemode="across",
+            spikesnap="cursor",
+            spikedash="dot",
+            spikethickness=1,
+            spikecolor="gray"
+        ),
+        yaxis=dict(
+            showspikes=True,
+            spikemode="across",
+            spikesnap="cursor",
+            spikedash="dot",
+            spikethickness=1,
+            spikecolor="gray"
+        )
     )
-    st.plotly_chart(fig4, use_container_width=True)
+
+    st.plotly_chart(fig, use_container_width=True)
