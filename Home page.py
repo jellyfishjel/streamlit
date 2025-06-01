@@ -21,6 +21,9 @@ st.markdown(f"""
         background-position: center;
         background-attachment: fixed;
     }}
+    header {{
+        background-color: transparent;
+    }}
     .navbar {{
         display: flex;
         justify-content: center;
@@ -51,12 +54,12 @@ st.markdown(f"""
         cursor: pointer;
     }}
     .team-img {{
-    border-radius: 8px;
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    display: block;
-    margin: 0 auto 8px auto;
+        border-radius: 8px;
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto 8px auto;
     }}
     </style>
 """, unsafe_allow_html=True)
