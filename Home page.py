@@ -16,7 +16,6 @@ team_bg = get_base64("images/team_section_bg.png")
 # ========== CSS ==========
 st.markdown(f"""
     <style>
-    /* Chỉ áp dụng nền cho phần homepage */
     .homepage-wrapper {{
         background-image: url("data:image/png;base64,{home_bg}");
         background-size: cover;
@@ -25,15 +24,16 @@ st.markdown(f"""
         padding: 80px 20px;
     }}
 
-    /* Nền riêng cho team-section vẫn giữ nguyên */
     .team-section {{
         background-image: url("data:image/png;base64,{team_bg}");
         background-size: cover;
         background-position: center;
-        padding: 50px 20px;
-        border-radius: 16px;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        padding: 80px 40px;
         margin-top: 30px;
     }}
+
     .navbar {{
         display: flex;
         justify-content: center;
@@ -46,6 +46,7 @@ st.markdown(f"""
         text-decoration: none;
         font-weight: bold;
     }}
+
     .homepage-box {{
         background: rgba(0, 0, 0, 0.5);
         color: white;
@@ -63,14 +64,7 @@ st.markdown(f"""
         border-radius: 12px;
         cursor: pointer;
     }}
-    .team-section {{
-        background-image: url("data:image/png;base64,{team_bg}");
-        background-size: cover;
-        background-position: center;
-        padding: 50px 20px;
-        border-radius: 16px;
-        margin-top: 30px;
-    }}
+
     .team-img {{
         width: 200px;
         height: 200px;
@@ -79,6 +73,7 @@ st.markdown(f"""
         display: block;
         margin-left: auto;
         margin-right: auto;
+        border: 3px solid white;
     }}
     .team-name {{
         text-align: center;
@@ -86,6 +81,12 @@ st.markdown(f"""
         color: white;
         margin-top: 8px;
         font-size: 16px;
+    }}
+
+    .pagination {{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
     }}
     </style>
 """, unsafe_allow_html=True)
