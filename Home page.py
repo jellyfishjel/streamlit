@@ -16,11 +16,23 @@ team_bg = get_base64("images/team_section_bg.png")
 # ========== CSS ==========
 st.markdown(f"""
     <style>
-    .stApp {{
+    /* Chỉ áp dụng nền cho phần homepage */
+    .homepage-wrapper {{
         background-image: url("data:image/png;base64,{home_bg}");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
+        padding: 80px 20px;
+    }}
+
+    /* Nền riêng cho team-section vẫn giữ nguyên */
+    .team-section {{
+        background-image: url("data:image/png;base64,{team_bg}");
+        background-size: cover;
+        background-position: center;
+        padding: 50px 20px;
+        border-radius: 16px;
+        margin-top: 30px;
     }}
     .navbar {{
         display: flex;
@@ -90,13 +102,15 @@ st.markdown("""
 
 # ========== Homepage ==========
 st.markdown('<a name="home"></a>', unsafe_allow_html=True)
-st.markdown("""
-    <div class="homepage-box">
-        <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
-        <br><br>
-        <a href="#team">
-            <button>Learn about us</button>
-        </a>
+st.markdown(f"""
+    <div class="homepage-wrapper">
+        <div class="homepage-box">
+            <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
+            <br><br>
+            <a href="#team">
+                <button>Learn about us</button>
+            </a>
+        </div>
     </div>
 """, unsafe_allow_html=True)
 
