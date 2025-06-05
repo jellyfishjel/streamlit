@@ -13,7 +13,7 @@ st.markdown("""
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url('images/homepage_bg.png');
+            background-image: url("images/homepage_bg.png");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
