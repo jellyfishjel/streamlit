@@ -113,16 +113,14 @@ for row in [top_row, bottom_row]:
     cols = st.columns(len(row))
     for col, member in zip(cols, row):
         with col:
-            # Display image (Streamlit handles image object or path)
+            st.markdown("<div style='display: flex; justify-content: center;'>", unsafe_allow_html=True)
             st.image(member["image"], width=180)
-            # Center the name below the image
+            st.markdown("</div>", unsafe_allow_html=True)
             st.markdown(f"""
-                <div style='text-align: center; margin-top: 8px;'>
-                    <span style='font-weight: bold;'>{member['name']}</span>
+                <div style='text-align: center; margin-top: 8px; font-weight: bold;'>
+                    {member['name']}
                 </div>
             """, unsafe_allow_html=True)
-    if row == top_row:
-        st.markdown("<div style='height: 30px;'></div>", unsafe_allow_html=True)
 
 # ==== END SECTION ====
 st.markdown("</div>", unsafe_allow_html=True)
