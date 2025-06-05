@@ -1,47 +1,93 @@
 import streamlit as st
 
-# Cấu hình trang
-st.set_page_config(page_title="Education Career App", layout="wide")
+# ===== SETUP PAGE =====
+st.set_page_config(layout="wide", page_title="Education & Career Success")
 
-# Nhúng font 'Bungee' và CSS tùy chỉnh
+# ===== CSS TO HANDLE 2 BACKGROUNDS =====
 st.markdown("""
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
     <style>
-        .centered {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-image: url("images/homepage_bg.png");
+        .homepage {
+            background-image: url('images/homepage_bg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-        }
-        .centered h1 {
-            font-family: 'Bungee', cursive;
-            font-size: 70px;
+            padding: 150px 30px;
             color: #faf4dc;
             text-align: center;
-            margin-bottom: 50px;
-            text-shadow: 2px 2px #00000040;
+            font-family: 'Bungee', sans-serif;
         }
-        .centered button {
-            background-color: white;
-            color: black;
-            padding: 12px 30px;
+
+        .team-section {
+            background-image: url('images/team_section_bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 100px 50px;
+        }
+
+        .team-title {
+            text-align: center;
+            font-size: 40px;
+            color: white;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+
+        .member-name {
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            margin-top: 10px;
             font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
         }
-        .centered button:hover {
-            background-color: #ddd;
+
+        .start-btn {
+            margin-top: 50px;
+        }
+
+        .start-btn button {
+            padding: 14px 32px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
         }
     </style>
-    <div class="centered">
-        <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
-        <a href="1_👥_Learn_about_us"><button>Let's get started</button></a>
+""", unsafe_allow_html=True)
+
+# ===== HOMEPAGE HERO SECTION =====
+st.markdown('<div class="homepage">', unsafe_allow_html=True)
+st.markdown("<h1 style='font-size:72px;'>EDUCATION<br>CAREER<br>SUCCESS</h1>", unsafe_allow_html=True)
+st.markdown("""
+    <div class="start-btn">
+        <a href="#team-section">
+            <button style="background-color: white; color: black;">Let's get started</button>
+        </a>
     </div>
 """, unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
+
+# ===== TEAM SECTION =====
+st.markdown('<div class="team-section" id="team-section">', unsafe_allow_html=True)
+st.markdown('<div class="team-title">Our Team</div>', unsafe_allow_html=True)
+
+# === TEAM MEMBERS ===
+team_members = [
+    {"name": "Nguyễn Kiều Anh", "image": "images/Nguyễn Kiều Anh.png"},
+    {"name": "Lê Nguyễn Khánh Phương", "image": "images/Lê Nguyễn Khánh Phương.png"},
+    {"name": "Nguyễn Bảo Ngọc", "image": "images/Nguyễn Bảo Ngọc.png"},
+    {"name": "Nguyễn Trần Khánh Linh", "image": "images/Nguyễn Trần Khánh Linh.png"},
+    {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "images/Nguyễn Huỳnh Bảo Nguyên.png"},
+    {"name": "Vũ Thị Thu Thảo", "image": "images/Vũ Thị Thu Thảo.png"},
+    {"name": "Sazahng", "image": "images/Sazahng.png"},
+]
+
+cols = st.columns(4)
+for idx, member in enumerate(team_members):
+    col = cols[idx % 4]
+    with col:
+        st.image(member["image"], use_column_width=True)
+        st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
