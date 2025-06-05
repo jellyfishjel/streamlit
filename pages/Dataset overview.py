@@ -1,18 +1,18 @@
 import pandas as pd
 import streamlit as st
 
-# Load dataset
-@st.cache_data
-def load_data():
-    return pd.read_excel("education_career_success.xlsx")
 
-df = load_data()
+# Load dataset
+df = pd.read_excel("education_career_success.xlsx")
+
 
 # Set up the app layout
 st.set_page_config(page_title="Education & Career Success", layout="wide")
 
+
 # Create tab navigation
 tab1, tab2, tab3 = st.tabs(["📌 Introduction", "📂 Dataset Overview", "📊 Variable Explanation"])
+
 
 # --- Tab 1: Introduction ---
 with tab1:
@@ -24,11 +24,13 @@ with tab1:
     academic performance, and practical experiences impact career satisfaction, work-life balance, and
     long-term professional achievements.
 
+
     This report is our project for R for Data Science course. The report contains plots that are created
     by using RStudio to visualize information from the dataset in a more accessible way. Each diagram
     is followed by a detailed description and code from RStudio to provide readers with clear
     explanation on statistical data and how RStudio is used in practical data analysis.
     """)
+
 
 # --- Tab 2: Dataset Overview ---
 with tab2:
@@ -45,9 +47,11 @@ with tab2:
     st.subheader("Preview of Dataset")
     st.dataframe(df.head())
 
+
 # --- Tab 3: Variable Explanation ---
 with tab3:
     st.header("📊 Variable Explanation")
+
 
     # 1. Student Information
     st.subheader("1. Student Information")
@@ -62,6 +66,7 @@ with tab3:
     - `Field_of_Study`: Student’s major (Arts, Law, Business, Medicine, CS, Engineering, Math)
     """)
 
+
     # 2. Academic Performance
     st.subheader("2. Academic Performance")
     st.markdown("""
@@ -72,9 +77,11 @@ with tab3:
     - `Networking_Score`: Networking and connections score (1–10)
     """)
 
+
     # 3. Career Outcomes
     st.subheader("3. Career Outcomes")
     st.markdown("""
     - `Job_Offers`: Number of job offers post-graduation (0–5)  
     - `Starting_Salary`: First job salary in USD ($25,000–$150,000)
     """)
+
