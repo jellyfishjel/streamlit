@@ -92,7 +92,7 @@ st.markdown("""
 # ==== OUR TEAM SECTION ====
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
 st.markdown('<div id="team-section">', unsafe_allow_html=True)
-st.markdown("""<div class="team-title">Our Team ⭐</div>""", unsafe_allow_html=True)
+st.markdown("""<div class="team-title">Our Team </div>""", unsafe_allow_html=True)
 
 # ==== TEAM MEMBERS ====
 team_members = [
