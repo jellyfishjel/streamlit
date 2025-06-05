@@ -104,7 +104,7 @@ team_members = [
     {"name": "Nguyễn Trần Khánh Linh", "image": "images/Nguyen Tran Khanh Linh.png"},
     {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "images/Nguyen Huynh Bao Nguyen.png"},
     {"name": "Vũ Thị Thu Thảo", "image": "images/Vu Thi Thu Thao.png"},
-    {"name": "Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
+    {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
 # ==== DISPLAY TEAM IN 2 ROWS ====
