@@ -113,10 +113,12 @@ for row in [top_row, bottom_row]:
     cols = st.columns(len(row))
     for col, member in zip(cols, row):
         with col:
-            st.image(member["image"], width=180)
             st.markdown(f"""
-                <div style='text-align: center; margin-top: 8px;'>
-                    <span class='name-text'>{member['name']}</span>
+                <div style='text-align: center;'>
+                    <img src="{member['image']}" width="180" style="margin-bottom: 8px;" />
+                    <div style='margin-top: 8px;'>
+                        <span class='name-text'>{member['name']}</span>
+                    </div>
                 </div>
             """, unsafe_allow_html=True)
     if row == top_row:
