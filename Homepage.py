@@ -94,13 +94,13 @@ st.markdown("""
 
 # ==== TEAM MEMBERS ====
 team_members = [
-    {"name": "Nguyễn Kiều Anh", "file": "Nguyễn Kiều Anh.png"},
-    {"name": "Lê Nguyễn Khánh Phương", "file": "Lê Nguyễn Khánh Phương.png"},
-    {"name": "Nguyễn Bảo Ngọc", "file": "Nguyễn Bảo Ngọc.png"},
-    {"name": "Nguyễn Trần Khánh Linh", "file": "Nguyễn Trần Khánh Linh.png"},
-    {"name": "Nguyễn Huỳnh Bảo Nguyên", "file": "Nguyễn Huỳnh Bảo Nguyên.png"},
-    {"name": "Vũ Thị Thu Thảo", "file": "Vũ Thị Thu Thảo.png"},
-    {"name": "Bội Ngọc", "file": "Sazahng.png"}
+    {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
+    {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
+    {"name": "Nguyễn Bảo Ngọc", "image": "images/Nguyen Bao Ngoc.png"},
+    {"name": "Nguyễn Trần Khánh Linh", "image": "images/Nguyen Tran Khanh Linh.png"},
+    {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "images/Nguyen Huynh Bao Nguyenn.png"},
+    {"name": "Vũ Thị Thu Thảo", "image": "images/Vu Thi Thu Thao.png"},
+    {"name": "Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"}
 ]
 
 # Folder chứa ảnh
