@@ -1,20 +1,19 @@
 import streamlit as st
 from PIL import Image
-import os
 
-# ==== PAGE CONFIG ====
+# ===== PAGE CONFIG =====
 st.set_page_config(
     page_title="Education Career App",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# ==== IMPORT GOOGLE FONT ====
+# ===== IMPORT GOOGLE FONT =====
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
 
-# ==== HOMEPAGE BACKGROUND ====
+# ===== HOMEPAGE BACKGROUND + TITLE =====
 st.markdown(
     """
     <style>
@@ -60,8 +59,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ==== OUR TEAM SECTION ====
-# Background image for 'Our Team' section
+# ===== OUR TEAM SECTION BACKGROUND =====
 st.markdown(
     """
     <style>
@@ -77,10 +75,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Anchor for scroll
+# ===== SCROLL ANCHOR =====
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
 
-# Our Team Title
+# ===== TITLE "OUR TEAM" =====
 st.markdown("""
     <div style="
         text-align: center;
@@ -88,11 +86,11 @@ st.markdown("""
         font-family: 'Bungee', sans-serif;
         color: #faf4dc;
         margin: 2rem 0 3rem 0;">
-        Our Team 
+        OUR TEAM 
     </div>
 """, unsafe_allow_html=True)
 
-# ==== TEAM MEMBERS ====
+# ===== TEAM MEMBERS =====
 team_members = [
     {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
     {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
@@ -102,10 +100,8 @@ team_members = [
     {"name": "Vũ Thị Thu Thảo", "image": "images/Vu Thi Thu Thao.png"},
     {"name": "Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
-# Folder chứa ảnh
-image_folder = "images"
 
-# Hiển thị 4 người ở hàng đầu, 3 người ở hàng dưới
+# Hiển thị: 4 thành viên hàng đầu, 3 ở dưới
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
@@ -113,12 +109,11 @@ for row in [top_row, bottom_row]:
     cols = st.columns(len(row))
     for col, member in zip(cols, row):
         with col:
-            img_path = os.path.join(image_folder, member["name"])
-            st.image(img_path, width=160)
+            st.image(member["image"], width=160)
             st.markdown(
                 f"<p style='text-align: center; color: #faf4dc; font-size: 18px;'><strong>{member['name']}</strong></p>",
                 unsafe_allow_html=True
             )
 
-# Kết thúc khối background section
+# ===== ĐÓNG DIV CỦA TEAM SECTION =====
 st.markdown("</div>", unsafe_allow_html=True)
