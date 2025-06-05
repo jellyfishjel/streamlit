@@ -32,11 +32,13 @@ st.markdown("""
             text-align: center;
             color: #faf4dc;
         }
+
         .centered h1 {
             font-size: 70px;
             font-family: 'Bungee', sans-serif;
             margin-bottom: 50px;
         }
+
         .centered button {
             background-color: white;
             color: black;
@@ -47,6 +49,7 @@ st.markdown("""
             cursor: pointer;
             transition: all 0.3s ease;
         }
+
         .centered button:hover {
             background-color: #ddd;
         }
@@ -71,11 +74,9 @@ st.markdown("""
         }
 
         .name-text {
-            text-align: center;
             font-size: 18px;
             font-weight: bold;
             color: black;
-            margin-top: 8px;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -113,10 +114,11 @@ for row in [top_row, bottom_row]:
     for col, member in zip(cols, row):
         with col:
             st.image(member["image"], width=180)
-            st.markdown(f""
-                        <div style='text-align: center'>
-                            <div class='name-text'>{member['name']}</div>
-            "", unsafe_allow_html=True)
+            st.markdown(f"""
+                <div style='text-align: center; margin-top: 8px;'>
+                    <span class='name-text'>{member['name']}</span>
+                </div>
+            """, unsafe_allow_html=True)
     if row == top_row:
         st.markdown("<div class='spacer'></div>", unsafe_allow_html=True)
 
