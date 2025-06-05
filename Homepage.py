@@ -114,7 +114,7 @@ for row in [top_row, bottom_row]:
     cols = st.columns(len(row))
     for col, member in zip(cols, row):
         with col:
-            img_path = os.path.join(image_folder, member["file"])
+            img_path = os.path.join(image_folder, member["name"])
             st.image(img_path, width=160)
             st.markdown(
                 f"<p style='text-align: center; color: #faf4dc; font-size: 18px;'><strong>{member['name']}</strong></p>",
