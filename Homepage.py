@@ -9,55 +9,89 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ===== BACKGROUND STYLE =====
+# ===== LOAD CUSTOM FONT =====
+st.markdown("""
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+""", unsafe_allow_html=True)
+
+# ===== STYLING (Homepage background + Title) =====
 st.markdown(
     f"""
     <style>
-        .stApp {{
+        .homepage {{
             background-image: url('images/homepage_bg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-        }}
-        .centered {{
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             text-align: center;
-            color: #1a1a1a;
         }}
-        .centered h1 {{
-            font-size: 70px;
-            font-weight: 900;
-            margin-bottom: 50px;
+        .homepage h1 {{
+            font-family: 'Bungee', sans-serif;
+            font-size: 72px;
+            color: #faf4dc;
+            margin-bottom: 40px;
         }}
-        .centered button {{
+        .homepage button {{
             background-color: white;
             color: black;
-            padding: 12px 30px;
+            padding: 14px 30px;
             font-size: 18px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-weight: bold;
         }}
-        .centered button:hover {{
+        .homepage button:hover {{
             background-color: #ddd;
         }}
     </style>
-    <div class="centered">
-        <h1>EDUCATION CAREER SUCCESS</h1>
-        <a href="#team"><button>Let's get started</button></a>
+
+    <div class="homepage">
+        <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
+        <a href="#team-section"><button>Let's get started</button></a>
     </div>
     """,
     unsafe_allow_html=True
 )
 
-# ===== ABOUT US SECTION =====
-st.markdown('<a name="team"></a>', unsafe_allow_html=True)
-st.markdown("""<h2 style='text-align: center; margin-top: 3rem;'>Our Team ⭐</h2>""", unsafe_allow_html=True)
+# ===== TEAM SECTION BACKGROUND STYLE =====
+st.markdown(
+    f"""
+    <style>
+        .team-section {{
+            background-image: url('images/team_section_bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 80px 30px;
+        }}
+        .team-title {{
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 40px;
+        }}
+        .member-name {{
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            margin-top: 10px;
+            font-size: 18px;
+        }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# ===== TEAM SECTION CONTENT =====
+st.markdown('<div class="team-section" id="team-section">', unsafe_allow_html=True)
+st.markdown('<div class="team-title">Our Team ⭐</div>', unsafe_allow_html=True)
 
 # === TEAM IMAGES ===
 team_folder = "images/team"
@@ -71,7 +105,7 @@ team_members = [
     {"name": "Bội Ngọc", "file": "Sazahng.png"}
 ]
 
-# Split into two rows
+# Chia thành 2 hàng
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
@@ -81,5 +115,6 @@ for row in [top_row, bottom_row]:
         with col:
             img_path = os.path.join(team_folder, member["file"])
             st.image(img_path, width=160)
-            st.markdown(f"<p style='text-align: center'><strong>{member['name']}</strong></p>", unsafe_allow_html=True)
+            st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
 
+st.markdown('</div>', unsafe_allow_html=True)
