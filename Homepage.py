@@ -1,44 +1,43 @@
 import streamlit as st
-from PIL import Image
 import os
 
-# ==== PAGE CONFIG ====
+# ===== PAGE CONFIG =====
 st.set_page_config(
     page_title="Education Career App",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# ==== IMPORT GOOGLE FONT BUNGEE ====
+# ===== IMPORT GOOGLE FONT =====
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
 
-# ==== HOMEPAGE STYLE ====
+# ===== HOMEPAGE BACKGROUND + TITLE =====
 st.markdown(
     """
     <style>
-        body {
-            margin: 0;
-        }
-        .homepage {
+        .stApp {
             background-image: url('images/homepage_bg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            height: 100vh;
+        }
+        .centered {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-        }
-        .homepage h1 {
-            font-family: 'Bungee', sans-serif;
-            font-size: 70px;
+            height: 100vh;
+            text-align: center;
             color: #faf4dc;
-            margin-bottom: 30px;
         }
-        .homepage button {
+        .centered h1 {
+            font-size: 70px;
+            font-family: 'Bungee', sans-serif;
+            margin-bottom: 50px;
+        }
+        .centered button {
             background-color: white;
             color: black;
             padding: 12px 30px;
@@ -46,12 +45,13 @@ st.markdown(
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
-        .homepage button:hover {
+        .centered button:hover {
             background-color: #ddd;
         }
     </style>
-    <div class="homepage">
+    <div class="centered">
         <h1>EDUCATION CAREER SUCCESS</h1>
         <a href="#team"><button>Let's get started</button></a>
     </div>
@@ -59,7 +59,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ==== OUR TEAM SECTION STYLE ====
+# ===== OUR TEAM SECTION BACKGROUND =====
 st.markdown(
     """
     <style>
@@ -67,35 +67,30 @@ st.markdown(
             background-image: url('images/team_section_bg.png');
             background-size: cover;
             background-position: center;
-            padding: 4rem 2rem;
-        }
-        .team-title {
-            text-align: center;
-            font-size: 42px;
-            font-family: 'Bungee', sans-serif;
-            color: black;
-            margin-bottom: 3rem;
-        }
-        .member-name {
-            text-align: center;
-            color: black;
-            font-size: 18px;
-            margin-top: 12px;
-        }
-        .spacer {
-            margin-top: 4rem;
+            padding: 5rem 2rem;
         }
     </style>
+    <div id="team-section">
     """,
     unsafe_allow_html=True
 )
 
-# ==== ANCHOR & SECTION ====
+# ===== ANCHOR FOR SCROLL =====
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
-st.markdown('<div id="team-section">', unsafe_allow_html=True)
-st.markdown('<div class="team-title">Our Team ⭐</div>', unsafe_allow_html=True)
 
-# ==== TEAM MEMBERS ====
+# ===== TEAM TITLE =====
+st.markdown("""
+    <div style="
+        text-align: center;
+        font-size: 42px;
+        font-family: 'Bungee', sans-serif;
+        color: black;
+        margin: 2rem 0 3rem 0;">
+        OUR TEAM ⭐
+    </div>
+""", unsafe_allow_html=True)
+
+# ===== TEAM MEMBERS =====
 team_members = [
     {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
     {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
@@ -106,18 +101,32 @@ team_members = [
     {"name": "Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# Hiển thị 4 người hàng đầu, 3 người hàng dưới
+# Tách hàng
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
-for row in [top_row, bottom_row]:
-    cols = st.columns(len(row))
-    for col, member in zip(cols, row):
-        with col:
-            st.image(member["image"], width=180)
-            st.markdown(f"<div class='member-name'><strong>{member['name']}</strong></div>", unsafe_allow_html=True)
-    if row == top_row:
-        st.markdown("<div class='spacer'></div>", unsafe_allow_html=True)
+# Hiển thị hàng đầu
+cols_top = st.columns(len(top_row))
+for col, member in zip(cols_top, top_row):
+    with col:
+        st.image(member["image"], width=160)
+        st.markdown(
+            f"<p style='text-align: center; color: black; font-size: 18px; margin-top: 8px;'><strong>{member['name']}</strong></p>",
+            unsafe_allow_html=True
+        )
+
+# Tạo khoảng cách giữa 2 hàng
+st.markdown("<div style='height: 3rem;'></div>", unsafe_allow_html=True)
+
+# Hiển thị hàng dưới
+cols_bottom = st.columns(len(bottom_row))
+for col, member in zip(cols_bottom, bottom_row):
+    with col:
+        st.image(member["image"], width=160)
+        st.markdown(
+            f"<p style='text-align: center; color: black; font-size: 18px; margin-top: 8px;'><strong>{member['name']}</strong></p>",
+            unsafe_allow_html=True
+        )
 
 # Đóng section
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
