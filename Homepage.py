@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 # ==== PAGE CONFIG ====
 st.set_page_config(
@@ -15,7 +16,6 @@ st.markdown("""
 # ==== CUSTOM STYLES ====
 st.markdown("""
     <style>
-        /* Homepage background */
         .stApp {
             background-image: url('images/homepage_bg.png');
             background-size: cover;
@@ -23,7 +23,6 @@ st.markdown("""
             background-repeat: no-repeat;
         }
 
-        /* Main title */
         .centered {
             display: flex;
             flex-direction: column;
@@ -52,7 +51,6 @@ st.markdown("""
             background-color: #ddd;
         }
 
-        /* Our Team Section */
         #team-section {
             background-image: url('images/team_section_bg.png');
             background-size: cover;
@@ -68,16 +66,16 @@ st.markdown("""
             margin: 2rem 0 3rem 0;
         }
 
-        .member-name {
+        .spacer {
+            height: 50px;
+        }
+
+        .name-text {
             text-align: center;
             font-size: 18px;
             font-weight: bold;
             color: black;
-            margin-top: 0.5rem;
-        }
-
-        .spacer {
-            height: 50px;
+            margin-top: 8px;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -90,10 +88,9 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# ==== OUR TEAM SECTION START ====
+# ==== OUR TEAM SECTION ====
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
 st.markdown('<div id="team-section">', unsafe_allow_html=True)
-
 st.markdown("""<div class="team-title">Our Team ⭐</div>""", unsafe_allow_html=True)
 
 # ==== TEAM MEMBERS ====
@@ -104,10 +101,10 @@ team_members = [
     {"name": "Nguyễn Trần Khánh Linh", "image": "images/Nguyen Tran Khanh Linh.png"},
     {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "images/Nguyen Huynh Bao Nguyen.png"},
     {"name": "Vũ Thị Thu Thảo", "image": "images/Vu Thi Thu Thao.png"},
-    {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
+    {"name": "Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# ==== DISPLAY TEAM IN 2 ROWS ====
+# ==== DISPLAY MEMBERS IN 2 ROWS ====
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
@@ -116,8 +113,9 @@ for row in [top_row, bottom_row]:
     for col, member in zip(cols, row):
         with col:
             st.image(member["image"], width=180)
+            st.markdown(f"<div class='name-text'>{member['name']}</div>", unsafe_allow_html=True)
     if row == top_row:
         st.markdown("<div class='spacer'></div>", unsafe_allow_html=True)
 
-# Đóng section
-st.markdown('</div>', unsafe_allow_html=True)
+# ==== END SECTION ====
+st.markdown("</div>", unsafe_allow_html=True)
