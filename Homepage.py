@@ -116,15 +116,6 @@ for row in [top_row, bottom_row]:
     for col, member in zip(cols, row):
         with col:
             st.image(member["image"], width=180)
-            st.markdown(
-                f"""
-                <div style='text-align: center'>
-                    <img src="{member['image']}" width="180" style="border-radius: 10px;" />
-                    <div class='member-name'><strong>{member['name']}</strong></div>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
     if row == top_row:
         st.markdown("<div class='spacer'></div>", unsafe_allow_html=True)
 
