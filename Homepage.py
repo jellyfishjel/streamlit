@@ -1,5 +1,5 @@
 import streamlit as st
-from PIL import Image
+import os
 
 # ===== PAGE CONFIG =====
 st.set_page_config(
@@ -67,7 +67,7 @@ st.markdown(
             background-image: url('images/team_section_bg.png');
             background-size: cover;
             background-position: center;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
         }
     </style>
     <div id="team-section">
@@ -75,18 +75,18 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ===== SCROLL ANCHOR =====
+# ===== ANCHOR FOR SCROLL =====
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
 
-# ===== TITLE "OUR TEAM" =====
+# ===== TEAM TITLE =====
 st.markdown("""
     <div style="
         text-align: center;
         font-size: 42px;
         font-family: 'Bungee', sans-serif;
-        color: #faf4dc;
+        color: black;
         margin: 2rem 0 3rem 0;">
-        OUR TEAM 
+        OUR TEAM ⭐
     </div>
 """, unsafe_allow_html=True)
 
@@ -101,19 +101,32 @@ team_members = [
     {"name": "Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# Hiển thị: 4 thành viên hàng đầu, 3 ở dưới
+# Tách hàng
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
-for row in [top_row, bottom_row]:
-    cols = st.columns(len(row))
-    for col, member in zip(cols, row):
-        with col:
-            st.image(member["image"], width=160)
-            st.markdown(
-                f"<p style='text-align: center; color: #faf4dc; font-size: 18px;'><strong>{member['name']}</strong></p>",
-                unsafe_allow_html=True
-            )
+# Hiển thị hàng đầu
+cols_top = st.columns(len(top_row))
+for col, member in zip(cols_top, top_row):
+    with col:
+        st.image(member["image"], width=160)
+        st.markdown(
+            f"<p style='text-align: center; color: black; font-size: 18px; margin-top: 8px;'><strong>{member['name']}</strong></p>",
+            unsafe_allow_html=True
+        )
 
-# ===== ĐÓNG DIV CỦA TEAM SECTION =====
+# Tạo khoảng cách giữa 2 hàng
+st.markdown("<div style='height: 3rem;'></div>", unsafe_allow_html=True)
+
+# Hiển thị hàng dưới
+cols_bottom = st.columns(len(bottom_row))
+for col, member in zip(cols_bottom, bottom_row):
+    with col:
+        st.image(member["image"], width=160)
+        st.markdown(
+            f"<p style='text-align: center; color: black; font-size: 18px; margin-top: 8px;'><strong>{member['name']}</strong></p>",
+            unsafe_allow_html=True
+        )
+
+# Đóng section
 st.markdown("</div>", unsafe_allow_html=True)
