@@ -1,4 +1,5 @@
 import streamlit as st
+from PIL import Image
 import os
 
 # ==== PAGE CONFIG ====
@@ -13,30 +14,31 @@ st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
 
-# ==== HOMEPAGE SECTION (with background) ====
-st.markdown("""
+# ==== HOMEPAGE BACKGROUND ====
+st.markdown(
+    """
     <style>
         .stApp {
-            background-image: url("images/homepage_bg.png");
+            background-image: url('images/homepage_bg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-        .homepage-container {
-            height: 100vh;
+        .centered {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 100vh;
             text-align: center;
-        }
-        .homepage-title {
-            font-family: 'Bungee', sans-serif;
-            font-size: 70px;
             color: #faf4dc;
-            margin-bottom: 40px;
         }
-        .homepage-button {
+        .centered h1 {
+            font-size: 70px;
+            font-family: 'Bungee', sans-serif;
+            margin-bottom: 50px;
+        }
+        .centered button {
             background-color: white;
             color: black;
             padding: 12px 30px;
@@ -44,51 +46,55 @@ st.markdown("""
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
-        .homepage-button:hover {
+        .centered button:hover {
             background-color: #ddd;
         }
     </style>
-    <div class="homepage-container">
-        <h1 class="homepage-title">EDUCATION CAREER SUCCESS</h1>
-        <a href="#team"><button class="homepage-button">Let's get started</button></a>
+    <div class="centered">
+        <h1>EDUCATION CAREER SUCCESS</h1>
+        <a href="#team"><button>Let's get started</button></a>
     </div>
-""", unsafe_allow_html=True)
-
-# ==== OUR TEAM SECTION (anchor + custom bg) ====
-st.markdown('<a name="team"></a>', unsafe_allow_html=True)
-st.markdown(
-    """
-    <style>
-        #team-section {
-            background-image: url("images/team_section_bg.png");
-            background-size: cover;
-            background-position: center;
-            padding: 4rem 2rem;
-        }
-        .team-title {
-            text-align: center;
-            font-family: 'Bungee', sans-serif;
-            font-size: 42px;
-            color: #faf4dc;
-            margin-bottom: 3rem;
-        }
-        .member-name {
-            text-align: center;
-            font-size: 18px;
-            color: #faf4dc;
-        }
-    </style>
-    <div id="team-section">
-        <div class="team-title">OUR TEAM ⭐</div>
     """,
     unsafe_allow_html=True
 )
 
-# ==== TEAM MEMBERS DISPLAY ====
+# ==== OUR TEAM SECTION ====
+# Background image for 'Our Team' section
+st.markdown(
+    """
+    <style>
+        #team-section {
+            background-image: url('images/team_section_bg.png');
+            background-size: cover;
+            background-position: center;
+            padding: 4rem 2rem;
+        }
+    </style>
+    <div id="team-section">
+    """,
+    unsafe_allow_html=True
+)
+
+# Anchor for scroll
+st.markdown('<a name="team"></a>', unsafe_allow_html=True)
+
+# Our Team Title
+st.markdown("""
+    <div style="
+        text-align: center;
+        font-size: 42px;
+        font-family: 'Bungee', sans-serif;
+        color: #faf4dc;
+        margin: 2rem 0 3rem 0;">
+        Our Team ⭐
+    </div>
+""", unsafe_allow_html=True)
+
+# ==== TEAM MEMBERS ====
 team_members = [
-   {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
+    {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
     {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
     {"name": "Nguyễn Bảo Ngọc", "image": "images/Nguyen Bao Ngoc.png"},
     {"name": "Nguyễn Trần Khánh Linh", "image": "images/Nguyen Tran Khanh Linh.png"},
@@ -96,18 +102,23 @@ team_members = [
     {"name": "Vũ Thị Thu Thảo", "image": "images/Vu Thi Thu Thao.png"},
     {"name": "Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
+# Folder chứa ảnh
+image_folder = "images"
 
+# Hiển thị 4 người ở hàng đầu, 3 người ở hàng dưới
 top_row = team_members[:4]
 bottom_row = team_members[4:]
-img_folder = "images"
 
 for row in [top_row, bottom_row]:
     cols = st.columns(len(row))
     for col, member in zip(cols, row):
         with col:
-            path = os.path.join(img_folder, member["image"])
-            st.image(path, width=160)
-            st.markdown(f"<p class='member-name'><strong>{member['name']}</strong></p>", unsafe_allow_html=True)
+            img_path = os.path.join(image_folder, member["file"])
+            st.image(img_path, width=160)
+            st.markdown(
+                f"<p style='text-align: center; color: #faf4dc; font-size: 18px;'><strong>{member['name']}</strong></p>",
+                unsafe_allow_html=True
+            )
 
-# ==== Close team section ====
+# Kết thúc khối background section
 st.markdown("</div>", unsafe_allow_html=True)
