@@ -86,7 +86,7 @@ st.markdown("""
         font-family: 'Bungee', sans-serif;
         color: black;
         margin: 2rem 0 3rem 0;">
-        OUR TEAM ⭐
+        OUR TEAM 
     </div>
 """, unsafe_allow_html=True)
 
