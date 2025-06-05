@@ -98,7 +98,7 @@ team_members = [
     {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
     {"name": "Nguyễn Bảo Ngọc", "image": "images/Nguyen Bao Ngoc.png"},
     {"name": "Nguyễn Trần Khánh Linh", "image": "images/Nguyen Tran Khanh Linh.png"},
-    {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "images/Nguyen Huynh Bao Nguyenn.png"},
+    {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "images/Nguyen Huynh Bao Nguyen.png"},
     {"name": "Vũ Thị Thu Thảo", "image": "images/Vu Thi Thu Thao.png"},
     {"name": "Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"}
 ]
