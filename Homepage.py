@@ -1,100 +1,107 @@
 import streamlit as st
+import base64
 import os
 
-# ==== PAGE CONFIG ====
+# ==== Function to encode background images ====
+def get_base64_image(image_path):
+    with open(image_path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+# ==== Background images ====
+home_bg = get_base64_image("images/homepage_bg.png")
+team_bg = get_base64_image("images/team_section_bg.png")
+
+# ==== Page config ====
 st.set_page_config(
     page_title="Education Career App",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# ==== IMPORT GOOGLE FONT ====
+# ==== Import font ====
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
 
-# ==== CUSTOM STYLES ====
-st.markdown("""
+# ==== CSS Styling ====
+st.markdown(f"""
     <style>
-        .stApp {
-            background-image: url('images/homepage_bg.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+        html, body {{
+            margin: 0;
+            padding: 0;
+        }}
 
-        .centered {
+        .homepage {{
+            background: url("data:image/png;base64,{home_bg}") no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             text-align: center;
-            color: #faf4dc;
-        }
+        }}
 
-        .centered h1 {
-            font-size: 70px;
+        .homepage h1 {{
             font-family: 'Bungee', sans-serif;
-            margin-bottom: 50px;
-        }
+            font-size: 64px;
+            color: #faf4dc;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }}
 
-        .centered button {
-            background-color: white;
+        .homepage button {{
+            background: linear-gradient(to right, #f6d365, #fda085);
             color: black;
             padding: 12px 30px;
-            font-size: 18px;
+            font-size: 16px;
             border: none;
-            border-radius: 5px;
+            border-radius: 20px;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
+        }}
 
-        .centered button:hover {
-            background-color: #ddd;
-        }
-
-        #team-section {
-            background-image: url('images/team_section_bg.png');
+        #team-section {{
+            background: url("data:image/png;base64,{team_bg}") no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
             padding: 4rem 2rem;
-        }
+        }}
 
-        .team-title {
+        .team-title {{
             text-align: center;
-            font-size: 42px;
+            font-size: 36px;
             font-family: 'Bungee', sans-serif;
             color: black;
-            margin: 2rem 0 3rem 0;
-        }
+            margin-bottom: 3rem;
+        }}
 
-        .spacer {
-            height: 50px;
-        }
-
-        .name-text {
-            font-size: 18px;
+        .member-name {{
+            text-align: center;
             font-weight: bold;
             color: black;
-        }
+            margin-top: 8px;
+            font-size: 16px;
+        }}
+
+        .row-spacing {{
+            margin-top: 40px;
+        }}
     </style>
 """, unsafe_allow_html=True)
 
-# ==== HOMEPAGE CONTENT ====
-st.markdown("""
-    <div class="centered">
-        <h1>EDUCATION CAREER SUCCESS</h1>
-        <a href="#team"><button>Let's get started</button></a>
+# ==== HOMEPAGE Section ====
+st.markdown(f"""
+    <div class="homepage">
+        <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
+        <a href="#team"><button>Learn about us</button></a>
     </div>
 """, unsafe_allow_html=True)
 
-# ==== OUR TEAM SECTION ====
+# ==== TEAM Section ====
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
 st.markdown('<div id="team-section">', unsafe_allow_html=True)
-st.markdown("""<div class="team-title">Our Team </div>""", unsafe_allow_html=True)
+st.markdown('<div class="team-title">OUR TEAM</div>', unsafe_allow_html=True)
 
-# ==== TEAM MEMBERS ====
+# ==== TEAM DATA ====
 team_members = [
     {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
     {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
@@ -105,7 +112,7 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# ==== DISPLAY MEMBERS IN 2 ROWS ====
+# ==== DISPLAY ====
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
@@ -113,12 +120,9 @@ for row in [top_row, bottom_row]:
     cols = st.columns(len(row))
     for col, member in zip(cols, row):
         with col:
-            st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
             st.image(member["image"], width=180)
-            st.markdown(f"<div style='margin-top: 8px; font-weight: bold;'>{member['name']}</div>", unsafe_allow_html=True)
-            st.markdown("</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
     if row == top_row:
-        st.markdown("<div style='height: 30px;'></div>", unsafe_allow_html=True)
+        st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
 
-# ==== END SECTION ====
 st.markdown("</div>", unsafe_allow_html=True)
