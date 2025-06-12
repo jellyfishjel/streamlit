@@ -1,4 +1,7 @@
-# ==== Page Config ====
+
+import streamlit as st
+from PIL import Image# ==== Page Config ====
+
 st.set_page_config(page_title="Education Career App", layout="wide")
 
 # ==== Tiêu đề chính ====
