@@ -52,6 +52,6 @@ st.markdown("""
 st.markdown("""
     <div class="title-section">
         <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
-        <a href="/1_Dataset_Overview"><button>Read the report</button></a>
+        <a href="/Dataset_overview"><button>Read the report</button></a>
     </div>
 """, unsafe_allow_html=True)
