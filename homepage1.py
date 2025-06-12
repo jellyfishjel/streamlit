@@ -1,7 +1,7 @@
 import streamlit as st
 import base64
 
-# ==== Hàm mã hóa ảnh thành base64 để nhúng vào HTML ====
+@st.cache_data
 def get_base64_image(image_path):
     with open(image_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
