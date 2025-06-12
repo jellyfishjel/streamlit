@@ -1,43 +1,29 @@
 import streamlit as st
-import base64
-
-@st.cache_data
-def get_base64_image(image_path):
-    with open(image_path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
-
-# ==== Đặt ảnh nền ====
-bg_image = get_base64_image("images/team_section_bg.png")
 
 # ==== Cấu hình trang ====
 st.set_page_config(page_title="Education Career App", layout="wide")
 
 # ==== CSS đơn giản ====
-st.markdown(f"""
+st.markdown("""
     <style>
-        .stApp {{
-            background-image: url("data:image/png;base64,{bg_image}");
-            background-size: cover;
-            background-position: center;
-        }}
-        .title {{
+        .title {
             text-align: center;
             font-size: 50px;
             font-weight: bold;
             color: #cf5a2e;
-            margin-top: 80px;
+            margin-top: 60px;
             margin-bottom: 40px;
-        }}
-        .member-name {{
+        }
+        .member-name {
             text-align: center;
             margin-top: 10px;
             font-weight: bold;
             color: black;
-        }}
+        }
     </style>
 """, unsafe_allow_html=True)
 
-# ==== Tiêu đề ====
+# ==== Tiêu đề chính ====
 st.markdown("<div class='title'>EDUCATION<br>CAREER<br>SUCCESS</div>", unsafe_allow_html=True)
 
 # ==== Danh sách thành viên ====
@@ -51,7 +37,7 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# ==== Hiển thị thành viên (chia làm 2 hàng) ====
+# ==== Hiển thị thành viên: chia làm 2 hàng ====
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
@@ -59,10 +45,5 @@ for row in [top_row, bottom_row]:
     cols = st.columns(len(row))
     for col, member in zip(cols, row):
         with col:
-            image_base64 = get_base64_image(member["image"])
-            st.markdown(f"""
-                <div style='text-align: center;'>
-                    <img src='data:image/png;base64,{image_base64}' width='180'/>
-                    <div class='member-name'>{member["name"]}</div>
-                </div>
-            """, unsafe_allow_html=True)
+            st.image(member["image"], width=180)
+            st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
