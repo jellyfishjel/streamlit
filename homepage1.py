@@ -23,24 +23,26 @@ team_members = [
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
-# ==== Hàm hiển thị thành viên với ảnh cùng kích thước ====
-def show_member(col, member, size=(300, 300)):
-    with col:
-        img = Image.open(member["image"]).resize(size)
-        st.image(img)
-        st.markdown(
-            f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>",
-            unsafe_allow_html=True
-        )
+from PIL import ImageOps
+
+def show_image_fixed_size(image_path, size=(300, 300)):
+    img = Image.open(image_path)
+    img = ImageOps.pad(img, size, method=Image.LANCZOS, color=(255, 255, 255))
+    return img
 
 # ==== Hiển thị hàng đầu ====
 st.markdown("## 👩‍💻 Team Members")
+
 cols_top = st.columns(len(top_row))
 for col, member in zip(cols_top, top_row):
-    show_member(col, member)
+    with col:
+        st.image(show_image_fixed_size(member["image"]))
+        st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
 
 # ==== Hàng thứ 2 ====
 st.write("")  # tạo khoảng trắng
 cols_bottom = st.columns(len(bottom_row))
 for col, member in zip(cols_bottom, bottom_row):
-    show_member(col, member)
+    with col:
+        st.image(show_image_fixed_size(member["image"]))
+        st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
