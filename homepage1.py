@@ -1,41 +1,12 @@
 import streamlit as st
-import base64
+from PIL import Image
 
-# ==== Hàm mã hóa ảnh thành base64 để nhúng vào HTML ====
-def get_base64_image(image_path):
-    with open(image_path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
-
-# ==== Cấu hình trang ====
+# ==== Page Config ====
 st.set_page_config(page_title="Education Career App", layout="wide")
 
-# ==== CSS đơn giản ====
-st.markdown(f"""
-    <style>
-        .stApp {{
-            background-image: url("data:image/png;base64,{bg_image}");
-            background-size: cover;
-            background-position: center;
-        }}
-        .title {{
-            text-align: center;
-            font-size: 50px;
-            font-weight: bold;
-            color: #cf5a2e;
-            margin-top: 80px;
-            margin-bottom: 40px;
-        }}
-        .member-name {{
-            text-align: center;
-            margin-top: 10px;
-            font-weight: bold;
-            color: black;
-        }}
-    </style>
-""", unsafe_allow_html=True)
-
-# ==== Tiêu đề ====
-st.markdown("<div class='title'>EDUCATION<br>CAREER<br>SUCCESS</div>", unsafe_allow_html=True)
+# ==== Tiêu đề chính ====
+st.title("EDUCATION CAREER SUCCESS 🎓")
+st.subheader("Our amazing team behind the project")
 
 # ==== Danh sách thành viên ====
 team_members = [
@@ -48,18 +19,23 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# ==== Hiển thị thành viên (chia làm 2 hàng) ====
+# ==== Chia thành 2 hàng: 4 trên, 3 dưới ====
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
-for row in [top_row, bottom_row]:
-    cols = st.columns(len(row))
-    for col, member in zip(cols, row):
-        with col:
-            image_base64 = get_base64_image(member["image"])
-            st.markdown(f"""
-                <div style='text-align: center;'>
-                    <img src='data:image/png;base64,{image_base64}' width='180'/>
-                    <div class='member-name'>{member["name"]}</div>
-                </div>
-            """, unsafe_allow_html=True)
+# ==== Hiển thị hàng đầu ====
+st.markdown("## 👩‍💻 Team Members")
+
+cols_top = st.columns(len(top_row))
+for col, member in zip(cols_top, top_row):
+    with col:
+        st.image(Image.open(member["image"]), use_column_width=True)
+        st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
+
+# ==== Hàng thứ 2 ====
+st.write("")  # tạo khoảng trắng
+cols_bottom = st.columns(len(bottom_row))
+for col, member in zip(cols_bottom, bottom_row):
+    with col:
+        st.image(Image.open(member["image"]), use_column_width=True)
+        st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
