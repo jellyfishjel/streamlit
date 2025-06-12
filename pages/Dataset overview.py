@@ -1,12 +1,17 @@
 import streamlit as st
 
-# Cấu hình trang
+# ===== PAGE CONFIG =====
 st.set_page_config(page_title="Education Career App", layout="wide")
 
-# Nhúng font Bungee + CSS
+# ===== GOOGLE FONT & CSS STYLE =====
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
         .title-section {
             height: 100vh;
             display: flex;
@@ -23,6 +28,7 @@ st.markdown("""
             color: #cf5a2e;
             margin-bottom: 50px;
             line-height: 1.2;
+            text-shadow: 2px 2px 8px #ffffff80;
         }
 
         .title-section a > button {
@@ -33,13 +39,17 @@ st.markdown("""
             border: none;
             border-radius: 20px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .title-section a > button:hover {
             opacity: 0.9;
         }
     </style>
+""", unsafe_allow_html=True)
 
+# ===== HOMEPAGE CONTENT =====
+st.markdown("""
     <div class="title-section">
         <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
         <a href="/1_Dataset_Overview"><button>Read the report</button></a>
