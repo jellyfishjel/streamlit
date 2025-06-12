@@ -1,7 +1,7 @@
-
 import streamlit as st
-from PIL import Image# ==== Page Config ====
+from PIL import Image
 
+# ==== Page Config ====
 st.set_page_config(page_title="Education Career App", layout="wide")
 
 # ==== Tiêu đề chính ====
@@ -23,19 +23,24 @@ team_members = [
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
+# ==== Hàm hiển thị thành viên với ảnh cùng kích thước ====
+def show_member(col, member, size=(300, 300)):
+    with col:
+        img = Image.open(member["image"]).resize(size)
+        st.image(img)
+        st.markdown(
+            f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>",
+            unsafe_allow_html=True
+        )
+
 # ==== Hiển thị hàng đầu ====
 st.markdown("## 👩‍💻 Team Members")
-
 cols_top = st.columns(len(top_row))
 for col, member in zip(cols_top, top_row):
-    with col:
-        st.image(Image.open(member["image"]), use_container_width=True)
-        st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
+    show_member(col, member)
 
 # ==== Hàng thứ 2 ====
 st.write("")  # tạo khoảng trắng
 cols_bottom = st.columns(len(bottom_row))
 for col, member in zip(cols_bottom, bottom_row):
-    with col:
-        st.image(Image.open(member["image"]), use_container_width=True)
-        st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
+    show_member(col, member)
