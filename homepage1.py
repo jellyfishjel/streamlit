@@ -1,5 +1,5 @@
 import streamlit as st
-from PIL import Image
+from PIL import Image, ImageOps
 
 # ==== Page Config ====
 st.set_page_config(page_title="Education Career App", layout="wide")
@@ -19,16 +19,19 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
+# ==== Hàm xử lý ảnh về cùng kích thước, không méo ====
+def show_fixed_image(image_path, size=(300, 300)):
+    try:
+        img = Image.open(image_path)
+        img = ImageOps.pad(img, size, method=Image.LANCZOS, color=(255, 255, 255))
+        return img
+    except Exception as e:
+        st.warning(f"Lỗi ảnh: {image_path}")
+        return Image.new("RGB", size, color="gray")
+
 # ==== Chia thành 2 hàng: 4 trên, 3 dưới ====
 top_row = team_members[:4]
 bottom_row = team_members[4:]
-
-from PIL import ImageOps
-
-def show_image_fixed_size(image_path, size=(300, 300)):
-    img = Image.open(image_path)
-    img = ImageOps.pad(img, size, method=Image.LANCZOS, color=(255, 255, 255))
-    return img
 
 # ==== Hiển thị hàng đầu ====
 st.markdown("## 👩‍💻 Team Members")
@@ -36,13 +39,13 @@ st.markdown("## 👩‍💻 Team Members")
 cols_top = st.columns(len(top_row))
 for col, member in zip(cols_top, top_row):
     with col:
-        st.image(show_image_fixed_size(member["image"]))
+        st.image(show_fixed_image(member["image"]))
         st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
 
-# ==== Hàng thứ 2 ====
-st.write("")  # tạo khoảng trắng
+# ==== Hiển thị hàng dưới ====
+st.write("")  # khoảng trắng
 cols_bottom = st.columns(len(bottom_row))
 for col, member in zip(cols_bottom, bottom_row):
     with col:
-        st.image(show_image_fixed_size(member["image"]))
+        st.image(show_fixed_image(member["image"]))
         st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
