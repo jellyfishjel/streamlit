@@ -22,7 +22,7 @@ st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
 
-# ==== Global CSS with one unified background ====
+# ==== Global CSS with unified background ====
 st.markdown(f"""
     <style>
         html, body, .stApp {{
@@ -42,7 +42,7 @@ st.markdown(f"""
         .homepage h1 {{
             font-family: 'Bungee', sans-serif;
             font-size: 64px;
-            color: #faf4dc;
+            color: #cf5a2e;  /* Updated color */
             line-height: 1.2;
             margin-bottom: 40px;
         }}
@@ -84,7 +84,7 @@ st.markdown(f"""
 st.markdown(f"""
     <div class="homepage">
         <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
-        <a href="#team"><button>Learn about us</button></a>
+        <a href="#team"><button>Read the report</button></a>
     </div>
 """, unsafe_allow_html=True)
 
@@ -114,3 +114,5 @@ for row in [top_row, bottom_row]:
             st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
     if row == top_row:
         st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
+
+st.markdown("</div>", unsafe_allow_html=True)
