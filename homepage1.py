@@ -39,4 +39,5 @@ def display_team_row(members):
 st.markdown("## 👩‍💻 Our Team Members")
 
 display_team_row(top_row)
-st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)  # khoảng cách giữa hai hàng
+display_team_row(bottom_row)
