@@ -29,7 +29,7 @@ st.markdown("## 👩‍💻 Team Members")
 cols_top = st.columns(len(top_row))
 for col, member in zip(cols_top, top_row):
     with col:
-        st.image(Image.open(member["images"]), use_container_width=True)
+        st.image(Image.open(member["image"]), use_container_width=True)
         st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
 
 # ==== Hàng thứ 2 ====
