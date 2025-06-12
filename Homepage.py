@@ -112,6 +112,7 @@ for row in [top_row, bottom_row]:
         with col:
             st.image(member["image"], width=180)
             st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
+
     if row == top_row:
         st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
 
