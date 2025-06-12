@@ -4,38 +4,39 @@ from PIL import Image
 # ==== Page Config ====
 st.set_page_config(page_title="Education Career App", layout="wide")
 
-# ==== Tiêu đề chính ====
+# ==== Title ====
 st.title("EDUCATION CAREER SUCCESS 🎓")
-st.subheader("Our amazing team behind the project")
+st.subheader("Meet Our Amazing Team")
 
 # ==== Danh sách thành viên ====
 team_members = [
     {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
-    {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
-    {"name": "Nguyễn Bảo Ngọc", "image": "images/Nguyen Bao Ngoc.png"},
-    {"name": "Nguyễn Trần Khánh Linh", "image": "images/Nguyen Tran Khanh Linh.png"},
-    {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "images/Nguyen Huynh Bao Nguyen.png"},
-    {"name": "Vũ Thị Thu Thảo", "image": "images/Vu Thi Thu Thao.png"},
-    {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
+    {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khánh Phương.png"},
+    {"name": "Nguyễn Bảo Ngọc", "image": "images/Nguyễn Bảo Ngọc.png"},
+    {"name": "Nguyễn Trần Khánh Linh", "image": "images/Nguyễn Trần Khánh Linh.png"},
+    {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "images/Nguyễn Huỳnh Bảo Nguyên.png"},
+    {"name": "Vũ Thị Thu Thảo", "image": "images/Vũ Thị Thu Thảo.png"},
+    {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyễn Bội Ngọc.png"},
 ]
 
-# ==== Chia thành 2 hàng: 4 trên, 3 dưới ====
+# ==== Chia 2 hàng ====
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
-# ==== Hiển thị hàng đầu ====
-st.markdown("## 👩‍💻 Team Members")
+# ==== Hàm hiển thị 1 hàng thành viên ====
+def display_team_row(members):
+    cols = st.columns(len(members))
+    for col, member in zip(cols, members):
+        with col:
+            img = Image.open(member["image"]).resize((250, 250))  # resize ảnh cho đồng đều
+            st.image(img, use_container_width=True)
+            st.markdown(
+                f"<div style='text-align:center; font-weight:bold; margin-top:8px'>{member['name']}</div>",
+                unsafe_allow_html=True
+            )
 
-cols_top = st.columns(len(top_row))
-for col, member in zip(cols_top, top_row):
-    with col:
-        st.image(Image.open(member["image"]), use_column_width=True)
-        st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
+# ==== Hiển thị từng hàng ====
+st.markdown("## 👩‍💻 Our Team Members")
 
-# ==== Hàng thứ 2 ====
-st.write("")  # tạo khoảng trắng
-cols_bottom = st.columns(len(bottom_row))
-for col, member in zip(cols_bottom, bottom_row):
-    with col:
-        st.image(Image.open(member["image"]), use_column_width=True)
-        st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
+display_team_row(top_row)
+st.markdown("<br>", unsafe_allow_html=True)
