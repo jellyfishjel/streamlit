@@ -2,14 +2,13 @@ import streamlit as st
 import base64
 import os
 
-# ==== Function to encode background images ====
+# ==== Encode background image ====
 def get_base64_image(image_path):
     with open(image_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-# ==== Background images ====
-home_bg = get_base64_image("images/homepage_bg.png")
-team_bg = get_base64_image("images/team_section_bg.png")
+# Chỉ sử dụng 1 hình nền cho toàn trang
+bg_image = get_base64_image("images/team_section_bg.png")
 
 # ==== Page config ====
 st.set_page_config(
@@ -31,15 +30,20 @@ st.markdown(f"""
             padding: 0;
         }}
 
-        .homepage {{
-            background: url("data:image/png;base64,{home_bg}") no-repeat center center fixed;
+        .full-bg {{
+            background: url("data:image/png;base64,{bg_image}") no-repeat center center fixed;
             background-size: cover;
-            height: 100vh;
+            min-height: 100vh;
+            padding-bottom: 5rem;
+        }}
+
+        .homepage {{
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 100px 20px 60px;
         }}
 
         .homepage h1 {{
@@ -58,12 +62,6 @@ st.markdown(f"""
             border: none;
             border-radius: 20px;
             cursor: pointer;
-        }}
-
-        #team-section {{
-            background: url("data:image/png;base64,{team_bg}") no-repeat center center fixed;
-            background-size: cover;
-            padding: 4rem 2rem;
         }}
 
         .team-title {{
@@ -86,19 +84,19 @@ st.markdown(f"""
             margin-top: 40px;
         }}
     </style>
+    <div class="full-bg">
 """, unsafe_allow_html=True)
 
-# ==== HOMEPAGE Section ====
-st.markdown(f"""
+# ==== HOMEPAGE CONTENT ====
+st.markdown("""
     <div class="homepage">
         <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
         <a href="#team"><button>Learn about us</button></a>
     </div>
 """, unsafe_allow_html=True)
 
-# ==== TEAM Section ====
+# ==== OUR TEAM ====
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
-st.markdown('<div id="team-section">', unsafe_allow_html=True)
 st.markdown('<div class="team-title">OUR TEAM</div>', unsafe_allow_html=True)
 
 # ==== TEAM DATA ====
@@ -112,7 +110,7 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# ==== DISPLAY ====
+# ==== DISPLAY 2 ROWS ====
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
@@ -125,4 +123,5 @@ for row in [top_row, bottom_row]:
     if row == top_row:
         st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
 
+# ==== END BACKGROUND WRAPPER ====
 st.markdown("</div>", unsafe_allow_html=True)
