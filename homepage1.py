@@ -34,11 +34,11 @@ def show_members_centered(members, size=180):
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
                 
-# Hàng 1: 4 người – ảnh to hơn
+# Hàng 1: 4 người, ảnh lớn, không cần canh giữa
 show_members(team_members[:4], size=300)
 
-# Khoảng cách giữa hai hàng
 st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 
-# Hàng 2: 3 người – ảnh nhỏ hơn
-show_members(team_members[4:], size=250)
+# Hàng 2: 3 người, ảnh nhỏ, canh giữa
+show_members_centered(team_members[4:], size=180)
+
