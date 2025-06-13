@@ -39,12 +39,13 @@ bottom_row = team_members[4:]
 def render_row(members):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
-        col.markdown(f"""
-            <div style="text-align:center">
-                <img src="{member["image"]}" width="180" style="border-radius: 50%;"><br>
-                <span style="font-weight:bold; font-size:16px;">{member['name']}</span>
-            </div>
-        """, unsafe_allow_html=True)
+        with col:
+            try:
+                img = Image.open(member["image"]).resize((180, 180))
+                st.image(img, use_container_width=False)
+                st.markdown(f"<div style='text-align:center; font-weight:bold; font-size:16px;'>{member['name']}</div>", unsafe_allow_html=True)
+            except:
+                st.error(f"Không tìm thấy ảnh: {member['image']}")
 
 render_row(top_row)
 st.markdown("<div style='margin-top: 40px;'></div>", unsafe_allow_html=True)
