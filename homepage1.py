@@ -1,7 +1,11 @@
 import streamlit as st
-import base64
-import os
 
+# ==== Load external CSS ====
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+local_css("style/style.css")
 
 # ==== Page Config ====
 st.set_page_config(
@@ -9,70 +13,10 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
-local_css("style/style.css")
-
-
 
 # ==== Import font ====
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
-""", unsafe_allow_html=True)
-
-# ==== Global CSS with unified background ====
-st.markdown(f"""
-
-        .homepage {{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 100px 20px 80px;
-        }}
-
-        .homepage h1 {{
-            font-family: 'Bungee', sans-serif;
-            font-size: 64px;
-            color: #cf5a2e;  /* Updated color */
-            line-height: 1.2;
-            margin-bottom: 40px;
-        }}
-
-        .homepage button {{
-            background: linear-gradient(to right, #f6d365, #fda085);
-            color: black;
-            padding: 12px 30px;
-            font-size: 16px;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-        }}
-
-        .team-title {{
-            text-align: center;
-            font-size: 36px;
-            font-family: 'Bungee', sans-serif;
-            color: black;
-            margin-bottom: 3rem;
-            margin-top: 3rem;
-        }}
-
-        .member-name {{
-            text-align: center;
-            font-weight: bold;
-            color: black;
-            margin-top: 8px;
-            font-size: 16px;
-        }}
-
-        .row-spacing {{
-            margin-top: 40px;
-        }}
-    </style>
 """, unsafe_allow_html=True)
 
 # ==== HOMEPAGE section ====
@@ -97,7 +41,6 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# === Split into 2 rows ===
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
