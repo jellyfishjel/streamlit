@@ -1,10 +1,10 @@
 /* Sidebar - gradient and clean look */
 /* Change the sidebar color*/
 [data-testid=stSidebar] {
-  background-image: linear-gradient(#000395,#FFD4DD);
+  background-image: linear-gradient(#ff9248,#FFD4DD);
 }
 
 /* Nền gradient toàn trang */
 [data-testid="stAppViewContainer"] {
-    background-color: #f4f4f4
+    background-color: 	#ffd7b5
 }
