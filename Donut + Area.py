@@ -82,6 +82,8 @@ else:
                 ))
 
         fig_density.update_layout(
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
             title=title,
             xaxis_title="Age",
             yaxis_title="Density",
@@ -121,6 +123,8 @@ else:
             fig_donut.update_layout(title="Field of Study Distribution (Donut Chart)")
 
         fig_donut.update_layout(
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
             height=350,
             margin=dict(t=40, l=40, r=40, b=40),
             showlegend=True
