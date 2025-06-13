@@ -14,9 +14,12 @@ def local_css(file_name):
         st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
 
 # ==== Import Google Font ====
-st.markdown("""
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
-""", unsafe_allow_html=True)
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
+
+local_css("style/style.css")
+
 
 # ==== Global CSS ====
 st.markdown("""
