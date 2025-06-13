@@ -16,14 +16,14 @@ header[data-testid="stHeader"] {
 
 /* === Màu nền cho selectbox === */
 div[data-testid="stSelectbox"] {
-  background-color: #ffe0cc !important;
+  background-color: #ffbe6d !important;
   border-radius: 8px !important;
   padding: 4px 8px;
 }
 
 /* === Màu nền cho button bên trong selectbox === */
 div[data-testid="stSelectbox"] > div {
-  background-color: #ffe0cc !important;
+  background-color: #ffbe6d !important;
   color: black !important;
   border-radius: 8px;
 }
