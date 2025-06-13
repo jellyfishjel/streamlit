@@ -1,13 +1,19 @@
 import streamlit as st
-from PIL import Image
-import base64
-from io import BytesIO
+from PIL import Image, ImageDraw
 
 st.set_page_config(page_title="Education Career App", layout="wide")
 
-# ==== Tiêu đề ====
-st.title("EDUCATION CAREER SUCCESS 🎓")
-st.subheader("Our amazing team behind the project")
+# ==== Hàm xử lý hình tròn và resize đồng đều ====
+def crop_circle(image_path, size=(150, 150)):
+    img = Image.open(image_path).convert("RGBA").resize(size)
+
+    mask = Image.new("L", size, 0)
+    draw = ImageDraw.Draw(mask)
+    draw.ellipse((0, 0) + size, fill=255)
+
+    output = Image.new("RGBA", size)
+    output.paste(img, (0, 0), mask)
+    return output
 
 # ==== Danh sách thành viên ====
 team_members = [
@@ -20,58 +26,21 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# ==== Hàm chuyển ảnh sang base64 và bo tròn ====
-def image_to_base64_circle(image_path, size=(150, 150)):
-    img = Image.open(image_path).convert("RGBA").resize(size)
-    mask = Image.new("L", size, 0)
-    draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0) + size, fill=255)
-    output = Image.new("RGBA", size)
-    output.paste(img, (0, 0), mask)
-    buffered = BytesIO()
-    output.save(buffered, format="PNG")
-    return base64.b64encode(buffered.getvalue()).decode()
+# ==== Hiển thị tiêu đề ====
+st.title("EDUCATION CAREER SUCCESS 🎓")
+st.subheader("Our amazing team behind the project")
 
-# ==== CSS Grid + HTML hiển thị ====
-html_code = """
-<style>
-.team-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-}
-.member {
-    text-align: center;
-    width: 150px;
-}
-.member img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 3px solid #ddd;
-}
-.member-name {
-    margin-top: 10px;
-    font-weight: bold;
-}
-</style>
-<div class="team-grid">
-"""
+# ==== Chia nhóm thành viên thành từng dòng 3 người ====
+n_cols = 3
+rows = [team_members[i:i+n_cols] for i in range(0, len(team_members), n_cols)]
 
-# ==== Thêm từng thành viên vào HTML ====
-for member in team_members:
-    img_base64 = image_to_base64_circle(member["image"])
-    html_code += f"""
-    <div class="member">
-        <img src="data:image/png;base64,{img_base64}" alt="{member['name']}">
-        <div class="member-name">{member['name']}</div>
-    </div>
-    """
-
-html_code += "</div>"
-
-# ==== Hiển thị lên Streamlit ====
-st.markdown(html_code, unsafe_allow_html=True)
+for row in rows:
+    cols = st.columns(n_cols)
+    for col, member in zip(cols, row):
+        with col:
+            circled_img = crop_circle(member["image"])
+            st.image(circled_img)
+            st.markdown(
+                f"<div style='text-align: center; font-weight: bold'>{member['name']}</div>",
+                unsafe_allow_html=True
+            )
