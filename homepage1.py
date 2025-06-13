@@ -24,11 +24,6 @@ st.markdown("""
 
 # ==== Global CSS with unified background ====
 st.markdown(f"""
-    <style>
-        html, body, .stApp {{
-            background: url("data:image/png;base64,{bg_image}") no-repeat center center fixed;
-            background-size: cover;
-        }}
 
         .homepage {{
             display: flex;
