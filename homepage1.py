@@ -62,15 +62,6 @@ st.markdown("""
      </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-    <style>
-        img {
-            image-rendering: auto;
-            image-rendering: crisp-edges;
-            image-rendering: -webkit-optimize-contrast;
-        }
-    </style>
-""", unsafe_allow_html=True)
 
 # ==== HOMEPAGE section ====
 st.markdown("""
