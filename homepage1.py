@@ -30,26 +30,13 @@ def show_members(members):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
-            if os.path.exists(member["image"]):
-                st.markdown(
-                    f"""
-                    <div class='member-container'>
-                        <img src="data:image/png;base64,{image_to_base64(member['image'])}" class="member-img"/>
-                        <div class="member-name">{member['name']}</div>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
-            else:
+            try:
+                img = Image.open(member["image"])
+                st.image(img, caption=member["name"], use_column_width=True)
+            except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
-# Helper: convert ảnh sang base64
-import base64
-def image_to_base64(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode()
-
-# === Gọi hàm hiển thị ===
+# Hiển thị 2 hàng
 show_members(team_members[:4])
 st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 show_members(team_members[4:])
