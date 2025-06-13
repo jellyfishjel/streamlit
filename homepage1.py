@@ -61,5 +61,4 @@ for row in [top_row, bottom_row]:
                     <span style="font-weight: bold; font-size: 16px;">{member['name']}</span>
                 </div>
             """, unsafe_allow_html=True)
-    if row == top_row:
-        st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
+
