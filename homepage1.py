@@ -32,16 +32,20 @@ bottom_row = team_members[4:]
 # ==== Hiển thị hàng đầu ====
 st.markdown("## 👩‍💻 Team Members")
 
-cols_top = st.columns(len(top_row))
-for col, member in zip(cols_top, top_row):
-    with col:
-        st.image(Image.open(member["image"]), use_column_width=True)
-        st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
+# ==== Chia thành 2 hàng ====
+top_row = team_members[:4]
+bottom_row = team_members[4:]
 
-# ==== Hàng thứ 2 ====
-st.write("")  # tạo khoảng trắng
-cols_bottom = st.columns(len(bottom_row))
-for col, member in zip(cols_bottom, bottom_row):
-    with col:
-        st.image(Image.open(member["image"]), use_column_width=True)
-        st.markdown(f"<div style='text-align: center; font-weight: bold; margin-top: 8px'>{member['name']}</div>", unsafe_allow_html=True)
+def render_row(members):
+    cols = st.columns(len(members))
+    for col, member in zip(cols, members):
+        col.markdown(f"""
+            <div style="text-align:center">
+                <img src="{member["image"]}" width="180" style="border-radius: 50%;"><br>
+                <span style="font-weight:bold; font-size:16px;">{member['name']}</span>
+            </div>
+        """, unsafe_allow_html=True)
+
+render_row(top_row)
+st.markdown("<div style='margin-top: 40px;'></div>", unsafe_allow_html=True)
+render_row(bottom_row)
