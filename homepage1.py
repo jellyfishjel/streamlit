@@ -15,10 +15,6 @@ st.markdown("""
 
 # ==== Global CSS ====
 st.markdown("""
-    <style>
-        html, body, .stApp {
-            background-color: #f2f2f2;
-        }
 
         .homepage {
             display: flex;
@@ -61,13 +57,10 @@ st.markdown("""
             font-weight: bold;
             color: black;
             margin-top: 8px;
-            font-size: 20px;
+            font-size: 15px;
         }
 
-        .row-spacing {
-            margin-top: 40px;
-        }
-    </style>
+    
 """, unsafe_allow_html=True)
 
 # ==== HOMEPAGE section ====
