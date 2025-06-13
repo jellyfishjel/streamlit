@@ -1,5 +1,6 @@
 import streamlit as st
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageDraw
+
 import os
 
 st.set_page_config(page_title="Education Career App", layout="wide")
