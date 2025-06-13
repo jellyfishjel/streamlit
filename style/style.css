@@ -1,15 +1,15 @@
 /* Sidebar - gradient and clean look */
 /* Change the sidebar color*/
 [data-testid=stSidebar] {
-  background-image: linear-gradient(#ff9248,#FFD4DD);
+  background-image: linear-gradient(#ff9248,#ffffff);
 }
 
 /* Nền gradient toàn trang */
 [data-testid="stAppViewContainer"] {
-    background-color: 	#ffd7b5
+    background-color: 	#07407b
 }
 
 /* === ĐỔI MÀU THANH HEADER === */
 header[data-testid="stHeader"] {
-    background-color: 		#ffd7b5
+    background-color: 		#07407b
   }
