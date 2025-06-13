@@ -14,11 +14,19 @@ header[data-testid="stHeader"] {
     background-color: 		#ffead5
   }
 
-/* === SELECTBOX INPUT FIELD === */
+/* === CUSTOMIZE SELECTBOX BACKGROUND === */
 div[data-baseweb="select"] {
-    background-color: #ffe6cc !important;  /* 🌈 nền mới */
-    border-radius: 10px;
-    color: black !important;
-    border: 1px solid #ff9933;
-    padding: 8px;
+  background-color: #ffe0cc;  /* 💡 màu nền dropdown */
+  border-radius: 8px;
+  color: black;
+}
+
+/* === TEXT COLOR INSIDE SELECTBOX === */
+div[data-baseweb="select"] * {
+  color: black;              /* 💡 màu chữ trong dropdown */
+}
+
+/* === HIGHLIGHT WHEN HOVER === */
+div[data-baseweb="select"]:hover {
+  background-color: #ffd6b3;
 }
