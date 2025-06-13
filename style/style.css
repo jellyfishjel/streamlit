@@ -1,0 +1,22 @@
+/* Nền gradient toàn trang */
+[data-testid="stAppViewContainer"] {
+    background: linear-gradient(160deg, #0e1117, #20242c);
+    color: white;
+}
+
+/* Toàn bộ font chữ và màu */
+body, .css-18ni7ap, .stMarkdown, .stTextInput, .stSelectbox, .stSlider, .stPlotlyChart {
+    color: white;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Sidebar tối hơn */
+[data-testid="stSidebar"] {
+    background-color: #1c1e26;
+    color: white;
+}
+
+/* Label trong sidebar */
+.css-1cpxqw2, .css-16idsys {
+    color: white;
+}
