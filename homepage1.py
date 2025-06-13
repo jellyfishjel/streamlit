@@ -12,7 +12,7 @@ local_css("style/style.css")
 
 # === Title ===
 st.title("🎓 EDUCATION CAREER SUCCESS")
-st.subheader("Meet Our Amazing    1Team")
+st.subheader("Meet Our Amazing Team")
 
 
 # === Danh sách thành viên ===
@@ -34,7 +34,7 @@ def show_members(members):
             try:
                 img = Image.open(member["image"])
                 # Dùng Resampling.LANCZOS thay vì ANTIALIAS
-                img = ImageOps.fit(img, (400, 400), method=Image.Resampling.LANCZOS)
+                img = ImageOps.fit(img, (300, 300), method=Image.Resampling.LANCZOS)
                 st.image(img, caption=member["name"], use_container_width=False)
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
