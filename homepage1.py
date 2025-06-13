@@ -92,7 +92,7 @@ cols_top = st.columns(len(top_row))
 for col, member in zip(cols_top, top_row):
     with col:
         st.image(member["image"], width=250)
-        st.markdown( f"<div style='text-align:center; font-weight:bold; font-size:15px'>{member['name']}</div>", unsafe_allow_html=True)
+        st.markdown( f"<div style='text-align:center; font-weight:bold; font-size:15px; color:black'>{member['name']}</div>", unsafe_allow_html=True)
 
 # ==== Spacing ====
 st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
@@ -103,4 +103,4 @@ cols_bot = st.columns([1, 3, 3, 3, 1])  # center 3 members
 for i, member in enumerate(bottom_row):
     with cols_bot[i + 1]:
         st.image(member["image"], width=250)
-        st.markdown(f"<div style='text-align:center; font-weight:bold; font-size:15px'>{member['name']}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align:center; font-weight:bold; font-size:15px; color:black'>{member['name']}</div>", unsafe_allow_html=True)
