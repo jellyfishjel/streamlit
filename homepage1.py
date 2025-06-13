@@ -32,10 +32,15 @@ def render_row(members):
         with col:
             try:
                 img = Image.open(member["image"]).resize((180, 180))
-                st.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
                 st.image(img, use_container_width=False)
-                st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
-                st.markdown("</div>", unsafe_allow_html=True)
+                col.markdown(
+                    f"""
+                    <div style='text-align: center; font-weight: bold; font-size: 16px; margin-top: 8px;'>
+                        {member['name']}
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
