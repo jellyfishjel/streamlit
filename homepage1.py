@@ -15,7 +15,7 @@ st.markdown("""
 
 # ==== Global CSS ====
 st.markdown("""
-
+     <style>
         .homepage {
             display: flex;
             flex-direction: column;
@@ -51,7 +51,7 @@ st.markdown("""
             margin-bottom: 3rem;
             margin-top: 3rem;
         }
-    
+     </style>
 """, unsafe_allow_html=True)
 
 # ==== HOMEPAGE section ====
