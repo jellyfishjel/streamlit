@@ -26,7 +26,7 @@ team_members = [
 ]
 
 # === Hiển thị thành viên hàng đầu (dàn đều) ===
-def show_members(members, size=300):
+def show_members(members, size=250):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
@@ -38,6 +38,8 @@ def show_members(members, size=300):
 
 # === Hiển thị thành viên canh giữa (có thêm cột trống) ===
 def show_members_centered(members, size=300):
+    total_slots = len(members) + 2  # thêm 2 cột trống 2 bên
+    cols = st.columns(total_slots)
     for i, member in enumerate(members):
         with cols[i + 1]:  # bỏ cột đầu, bắt đầu từ cột thứ 2
             try:
@@ -47,6 +49,6 @@ def show_members_centered(members, size=300):
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
 # === Hiển thị hai hàng ===
-show_members(team_members[:4], size=300)
+show_members(team_members[:4], size=250)
 st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 show_members_centered(team_members[4:], size=300)
