@@ -34,7 +34,7 @@ def show_members(members):
             try:
                 img = Image.open(member["image"])
                 # Dùng Resampling.LANCZOS thay vì ANTIALIAS
-                img = ImageOps.fit(img, (300, 300), method=Image.Resampling.LANCZOS)
+                img = ImageOps.fit(img, (500, 500), method=Image.Resampling.LANCZOS)
                 st.image(img, caption=member["name"], use_container_width=False)
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
