@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 import os
 
+st.set_page_config(page_title="Education Career App", layout="wide")
 # === Load CSS ===
 def local_css(file_name):
     with open(file_name) as f:
