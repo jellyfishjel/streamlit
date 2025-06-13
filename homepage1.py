@@ -26,7 +26,7 @@ team_members = [
 ]
 
 # === Hiển thị thành viên hàng đầu (dàn đều) ===
-def show_members(members, size=250):
+def show_members(members, size=300):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
@@ -49,6 +49,6 @@ def show_members_centered(members, size=250):
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
 # === Hiển thị hai hàng ===
-show_members(team_members[:4], size=250)
+show_members(team_members[:4], size=300)
 st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 show_members_centered(team_members[4:], size=300)
