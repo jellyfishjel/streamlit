@@ -1,5 +1,5 @@
 import streamlit as st
-from PIL import Image
+from PIL import Image, ImageOps
 import os
 
 st.set_page_config(page_title="Education Career App", layout="wide")
@@ -26,13 +26,15 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-def show_members(members):
+ddef show_members(members):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
             try:
                 img = Image.open(member["image"])
-                st.image(img, caption=member["name"], use_container_width=True)
+                # Cắt ảnh về cùng kích thước 300x300 (hoặc kích thước bạn muốn)
+                img = ImageOps.fit(img, (300, 300), method=Image.ANTIALIAS)
+                st.image(img, caption=member["name"], use_container_width=False)
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
