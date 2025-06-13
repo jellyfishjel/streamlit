@@ -7,7 +7,8 @@ st.set_page_config(page_title="Education Career App", layout="wide")
 st.markdown("""
     <style>
         .stApp {
-            linear-gradient(#ff9248,#ffffff)
+            background-color: linear-gradient(#ff9248,#ffffff);
+            padding: 20px;
         }
     </style>
 """, unsafe_allow_html=True)
