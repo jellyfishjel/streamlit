@@ -12,7 +12,7 @@ local_css("style/style.css")
 
 # === Title ===
 st.title("🎓 EDUCATION CAREER SUCCESS")
-st.subheader("Meet Our Amazing Team")
+st.subheader("Meet Our Amazing    1Team")
 
 
 # === Danh sách thành viên ===
