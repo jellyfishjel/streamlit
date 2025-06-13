@@ -26,7 +26,7 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-ddef show_members(members):
+def show_members(members):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
