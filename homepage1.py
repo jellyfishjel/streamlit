@@ -78,13 +78,13 @@ st.markdown('<div class="team-title">OUR TEAM</div>', unsafe_allow_html=True)
 
 # ==== Danh sách thành viên ====
 team_members = [
-    {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
-    {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
-    {"name": "Nguyễn Bảo Ngọc", "image": "images/Nguyen Bao Ngoc.png"},
-    {"name": "Nguyễn Trần Khánh Linh", "image": "images/Nguyen Tran Khanh Linh.png"},
-    {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "images/Nguyen Huynh Bao Nguyen.png"},
-    {"name": "Vũ Thị Thu Thảo", "image": "images/Vu Thi Thu Thao.png"},
-    {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
+    {"name": "Nguyễn Kiều Anh", "image": "image/Nguyen Kieu Anh.png"},
+    {"name": "Lê Nguyễn Khánh Phương", "image": "image/Le Nguyen Khanh Phuong.png"},
+    {"name": "Nguyễn Bảo Ngọc", "image": "image/Nguyen Bao Ngoc.png"},
+    {"name": "Nguyễn Trần Khánh Linh", "image": "image/Nguyen Tran Khanh Linh.png"},
+    {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "image/Nguyen Huynh Bao Nguyen.png"},
+    {"name": "Vũ Thị Thu Thảo", "image": "image/Vu Thi Thu Thao.png"},
+    {"name": "Nguyễn Bội Ngọc", "image": "image/Nguyen Boi Ngoc.png"},
 ]
 
 # ==== Top row ====
