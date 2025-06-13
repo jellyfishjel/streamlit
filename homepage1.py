@@ -32,7 +32,7 @@ def show_members(members):
         with col:
             try:
                 img = Image.open(member["image"])
-                st.image(img, caption=member["name"], use_column_width=True)
+                st.image(img, caption=member["name"], use_container_width=True)
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
