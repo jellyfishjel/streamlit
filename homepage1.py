@@ -4,11 +4,14 @@ from io import BytesIO
 import base64
 
 st.set_page_config(page_title="Education Career App", layout="wide")
+
+st.set_page_config(page_title="Education Career App", layout="wide")
+
+# ✅ Thêm nền
 st.markdown("""
     <style>
         .stApp {
-            background-color: linear-gradient(#ff9248,#ffffff);
-            padding: 20px;
+            background-color: #fdf6ec;
         }
     </style>
 """, unsafe_allow_html=True)
