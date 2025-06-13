@@ -5,7 +5,6 @@ import base64
 
 st.set_page_config(page_title="Education Career App", layout="wide")
 
-st.set_page_config(page_title="Education Career App", layout="wide")
 
 # ✅ Thêm nền
 st.markdown("""
