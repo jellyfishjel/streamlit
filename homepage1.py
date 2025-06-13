@@ -48,5 +48,5 @@ def render_row(members):
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
 render_row(top_row)
-st.markdown("<div style='margin-top: 40px;'></div>", unsafe_allow_html=True)
+st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
 render_row(bottom_row)
