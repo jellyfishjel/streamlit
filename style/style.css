@@ -16,17 +16,8 @@ header[data-testid="stHeader"] {
 
 /* === CUSTOMIZE SELECTBOX BACKGROUND === */
 div[data-baseweb="select"] {
-  background-color: #ffe0cc;  /* 💡 màu nền dropdown */
+  background-color: #ffbe6d;  /* 💡 màu nền dropdown */
   border-radius: 8px;
   color: black;
 }
 
-/* === TEXT COLOR INSIDE SELECTBOX === */
-div[data-baseweb="select"] * {
-  color: black;              /* 💡 màu chữ trong dropdown */
-}
-
-/* === HIGHLIGHT WHEN HOVER === */
-div[data-baseweb="select"]:hover {
-  background-color: #ffd6b3;
-}
