@@ -5,6 +5,12 @@ from scipy.stats import gaussian_kde
 import numpy as np
 
 st.set_page_config(layout="wide")
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+local_css("style/style.css")
+
 
 # Load and preprocess data
 @st.cache_data
@@ -120,4 +126,5 @@ else:
             showlegend=True
         )
         st.plotly_chart(fig_donut, use_container_width=True)
+
         
