@@ -38,7 +38,7 @@ def show_members(members, size=300):
 
 # === Hiển thị thành viên canh giữa (có thêm cột trống) ===
 def show_members_centered(members, size=300):
-    total_slots = len(members) + 2  # thêm 2 cột trống 2 bên
+    total_slots = len(members) + 1  # thêm 2 cột trống 2 bên
     cols = st.columns(total_slots)
     for i, member in enumerate(members):
         with cols[i + 1]:  # bỏ cột đầu, bắt đầu từ cột thứ 2
