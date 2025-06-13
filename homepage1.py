@@ -1,11 +1,7 @@
 import streamlit as st
 
 # ==== Load external CSS ====
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-local_css("style/style.css")
 
 # ==== Page Config ====
 st.set_page_config(
@@ -13,6 +9,12 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+local_css("style/style.css")
 
 # ==== Import font ====
 st.markdown("""
