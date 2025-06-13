@@ -6,5 +6,5 @@
 
 /* Nền gradient toàn trang */
 [data-testid="stAppViewContainer"] {
-    background: radial-gradient(circle, #FFD4DD, #000395);
+    background-color: #f4f4f4
 }
