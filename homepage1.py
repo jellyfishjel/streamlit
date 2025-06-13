@@ -26,21 +26,30 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# === Hiển thị ảnh theo 2 hàng: 4 + 3 ===
-top_row = team_members[:4]
-bottom_row = team_members[4:]
-
 def show_members(members):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
             if os.path.exists(member["image"]):
-                st.image(member["image"], width=180)
-                st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
+                st.markdown(
+                    f"""
+                    <div class='member-container'>
+                        <img src="data:image/png;base64,{image_to_base64(member['image'])}" class="member-img"/>
+                        <div class="member-name">{member['name']}</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
             else:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
+# Helper: convert ảnh sang base64
+import base64
+def image_to_base64(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
 # === Gọi hàm hiển thị ===
-show_members(top_row)
+show_members(team_members[:4])
 st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
-show_members(bottom_row)
+show_members(team_members[4:])
