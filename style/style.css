@@ -8,3 +8,8 @@
 [data-testid="stAppViewContainer"] {
     background-color: 	#ffd7b5
 }
+
+/* === ĐỔI MÀU THANH HEADER === */
+header[data-testid="stHeader"] {
+    background-color: 	#ffd7b5
+  }
