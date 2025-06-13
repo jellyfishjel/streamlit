@@ -34,7 +34,7 @@ def show_members(members, size=300):
                 img = Image.open(member["image"]).resize((size, size))
                 st.image(img)
                 st.markdown(
-                    f"<div style='text-align:center; font-weight:bold; font-size:20px'>{member['name']}</div>",
+                    f"<div style='text-align:center; font-weight:bold; font-size:15px'>{member['name']}</div>",
                     unsafe_allow_html=True
                 )
             except FileNotFoundError:
@@ -49,7 +49,7 @@ def show_members_centered(members, size=300):
                 img = Image.open(member["image"]).resize((size, size))
                 st.image(img)
                 st.markdown(
-                    f"<div style='text-align:center; font-weight:bold; font-size:20px'>{member['name']}</div>",
+                    f"<div style='text-align:center; font-weight:bold; font-size:15px'>{member['name']}</div>",
                     unsafe_allow_html=True
                 )
             except FileNotFoundError:
