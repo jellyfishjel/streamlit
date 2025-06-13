@@ -31,8 +31,12 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ==== OUR TEAM section ====
-st.markdown('<a name="team"></a>', unsafe_allow_html=True)
-st.markdown('<div class="team-title">OUR TEAM</div>', unsafe_allow_html=True)
+st.markdown(f"""
+    <div style='text-align: center;'>
+        <img src="images/{member['image']}" width="180" style="border-radius: 50%;"><br>
+        <span style="font-weight: bold; font-size: 16px;">{member['name']}</span>
+    </div>
+""", unsafe_allow_html=True)
 
 team_members = [
     {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
@@ -51,9 +55,11 @@ for row in [top_row, bottom_row]:
     cols = st.columns(len(row))
     for col, member in zip(cols, row):
         with col:
-            st.image(member["image"], width=180)
-            st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
+            st.markdown(f"""
+                <div style='text-align: center;'>
+                    <img src="{member['image']}" width="180" style="border-radius: 50%;"><br>
+                    <span style="font-weight: bold; font-size: 16px;">{member['name']}</span>
+                </div>
+            """, unsafe_allow_html=True)
     if row == top_row:
         st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
-
-st.markdown("</div>", unsafe_allow_html=True)
