@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 
+st.set_page_config(page_title="Education Career App", layout="wide")
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
@@ -8,7 +9,7 @@ def local_css(file_name):
 # Load CSS
 local_css("style/style.css")
 
-st.set_page_config(page_title="Education Career App", layout="wide")
+
 
 st.title("🎓 Our Amazing Team")
 
