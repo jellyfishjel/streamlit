@@ -1,18 +1,20 @@
 import streamlit as st
 from PIL import Image
-import os
 
 st.set_page_config(page_title="Education Career App", layout="wide")
 
+# === Load CSS nếu có ===
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
 
 local_css("style/style.css")
 
+# === Tiêu đề chính ===
 st.title("🎓 EDUCATION CAREER SUCCESS")
 st.subheader("Meet Our Amazing Team")
 
+# === Danh sách thành viên ===
 team_members = [
     {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
     {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
@@ -23,22 +25,30 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-def show_members_centered(members, size=180):
-    total_slots = len(members) + 2  # thêm 2 cột trống 2 bên
-    cols = st.columns(total_slots)
-    for i, member in enumerate(members):
-        with cols[i + 1]:  # bỏ qua cột đầu
+# === Hiển thị thành viên hàng đầu (dàn đều) ===
+def show_members(members, size=300):
+    cols = st.columns(len(members))
+    for col, member in zip(cols, members):
+        with col:
             try:
                 img = Image.open(member["image"]).resize((size, size))
                 st.image(img, caption=member["name"])
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
-                
-# Hàng 1: 4 người, ảnh lớn, không cần canh giữa
-show_members_centered(team_members[:4], size=300)
 
+# === Hiển thị thành viên canh giữa (có thêm cột trống) ===
+def show_members_centered(members, size=180):
+    total_slots = len(members) + 2  # thêm 2 cột trống 2 bên
+    cols = st.columns(total_slots)
+    for i, member in enumerate(members):
+        with cols[i + 1]:  # bỏ cột đầu, bắt đầu từ cột thứ 2
+            try:
+                img = Image.open(member["image"]).resize((size, size))
+                st.image(img, caption=member["name"])
+            except FileNotFoundError:
+                st.error(f"Không tìm thấy ảnh: {member['image']}")
+
+# === Hiển thị hai hàng ===
+show_members(team_members[:4], size=300)
 st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
-
-# Hàng 2: 3 người, ảnh nhỏ, canh giữa
 show_members_centered(team_members[4:], size=180)
-
