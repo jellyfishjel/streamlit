@@ -32,19 +32,26 @@ def show_members(members, size=300):
         with col:
             try:
                 img = Image.open(member["image"]).resize((size, size))
-                st.image(img, caption=member["name"])
+                st.image(img)
+                st.markdown(
+                    f"<div style='text-align:center; font-weight:bold; font-size:20px'>{member['name']}</div>",
+                    unsafe_allow_html=True
+                )
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
 # === Hiển thị thành viên canh giữa (có thêm cột trống) ===
 def show_members_centered(members, size=300):
-    # Tỷ lệ: cột trống - ảnh - ảnh - ảnh - cột trống
     cols = st.columns([1, 3, 3, 3, 1])
     for i, member in enumerate(members):
-        with cols[i + 1]:  # bỏ cột đầu
+        with cols[i + 1]:
             try:
                 img = Image.open(member["image"]).resize((size, size))
-                st.image(img, caption=member["name"])
+                st.image(img)
+                st.markdown(
+                    f"<div style='text-align:center; font-weight:bold; font-size:20px'>{member['name']}</div>",
+                    unsafe_allow_html=True
+                )
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
