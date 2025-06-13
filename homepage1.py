@@ -35,7 +35,7 @@ def show_members_centered(members, size=180):
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
                 
 # Hàng 1: 4 người, ảnh lớn, không cần canh giữa
-show_members(team_members[:4], size=300)
+show_members_centered(team_members[:4], size=300)
 
 st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 
