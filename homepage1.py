@@ -40,4 +40,4 @@ show_members(team_members[:4], size=300)
 st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 
 # Hàng 2: 3 người – ảnh nhỏ hơn
-show_members(team_members[4:], size=180)
+show_members(team_members[4:], size=250)
