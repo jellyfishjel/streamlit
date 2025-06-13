@@ -32,17 +32,19 @@ def render_row(members):
         with col:
             try:
                 img = Image.open(member["image"]).resize((180, 180))
-                st.image(img, use_container_width=False)
+                # Bọc cả hình + tên trong 1 div để căn giữa toàn bộ
                 col.markdown(
                     f"""
-                    <div style='text-align: center; font-weight: bold; font-size: 16px; margin-top: 8px;'>
-                        {member['name']}
+                    <div style='text-align: center;'>
+                        <img src='data:image/png;base64,{image_to_base64(img)}' width='180' style='border-radius: 50%;'><br>
+                        <div style='font-weight: bold; font-size: 16px; margin-top: 8px;'>{member['name']}</div>
                     </div>
                     """,
                     unsafe_allow_html=True
                 )
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
+
 
 # ==== Gọi hàm hiển thị ====
 st.markdown("## 👩‍💻 Team Members")
