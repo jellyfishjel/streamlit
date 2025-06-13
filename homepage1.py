@@ -1,64 +1,32 @@
 import streamlit as st
-import base64
-import os
+from PIL import Image
 
-# ✅ PHẢI đặt dòng này trước bất kỳ Streamlit command nào
-st.set_page_config(
-    page_title="Education Career App",
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
-
-# ==== Load external CSS ====
 def local_css(file_name):
     with open(file_name) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+        st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
 
+# Load CSS
 local_css("style/style.css")
 
-# ==== Import font ====
-st.markdown("""
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
-""", unsafe_allow_html=True)
+st.set_page_config(page_title="Education Career App", layout="wide")
 
+st.title("🎓 Our Amazing Team")
 
-# ==== HOMEPAGE section ====
-st.markdown(f"""
-    <div class="homepage">
-        <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
-        <a href="#team"><button>Read the report</button></a>
-    </div>
-""", unsafe_allow_html=True)
+# Load images
+img_1 = Image.open("images/Nguyen Kieu Anh.png")
+img_2 = Image.open("images/Le Nguyen Khanh Phuong.png")
+img_3 = Image.open("images/Nguyen Bao Ngoc.png")
 
-# ==== OUR TEAM section ====
-st.markdown(f"""
-    <div style='text-align: center;'>
-        <img src="images/{member['image']}" width="180" style="border-radius: 50%;"><br>
-        <span style="font-weight: bold; font-size: 16px;">{member['name']}</span>
-    </div>
-""", unsafe_allow_html=True)
+col1, col2, col3 = st.columns(3)
 
-team_members = [
-    {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
-    {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
-    {"name": "Nguyễn Bảo Ngọc", "image": "images/Nguyen Bao Ngoc.png"},
-    {"name": "Nguyễn Trần Khánh Linh", "image": "images/Nguyen Tran Khanh Linh.png"},
-    {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "images/Nguyen Huynh Bao Nguyen.png"},
-    {"name": "Vũ Thị Thu Thảo", "image": "images/Vu Thi Thu Thao.png"},
-    {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
-]
+with col1:
+    st.image(img_1, width=180)
+    st.markdown('<div class="member-name">Nguyễn Kiều Anh</div>', unsafe_allow_html=True)
 
-top_row = team_members[:4]
-bottom_row = team_members[4:]
+with col2:
+    st.image(img_2, width=180)
+    st.markdown('<div class="member-name">Lê Nguyễn Khánh Phương</div>', unsafe_allow_html=True)
 
-for row in [top_row, bottom_row]:
-    cols = st.columns(len(row))
-    for col, member in zip(cols, row):
-        with col:
-            st.markdown(f"""
-                <div style='text-align: center;'>
-                    <img src="{member['image']}" width="180" style="border-radius: 50%;"><br>
-                    <span style="font-weight: bold; font-size: 16px;">{member['name']}</span>
-                </div>
-            """, unsafe_allow_html=True)
-
+with col3:
+    st.image(img_3, width=180)
+    st.markdown('<div class="member-name">Nguyễn Bảo Ngọc</div>', unsafe_allow_html=True)
