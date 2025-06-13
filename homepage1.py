@@ -15,7 +15,7 @@ st.title("🎓 Our Amazing Team")
 
 # Load images
 img_1 = Image.open("images/Nguyen Kieu Anh.png")
-img_2 = Image.open("images/Le Nguyen Khanh Phuong.png")
+img_2 = Image.open("images/Nguyen Boi Ngoc.png")
 img_3 = Image.open("images/Nguyen Bao Ngoc.png")
 
 col1, col2, col3 = st.columns(3)
