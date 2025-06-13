@@ -4,11 +4,14 @@ from io import BytesIO
 import base64
 
 st.set_page_config(page_title="Education Career App", layout="wide")
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+st.markdown("""
+    <style>
+        .stApp {
+            linear-gradient(#ff9248,#ffffff)
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-local_css("style/style.css")
 # ==== Hàm chuyển ảnh thành base64 để nhúng vào HTML ====
 def image_to_base64(img):
     buffered = BytesIO()
