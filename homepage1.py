@@ -1,27 +1,19 @@
 import streamlit as st
 from PIL import Image
-from io import BytesIO
 import base64
+from io import BytesIO
 
 st.set_page_config(page_title="Education Career App", layout="wide")
+st.title("EDUCATION CAREER SUCCESS 🎓")
+st.subheader("Our amazing team behind the project")
 
-
-# ✅ Thêm nền
-st.markdown("""
-    <style>
-        .stApp {
-            background-color: #ffead5;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
-# ==== Hàm chuyển ảnh thành base64 để nhúng vào HTML ====
+# === Hàm chuyển ảnh thành base64 ===
 def image_to_base64(img):
     buffered = BytesIO()
     img.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode()
 
-# ==== Danh sách thành viên ====
+# === Danh sách thành viên ===
 team_members = [
     {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
     {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
@@ -32,34 +24,36 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# ==== Hàm hiển thị thành viên (theo hàng) ====
+# === Hàm hiển thị thành viên theo hàng ===
 def render_row(members):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
-        try:
-            img = Image.open(member["image"]).resize((180, 180))
-            img_base64 = image_to_base64(img)
+        with col:
+            try:
+                img = Image.open(member["image"]).resize((180, 180))
+                img_base64 = image_to_base64(img)
 
-            col.markdown(f"""
-                <div style='text-align: center;'>
-                    <img src='data:image/png;base64,{img_base64}' width='180' style='border-radius: 50%;'><br>
-                    <div style='font-weight: bold; font-size: 16px; margin-top: 8px;'>{member['name']}</div>
-                </div>
-            """, unsafe_allow_html=True)
+                st.markdown(f"""
+                    <div style="background-color:#fff3e0;
+                                padding:20px;
+                                border-radius:20px;
+                                text-align:center;
+                                box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <img src="data:image/png;base64,{img_base64}"
+                             style="border-radius: 50%; width:180px; height:180px;"><br>
+                        <div style="font-weight:bold; font-size:16px; margin-top:10px;">
+                            {member['name']}
+                        </div>
+                    </div>
+                """, unsafe_allow_html=True)
+            except FileNotFoundError:
+                st.error(f"Không tìm thấy ảnh: {member['image']}")
 
-        except FileNotFoundError:
-            col.error(f"Không tìm thấy ảnh: {member['image']}")
-
-# ==== Hiển thị tiêu đề ====
-st.title("EDUCATION CAREER SUCCESS 🎓")
-st.subheader("Our amazing team behind the project")
-st.markdown("## 👩‍💻 Team Members")
-
-# ==== Tách nhóm trên/dưới ====
+# === Hiển thị 2 hàng ===
 top_row = team_members[:4]
 bottom_row = team_members[4:]
 
-# ==== Hiển thị ====
+st.markdown("## 👩‍💻 Team Members")
 render_row(top_row)
-st.markdown("<div style='margin-top: 40px;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 render_row(bottom_row)
