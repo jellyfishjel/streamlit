@@ -1,15 +1,15 @@
 import streamlit as st
+import base64
+import os
 
-# ==== Load external CSS ====
-
-
-# ==== Page Config ====
+# ✅ PHẢI đặt dòng này trước bất kỳ Streamlit command nào
 st.set_page_config(
     page_title="Education Career App",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
+# ==== Load external CSS ====
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -20,6 +20,7 @@ local_css("style/style.css")
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
+
 
 # ==== HOMEPAGE section ====
 st.markdown(f"""
