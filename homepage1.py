@@ -23,16 +23,17 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-def show_members(members, size=300):
-    cols = st.columns(len(members))
-    for col, member in zip(cols, members):
-        with col:
+def show_members_centered(members, size=180):
+    total_slots = len(members) + 2  # thêm 2 cột trống 2 bên
+    cols = st.columns(total_slots)
+    for i, member in enumerate(members):
+        with cols[i + 1]:  # bỏ qua cột đầu
             try:
                 img = Image.open(member["image"]).resize((size, size))
                 st.image(img, caption=member["name"])
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
-
+                
 # Hàng 1: 4 người – ảnh to hơn
 show_members(team_members[:4], size=300)
 
