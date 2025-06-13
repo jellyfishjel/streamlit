@@ -51,15 +51,6 @@ st.markdown("""
             margin-bottom: 3rem;
             margin-top: 3rem;
         }
-
-        .member-name {
-            text-align: center;
-            font-weight: bold;
-            color: black;
-            margin-top: 8px;
-            font-size: 15px;
-        }
-
     
 """, unsafe_allow_html=True)
 
@@ -92,7 +83,7 @@ cols_top = st.columns(len(top_row))
 for col, member in zip(cols_top, top_row):
     with col:
         st.image(member["image"], width=250)
-        st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
+        st.markdown( f"<div style='text-align:center; font-weight:bold; font-size:15px'>{member['name']}</div>",, unsafe_allow_html=True)
 
 # ==== Spacing ====
 st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
