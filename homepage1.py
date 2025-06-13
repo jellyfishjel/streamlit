@@ -27,18 +27,30 @@ team_members = [
 ]
 
 
+def make_circle(img, size=(300, 300)):
+    # Cắt ảnh vuông từ trung tâm
+    img = ImageOps.fit(img, size, method=Image.Resampling.LANCZOS)
+    
+    # Tạo mask hình tròn
+    mask = Image.new("L", size, 0)
+    draw = ImageDraw.Draw(mask)
+    draw.ellipse((0, 0) + size, fill=255)
+    
+    # Áp mask lên ảnh
+    result = Image.new("RGBA", size)
+    result.paste(img, (0, 0), mask)
+    return result
+
 def show_members(members):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
             try:
-                img = Image.open(member["image"])
-                # Đặt kích thước hiển thị đều nhau mà không cắt ảnh
-                img = ImageOps.pad(img, (300, 300), method=Image.Resampling.LANCZOS, color="white")
-                st.image(img, caption=member["name"], use_container_width=False)
+                img = Image.open(member["image"]).convert("RGBA")
+                circ_img = make_circle(img)
+                st.image(circ_img, caption=member["name"], use_container_width=False)
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
-
 
 # Hiển thị 2 hàng
 show_members(team_members[:4])
