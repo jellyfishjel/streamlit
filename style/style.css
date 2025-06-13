@@ -6,10 +6,10 @@
 
 /* Nền gradient toàn trang */
 [data-testid="stAppViewContainer"] {
-    background-color: 		#7fcdee
+    background-color: 			#ffead5
 }
 
 /* === ĐỔI MÀU THANH HEADER === */
 header[data-testid="stHeader"] {
-    background-color: 		#7fcdee
+    background-color: 		#ffead5
   }
