@@ -1,6 +1,5 @@
 import streamlit as st
-from PIL import Image, ImageOps, ImageDraw
-
+from PIL import Image
 import os
 
 st.set_page_config(page_title="Education Career App", layout="wide")
@@ -13,7 +12,7 @@ local_css("style/style.css")
 
 # === Title ===
 st.title("🎓 EDUCATION CAREER SUCCESS")
-st.subheader("Meet Our Amazing Team")
+st.subheader("Meet Our Amazing    1Team")
 
 
 # === Danh sách thành viên ===
@@ -27,29 +26,13 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-
-def make_circle(img, size=(300, 300)):
-    # Cắt ảnh vuông từ trung tâm
-    img = ImageOps.fit(img, size, method=Image.Resampling.LANCZOS)
-    
-    # Tạo mask hình tròn
-    mask = Image.new("L", size, 0)
-    draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0) + size, fill=255)
-    
-    # Áp mask lên ảnh
-    result = Image.new("RGBA", size)
-    result.paste(img, (0, 0), mask)
-    return result
-
 def show_members(members):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
             try:
-                img = Image.open(member["image"]).convert("RGBA")
-                circ_img = make_circle(img)
-                st.image(circ_img, caption=member["name"], use_container_width=False)
+                img = Image.open(member["image"])
+                st.image(img, caption=member["name"], use_container_width=True)
             except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
