@@ -37,11 +37,11 @@ def show_members(members, size=250):
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
 # === Hiển thị thành viên canh giữa (có thêm cột trống) ===
-def show_members_centered(members, size=300):
-    total_slots = len(members) + 2  # thêm 2 cột trống 2 bên
-    cols = st.columns(total_slots)
+def show_members_centered(members, size=250):
+    # Tỷ lệ: cột trống - ảnh - ảnh - ảnh - cột trống
+    cols = st.columns([1, 3, 3, 3, 1])
     for i, member in enumerate(members):
-        with cols[i + 1]:  # bỏ cột đầu, bắt đầu từ cột thứ 2
+        with cols[i + 1]:  # bỏ cột đầu
             try:
                 img = Image.open(member["image"]).resize((size, size))
                 st.image(img, caption=member["name"])
