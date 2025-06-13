@@ -27,7 +27,7 @@ def render_row(members):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         try:
-            img = Image.open(member["image"]).resize((280,280))
+            img = Image.open(member["image"]).resize((180, 180))
             img_base64 = image_to_base64(img)
 
             col.markdown(f"""
