@@ -1,5 +1,5 @@
-import streamlit as st
 from PIL import Image
+import streamlit as st
 
 st.set_page_config(page_title="Education Career App", layout="wide")
 def local_css(file_name):
@@ -25,28 +25,25 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
 ]
 
-# ==== Chia thành 2 hàng: 4 trên, 3 dưới ====
-top_row = team_members[:4]
-bottom_row = team_members[4:]
-
-# ==== Hiển thị hàng đầu ====
-st.markdown("## 👩‍💻 Team Members")
-
-# ==== Chia thành 2 hàng ====
-top_row = team_members[:4]
-bottom_row = team_members[4:]
-
+# ==== Hàm hiển thị 1 hàng ảnh ====
 def render_row(members):
     cols = st.columns(len(members))
     for col, member in zip(cols, members):
         with col:
             try:
                 img = Image.open(member["image"]).resize((180, 180))
+                st.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
                 st.image(img, use_container_width=False)
-                st.markdown(f"<div style='text-align:center; font-weight:bold; font-size:16px;'>{member['name']}</div>", unsafe_allow_html=True)
-            except:
+                st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
+            except FileNotFoundError:
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
+# ==== Gọi hàm hiển thị ====
+st.markdown("## 👩‍💻 Team Members")
+top_row = team_members[:4]
+bottom_row = team_members[4:]
+
 render_row(top_row)
-st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
+st.markdown("<div style='margin-top: 40px;'></div>", unsafe_allow_html=True)
 render_row(bottom_row)
