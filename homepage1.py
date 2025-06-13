@@ -37,7 +37,7 @@ def show_members(members, size=300):
                 st.error(f"Không tìm thấy ảnh: {member['image']}")
 
 # === Hiển thị thành viên canh giữa (có thêm cột trống) ===
-def show_members_centered(members, size=250):
+def show_members_centered(members, size=200):
     # Tỷ lệ: cột trống - ảnh - ảnh - ảnh - cột trống
     cols = st.columns([1, 3, 3, 3, 1])
     for i, member in enumerate(members):
@@ -51,4 +51,4 @@ def show_members_centered(members, size=250):
 # === Hiển thị hai hàng ===
 show_members(team_members[:4], size=300)
 st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
-show_members_centered(team_members[4:], size=300)
+show_members_centered(team_members[4:], size=200)
