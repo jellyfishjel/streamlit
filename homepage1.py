@@ -115,6 +115,7 @@ This app is a student project by <strong>Team</strong> for the <em>Business IT2<
 # ==== OUR TEAM Section ====
 st.markdown('<div class="team-title">OUR TEAM</div>', unsafe_allow_html=True)
 
+# ==== Danh sách thành viên ====
 team_members = [
     {"name": "Nguyễn Kiều Anh", "image": "image/Nguyen Kieu Anh.png"},
     {"name": "Lê Nguyễn Khánh Phương", "image": "image/Le Nguyen Khanh Phuong.png"},
@@ -125,11 +126,21 @@ team_members = [
     {"name": "Nguyễn Bội Ngọc", "image": "image/Nguyen Boi Ngoc.png"},
 ]
 
-# === Display Members in Grid ===
-cols = st.columns(4)
-for idx, member in enumerate(team_members):
-    with cols[idx % 4]:
-        st.markdown(f"<img src='{member['image']}' class='member-img'>", unsafe_allow_html=True)
-        st.markdown(f"<div style='text-align:center; font-weight:bold; font-size:15px;'>{member['name']}</div>", unsafe_allow_html=True)
-    if (idx + 1) % 4 == 0:
-        cols = st.columns(4)
+# ==== Top row ====
+top_row = team_members[:4]
+cols_top = st.columns(len(top_row))
+for col, member in zip(cols_top, top_row):
+    with col:
+        st.image(member["image"], width=250)
+        st.markdown( f"<div style='text-align:center; font-weight:bold; font-size:15px; color:black'>{member['name']}</div>", unsafe_allow_html=True)
+
+# ==== Spacing ====
+st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
+
+# ==== Bottom row (3 people centered) ====
+bottom_row = team_members[4:]
+cols_bot = st.columns([1, 3, 3, 3, 1])  # center 3 members
+for i, member in enumerate(bottom_row):
+    with cols_bot[i + 1]:
+        st.image(member["image"], width=300)
+        st.markdown(f"<div style='text-align:center; font-weight:bold; font-size:15px; color:black'>{member['name']}</div>", unsafe_allow_html=True)
