@@ -86,7 +86,7 @@ with graph_tab[0]:
     else:
         if chart_option == 'Gender Distribution':
             with st.container():
-                st.markdown("""<div style="border: 1px solid #000000; border-radius: 10px; padding: 15px; margin-top: 10px; margin-bottom: 30px;">
+                st.markdown("""<div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 15px; margin-top: 10px; margin-bottom: 30px;">
                     <div style="display: flex; justify-content: space-around; text-align: center; line-height: 1.3;">
                         <div>
                             <div style="font-size: 14px; color: #555;">Total Records</div>
