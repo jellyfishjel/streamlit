@@ -23,3 +23,14 @@ header[data-testid="stHeader"] {
 .intro-box, .team-title {
     font-family: 'Poppins', sans-serif;
 }
+
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 1.2s ease-out;
+}
+
