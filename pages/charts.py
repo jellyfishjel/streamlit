@@ -49,7 +49,7 @@ if show_no:
     selected_statuses.append("No")
 
 if not (show_yes or show_no):
-    st.sidebar.warning("⚠️ No entrepreneurship status selected. Using full data.")
+    st.sidebar.warning("⚠️ No gender selected. Using full data. Please choose at least one option..")
     selected_statuses = ['Yes', 'No']
 
 color_map = {'Yes': '#FFD700', 'No': '#004080'}
