@@ -1,7 +1,7 @@
 /* Sidebar - gradient and clean look */
 /* Change the sidebar color*/
 [data-testid=stSidebar] {
-  background-image: linear-gradient(#ff9248,#ffffff);
+  background-image: linear-gradient(#e6c3bc,#ebe5d4);
 }
 
 /* Nền gradient toàn trang */
