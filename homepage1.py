@@ -70,7 +70,7 @@ st.markdown("""
         Discover how different factors shape career paths—through interactive analytics.
     </p>
     <p style="font-size: 17px; color: #666;">
-        Developed using <b>Python, Streamlit, and Plotly</b> by <b style="color: #cf5a2e;">Team Py7on</b> as part of the <i>Python Project 2</i> for <b>Business IT 2</b> course at <b>Vietnamese–German University</b>.
+        Developed using <b>Python, Github, and Streamlit</b> by <b style="color: #cf5a2e;">Team Py7on</b> as part of the <i>Python Project 2</i> for <b>Business IT 2</b> course at <b>Vietnamese–German University</b>.
     </p>
  </div>
 """, unsafe_allow_html=True)
