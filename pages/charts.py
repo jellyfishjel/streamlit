@@ -16,56 +16,53 @@ df = load_data()
 # === SIDEBAR ===
 st.sidebar.title("Global Filters")
 
-# Session state for Reset functionality
-if "reset" not in st.session_state:
-    st.session_state.reset = False
-
-# Reset Button
+# Reset Button: Gắn vào một flag để xử lý riêng
 if st.sidebar.button("🔄 Reset Filters"):
-    st.session_state.reset = True
+    st.session_state.reset_filters = True
 else:
-    st.session_state.reset = False
+    st.session_state.reset_filters = False
 
-# Gender Filter
+# GENDER
 gender_options = ['All'] + sorted(df['Gender'].dropna().unique())
-default_gender = ['All'] if st.session_state.reset else st.session_state.get("selected_genders", ['All'])
+default_gender = ['All'] if st.session_state.get('reset_filters', False) else st.session_state.get('selected_genders', ['All'])
 selected_genders = st.sidebar.multiselect("Select Gender(s)", gender_options, default=default_gender)
 
-# Logic: Auto-select 'All' if nothing selected
-if not selected_genders or (set(selected_genders) - {'All'} == set()):
+# Logic xử lý lọc ngay
+if 'All' in selected_genders:
+    genders_filtered = df['Gender'].unique()  # Chọn tất cả nếu All được chọn
+elif selected_genders:
+    genders_filtered = selected_genders
+else:
     selected_genders = ['All']
+    genders_filtered = df['Gender'].unique()
 
-if 'All' not in selected_genders:
-    df = df[df['Gender'].isin(selected_genders)]
+st.session_state['selected_genders'] = selected_genders
+df = df[df['Gender'].isin(genders_filtered)]
 
-# Save selection to session
-st.session_state["selected_genders"] = selected_genders
-
-# Job Level
+# JOB LEVEL
 job_levels = sorted(df['Current_Job_Level'].dropna().unique())
-default_level = job_levels[0] if st.session_state.reset else st.session_state.get("selected_level", job_levels[0])
+default_level = job_levels[0] if st.session_state.get('reset_filters', False) else st.session_state.get("selected_level", job_levels[0])
 selected_level = st.sidebar.selectbox("Select Job Level", job_levels, index=job_levels.index(default_level))
 st.session_state["selected_level"] = selected_level
 
-# Age Range
+# AGE RANGE
 min_age, max_age = int(df['Age'].min()), int(df['Age'].max())
-default_age = (min_age, max_age) if st.session_state.reset else st.session_state.get("age_range", (min_age, max_age))
-age_range = st.sidebar.slider("Select Age Range", min_value=min_age, max_value=max_age, value=default_age)
+default_age_range = (min_age, max_age) if st.session_state.get('reset_filters', False) else st.session_state.get("age_range", (min_age, max_age))
+age_range = st.sidebar.slider("Select Age Range", min_value=min_age, max_value=max_age, value=default_age_range)
 st.session_state["age_range"] = age_range
 
-# Entrepreneurship Checkboxes
+# ENTREPRENEURSHIP CHECKBOX
 st.sidebar.markdown("**Select Entrepreneurship Status**")
-default_yes = True if st.session_state.reset else st.session_state.get("show_yes", True)
-default_no = True if st.session_state.reset else st.session_state.get("show_no", True)
+default_yes = True if st.session_state.get('reset_filters', False) else st.session_state.get("show_yes", True)
+default_no = True if st.session_state.get('reset_filters', False) else st.session_state.get("show_no", True)
 
 show_yes = st.sidebar.checkbox("Yes", value=default_yes)
 show_no = st.sidebar.checkbox("No", value=default_no)
 
-# Logic: Auto-select both if neither selected
+# Auto tick lại cả 2 nếu không chọn gì
 if not show_yes and not show_no:
     show_yes, show_no = True, True
 
-# Save to session state
 st.session_state["show_yes"] = show_yes
 st.session_state["show_no"] = show_no
 
