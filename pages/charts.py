@@ -14,7 +14,7 @@ def load_data():
 df = load_data()
 
 # Sidebar Filters
-st.sidebar.title("Global Filters")
+st.sidebar.title("Filters")
 
 # Gender Filter - Multiselect
 gender_options = sorted(df['Gender'].dropna().unique())
@@ -60,13 +60,13 @@ if not (show_yes or show_no):
 color_map = {'Yes': '#FFD700', 'No': '#004080'}
 
 # Main Tabs
-graph_tab = st.tabs(["📈 Age & Demographics", "📊 Age & Job Offers"])
+graph_tab = st.tabs(["📈 Demographics", "📊 Job Offers"])
 
 # === TAB 1 (Demographics) ===
 with graph_tab[0]:
     st.title("Demographics by Age")
 
-    chart_option = st.selectbox("Select Variable for Visualization", ['Gender', 'Field of Study'])
+    chart_option = st.selectbox("Select Variable for Visualization", ['Gender Distribution', 'Field of Study'])
 
     df_demo = gender_filtered[
         (gender_filtered['Current_Job_Level'] == selected_level) &
@@ -77,7 +77,7 @@ with graph_tab[0]:
     if df_demo.empty:
         st.warning("⚠️ Not enough data to display charts. Please adjust the filters.")
     else:
-        if chart_option == 'Gender':
+        if chart_option == 'Gender Distribution':
             with st.container():
                 st.markdown("""<div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 15px; margin-top: 10px; margin-bottom: 30px;">
                     <div style="display: flex; justify-content: space-around; text-align: center; line-height: 1.3;">
@@ -151,7 +151,7 @@ with graph_tab[0]:
             st.plotly_chart(fig_density, use_container_width=True)
 
         with col2:
-            if chart_option == 'Gender':
+            if chart_option == 'Gender Distribution':
                 counts = df_demo['Gender'].value_counts().reset_index()
                 counts.columns = ['Gender', 'Count']
                 labels, values = counts['Gender'], counts['Count']
