@@ -60,7 +60,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<div class="fade-in" style="padding-top: 30px;">
+ <div class="fade-in" style="text-align: center; max-width: 900px; margin: auto; padding-top: 20px;">
     <p style="font-size: 22px; color: #cf5a2e; font-weight: bold;">
         Where data meets decisions.
     </p>
@@ -70,7 +70,7 @@ st.markdown("""
     <p style="font-size: 17px; color: #666;">
         Developed using <b>Python, Streamlit, and Plotly</b>, this dashboard was created by <b style="color: #cf5a2e;">Team Py7on</b> as part of the <i>Python Project 2</i> for <b>Business IT 2</b> course at <b>Vietnamese–German University</b>.
     </p>
-</div>
+ </div>
 """, unsafe_allow_html=True)
 # ==== OUR TEAM section ====
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
