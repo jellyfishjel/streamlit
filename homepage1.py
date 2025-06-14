@@ -59,15 +59,13 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("""
-    <div style="text-align: center; max-width: 900px; margin: auto; padding-top: 20px;">
-        <p style="font-size: 22px; color: #cf5a2e; font-weight: bold;">
-            Where data meets decisions.
+    <div style="background-color: #f9f9f9; border-radius: 15px; padding: 25px; text-align: center; max-width: 900px; margin: 20px auto;">
+        <p style="font-size: 20px; color: #333;">
+            📊 <i>A data journey into how education shapes success in the workplace.</i>
         </p>
-        <p style="font-size: 18px; color: #444;">
-            Discover how education, age, and experience shape career success — through the lens of interactive analytics.
-        </p>
-        <p style="font-size: 17px; color: #666;">
-            Built by <b>Team</b> for <i>Business IT 2</i> <br>at <b>Vietnamese–German University</b>.
+        <p style="font-size: 18px; color: #555;">
+            Proudly created by <b style="color:#cf5a2e;">Team Py7on</b> as part of the <b>Python Project 2</b><br>
+            for the course <i>Business IT 2</i> at <b>Vietnamese–German University</b>.
         </p>
     </div>
 """, unsafe_allow_html=True)
