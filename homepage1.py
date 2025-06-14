@@ -68,7 +68,7 @@ st.markdown("""
             Our goal is to help students and young professionals understand how factors like <i>degree level, age, and job position</i> may impact their career trajectory — all visualized through clean, user-friendly graphs.
         </p>
         <p style="font-size: 17px; color: #666;">
-            Developed using <b>Python, Streamlit, and Plotly</b>, this dashboard was created by <b style="color: #cf5a2e;">Team Py7on</b> as part of the <i>Python Project 2</i> for <b>Business IT 2</b> course at <b>Vietnamese–German University</b>.
+            Developed using <b>Python, Streamlit, and Plotly</b> by <b style="color: #cf5a2e;">Team Py7on</b> as part of the <i>Python Project 2</i> for <b>Business IT 2</b> course at <b>Vietnamese–German University</b>.
         </p>
     </div>
 """, unsafe_allow_html=True)
