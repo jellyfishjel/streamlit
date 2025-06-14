@@ -60,7 +60,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("""
-    <div class="fade-in" style="text-align: center; max-width: 900px; margin: auto; padding-top: 10px;">
+    <div class="fade-in" style="text-align: justify; max-width: 900px; margin: auto; padding-top: 10px;">
         <p style="font-size: 20px; color: #444;">
             This project explores the connection between <b>education background</b> and <b>career success</b> through an interactive data dashboard.
         </p>
