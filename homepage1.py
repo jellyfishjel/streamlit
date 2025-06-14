@@ -75,17 +75,35 @@ st.markdown("""
 
 
 # ==== Project Introduction ====
+
 st.markdown("""
-<div class="intro-box">
-    <p><strong>Education Career App</strong> is an interactive platform that helps users explore the relationship between education and career success. It offers visualizations, statistics, and insights that allow you to:</p>
-    <ul>
-        <li>Understand key factors that influence career paths</li>
-        <li>Compare trends across different education levels</li>
-        <li>Make better-informed decisions about your future career</li>
+<div style="padding: 2rem 2rem 3rem; background: linear-gradient(135deg, #ffe9d6, #fbe3e3); border-radius: 20px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); text-align: center;">
+    
+    <h2 style="font-family:'Bungee', sans-serif; font-size: 36px; color: #cf5a2e; margin-bottom: 1rem;">
+        🎓 How does education shape your future? <br>📊 Let the data tell the story!
+    </h2>
+
+    <p style="font-size: 18px; max-width: 850px; margin: 0 auto; color: #333;">
+        <strong>Education Career App</strong> is an interactive platform that helps you explore the relationship between <strong>education</strong> and <strong>career success</strong>. Through stunning visualizations and data-driven insights, you'll be able to:
+    </p>
+
+    <ul style="text-align: left; max-width: 600px; margin: 2rem auto; font-size: 17px;">
+        <li>🔍 Understand key factors that influence your career path</li>
+        <li>📚 Compare trends across different education levels</li>
+        <li>🚀 Make smarter, data-driven career decisions</li>
     </ul>
-    <p>This interactive web application is a project by <strong>Team</strong>, developed as part of the <em>Business IT2</em> course at <strong>Vietnamese–German University (VGU)</strong>.</p>
+
+    <p style="font-size: 17px; color: #333;">
+        This interactive web app is a student project by <strong>Team</strong>, developed as part of the <em>Business IT2</em> course at <strong>Vietnamese–German University (VGU)</strong>.
+    </p>
+
+    <a href="#chart" style="margin-top: 2rem; display: inline-block; background-color: #cf5a2e; color: white; padding: 12px 28px; border-radius: 30px; font-weight: bold; text-decoration: none; font-size: 16px;">
+        🚀 Explore Now
+    </a>
+
 </div>
 """, unsafe_allow_html=True)
+
 
 # ==== Optional: Button dẫn đến phân tích ====
 st.markdown("<br>", unsafe_allow_html=True)
