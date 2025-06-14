@@ -60,18 +60,19 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("""
-    <div class="fade-in" style="text-align: center; max-width: 900px; margin: auto; padding-top: 20px;">
-        <p style="font-size: 22px; color: #cf5a2e; font-weight: bold;">
-            Where data meets decisions.
+    <div class="fade-in" style="text-align: center; max-width: 900px; margin: auto; padding-top: 10px;">
+        <p style="font-size: 20px; color: #444;">
+            This project explores the connection between <b>education background</b> and <b>career success</b> through an interactive data dashboard.
         </p>
-        <p style="font-size: 18px; color: #444;">
-            Discover how education, age, and experience shape career success — through the lens of interactive analytics.
+        <p style="font-size: 18px; color: #666;">
+            Our goal is to help students and young professionals understand how factors like <i>degree level, age, and job position</i> may impact their career trajectory — all visualized through clean, user-friendly graphs.
         </p>
         <p style="font-size: 17px; color: #666;">
-            Built with ❤️ by <b>Team Py7on</b> for <i>Business IT 2</i> <br>at <b>Vietnamese–German University</b>.
+            Developed using <b>Python, Streamlit, and Plotly</b>, this dashboard was created by <b style="color: #cf5a2e;">Team Py7on</b> as part of the <i>Python Project 2</i> for <b>Business IT 2</b> course at <b>Vietnamese–German University</b>.
         </p>
     </div>
 """, unsafe_allow_html=True)
+
 
 
 # ==== OUR TEAM section ====
