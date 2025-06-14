@@ -6,7 +6,7 @@
 
 /* Nền gradient toàn trang */
 [data-testid="stAppViewContainer"] {
-  background-color: light-dark(black, white)
+  background-image: linear-gradient(.25turn, red, 10%, blue)
 }
 
 /* === ĐỔI MÀU THANH HEADER === */
