@@ -65,6 +65,15 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+# ==== Short catchy intro ====
+st.markdown("""
+<div style='text-align: center; max-width: 900px; margin: 0 auto; padding-top: 10px; font-size: 18px; color: #444; line-height: 1.6'>
+    🎓 Ever wondered how your education shapes your future career?  
+    <br>Let data show you the way!
+</div>
+""", unsafe_allow_html=True)
+
+
 # ==== Project Introduction ====
 st.markdown("""
 <div class="intro-box">
@@ -74,7 +83,7 @@ st.markdown("""
         <li>Compare trends across different education levels</li>
         <li>Make better-informed decisions about your future career</li>
     </ul>
-    <p>This interactive web application is a project by <strong>Team BusinessIT2</strong>, developed as part of the <em>Business IT2</em> course at <strong>Vietnamese–German University (VGU)</strong>.</p>
+    <p>This interactive web application is a project by <strong>Team</strong>, developed as part of the <em>Business IT2</em> course at <strong>Vietnamese–German University (VGU)</strong>.</p>
 </div>
 """, unsafe_allow_html=True)
 
