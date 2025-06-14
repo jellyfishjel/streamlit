@@ -81,7 +81,7 @@ st.markdown("""
 # ==== Optional: Button dẫn đến phân tích ====
 st.markdown("<br>", unsafe_allow_html=True)
 if st.button("🚀 Khám phá ngay"):
-    st.switch_page("pages/1_📈_Phân_tích_tổng_quan.py")  # đảm bảo file này tồn tại trong folder "pages/"
+    st.switch_page("pages/charts.py")  # đảm bảo file này tồn tại trong folder "pages/"
 
 # ==== OUR TEAM section ====
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
