@@ -201,6 +201,14 @@ with graph_tab[1]:
         k1, k2, k3 = st.columns(3)
         with k1:
             st.metric("Total Records", len(df_demo))
+        
+        with k3:
+            if chart_option == 'Gender':
+                st.metric("Median Age", f"{df_demo['Age'].median():.1f}")
+            else:
+                top_field = df_demo['Field_of_Study'].mode().iloc[0] if not df_demo['Field_of_Study'].mode().empty else "N/A"
+                st.metric("Most Common Field", top_field)
+
         with k2:
             if chart_option == 'Gender':
                 percent_female = (df_demo['Gender'] == 'Female').mean() * 100
@@ -208,12 +216,6 @@ with graph_tab[1]:
             else:
                 unique_fields = df_demo['Field_of_Study'].nunique()
                 st.metric("Unique Fields of Study", unique_fields)
-        with k3:
-            if chart_option == 'Gender':
-                st.metric("Median Age", f"{df_demo['Age'].median():.1f}")
-            else:
-                top_field = df_demo['Field_of_Study'].mode().iloc[0] if not df_demo['Field_of_Study'].mode().empty else "N/A"
-                st.metric("Most Common Field", top_field)
 
         col1, col2 = st.columns(2)
 
