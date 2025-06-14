@@ -30,15 +30,15 @@ st.markdown("""
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 60px 20px 80px;
+            padding: 20px 20px 30px;
         }
 
         .homepage h1 {
             font-family: 'Bungee', sans-serif;
-            font-size: 64px;
+            font-size: 60px;
             color: #cf5a2e;
-            line-height: 1.2;
-            margin-bottom: 5px;
+            line-height: 1.0;
+            margin-bottom: 0px;
         }
 
         .team-title {
@@ -51,6 +51,7 @@ st.markdown("""
         }
      </style>
 """, unsafe_allow_html=True)
+
 
 st.markdown("""
     <div class="homepage">
