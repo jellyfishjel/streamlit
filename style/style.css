@@ -6,9 +6,7 @@
 
 /* Nền gradient toàn trang */
 [data-testid="stAppViewContainer"] {
-  background-color: light-dark(black, white);
-  background-size: cover;
-  background-position: center;
+  background-color: light-dark(black, white)
 }
 
 /* === ĐỔI MÀU THANH HEADER === */
