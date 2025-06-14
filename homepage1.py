@@ -68,13 +68,13 @@ st.markdown("""
 # ==== Project Introduction ====
 st.markdown("""
 <div class="intro-box">
-    <p><strong>Education Career App</strong> là một nền tảng trực quan giúp bạn khám phá mối quan hệ giữa giáo dục và thành công trong sự nghiệp. Ứng dụng cung cấp các biểu đồ, số liệu và báo cáo giúp bạn:</p>
+    <p><strong>Education Career App</strong> is an interactive platform that helps users explore the relationship between education and career success. It offers visualizations, statistics, and insights that allow you to:</p>
     <ul>
-        <li>Hiểu rõ các yếu tố ảnh hưởng đến sự nghiệp</li>
-        <li>So sánh xu hướng giữa các nhóm học vấn</li>
-        <li>Đưa ra quyết định định hướng nghề nghiệp tốt hơn</li>
+        <li>Understand key factors that influence career paths</li>
+        <li>Compare trends across different education levels</li>
+        <li>Make better-informed decisions about your future career</li>
     </ul>
-    <p>Đây là sản phẩm của nhóm <strong>BusinessIT2</strong> trong khuôn khổ môn học tại <em>[Tên trường hoặc giảng viên]</em>.</p>
+    <p>This interactive web application is a project by <strong>Team BusinessIT2</strong>, developed as part of the <em>Business IT2</em> course at <strong>Vietnamese–German University (VGU)</strong>.</p>
 </div>
 """, unsafe_allow_html=True)
 
