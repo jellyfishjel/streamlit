@@ -38,7 +38,7 @@ st.markdown("""
             font-size: 64px;
             color: #cf5a2e;
             line-height: 1.2;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .team-title {
