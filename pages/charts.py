@@ -75,15 +75,31 @@ with graph_tab[0]:
     if df_filtered.empty:
         st.warning("⚠️ Not enough data to display charts. Please adjust the filters.")
     else:
-        k1, k2, k3 = st.columns(3)
-        with k1:
-            st.metric("Total Records", len(df_filtered))
-        with k2:
-            median_age = df_filtered['Age'].median()
-            st.metric("Median Age", f"{median_age:.1f}")
-        with k3:
-            entre_percent = (df_filtered['Entrepreneurship'] == "Yes").mean() * 100
-            st.metric("Entrepreneurs (%)", f"{entre_percent:.1f}%")
+        st.markdown("### 🧮 Key Indicators")
+k1, k2, k3 = st.columns(3)
+
+with k1:
+    st.markdown(
+        f"""<div style="text-align:center; padding:10px; background-color:#f0f8ff; border-radius:10px;">
+            <h2>📊 {len(df_filtered)}</h2>
+            <p>Total Records</p>
+        </div>""", unsafe_allow_html=True)
+
+with k2:
+    median_age = df_filtered['Age'].median()
+    st.markdown(
+        f"""<div style="text-align:center; padding:10px; background-color:#e6ffe6; border-radius:10px;">
+            <h2>🎂 {median_age:.1f}</h2>
+            <p>Median Age</p>
+        </div>""", unsafe_allow_html=True)
+
+with k3:
+    entre_percent = (df_filtered['Entrepreneurship'] == "Yes").mean() * 100
+    st.markdown(
+        f"""<div style="text-align:center; padding:10px; background-color:#fff5e6; border-radius:10px;">
+            <h2>🚀 {entre_percent:.1f}%</h2>
+            <p>Entrepreneurs</p>
+        </div>""", unsafe_allow_html=True)
 
         df_grouped = (
             df.groupby(['Current_Job_Level', 'Age', 'Entrepreneurship'])
