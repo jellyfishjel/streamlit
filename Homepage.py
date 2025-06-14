@@ -1,53 +1,47 @@
 import streamlit as st
-import base64
-import os
+from PIL import Image
 
-# ==== Function to encode background image ====
-def get_base64_image(image_path):
-    with open(image_path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
 
-# ==== Get single background image ====
-bg_image = get_base64_image("images/team_section_bg.png")
 
 # ==== Page Config ====
 st.set_page_config(
     page_title="Education Career App",
-    layout="wide",
-    initial_sidebar_state="collapsed"
+    layout="wide"
 )
+
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
+
+local_css("style/style.css")
 
 # ==== Import font ====
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
 
-# ==== Global CSS with unified background ====
-st.markdown(f"""
-    <style>
-        html, body, .stApp {{
-            background: url("data:image/png;base64,{bg_image}") no-repeat center center fixed;
-            background-size: cover;
-        }}
 
-        .homepage {{
+# ==== Global CSS ====
+st.markdown("""
+     <style>
+        .homepage {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 100px 20px 80px;
-        }}
+        }
 
-        .homepage h1 {{
+        .homepage h1 {
             font-family: 'Bungee', sans-serif;
             font-size: 64px;
-            color: #cf5a2e;  /* Updated color */
+            color: #cf5a2e;
             line-height: 1.2;
             margin-bottom: 40px;
-        }}
+        }
 
-        .homepage button {{
+        .homepage button {
             background: linear-gradient(to right, #f6d365, #fda085);
             color: black;
             padding: 12px 30px;
@@ -55,33 +49,22 @@ st.markdown(f"""
             border: none;
             border-radius: 20px;
             cursor: pointer;
-        }}
+        }
 
-        .team-title {{
+        .team-title {
             text-align: center;
             font-size: 36px;
             font-family: 'Bungee', sans-serif;
             color: black;
             margin-bottom: 3rem;
             margin-top: 3rem;
-        }}
-
-        .member-name {{
-            text-align: center;
-            font-weight: bold;
-            color: black;
-            margin-top: 8px;
-            font-size: 16px;
-        }}
-
-        .row-spacing {{
-            margin-top: 40px;
-        }}
-    </style>
+        }
+     </style>
 """, unsafe_allow_html=True)
 
+
 # ==== HOMEPAGE section ====
-st.markdown(f"""
+st.markdown("""
     <div class="homepage">
         <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
         <a href="#team"><button>Read the report</button></a>
@@ -92,27 +75,33 @@ st.markdown(f"""
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
 st.markdown('<div class="team-title">OUR TEAM</div>', unsafe_allow_html=True)
 
+
+# ==== Danh sách thành viên ====
 team_members = [
-    {"name": "Nguyễn Kiều Anh", "image": "images/Nguyen Kieu Anh.png"},
-    {"name": "Lê Nguyễn Khánh Phương", "image": "images/Le Nguyen Khanh Phuong.png"},
-    {"name": "Nguyễn Bảo Ngọc", "image": "images/Nguyen Bao Ngoc.png"},
-    {"name": "Nguyễn Trần Khánh Linh", "image": "images/Nguyen Tran Khanh Linh.png"},
-    {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "images/Nguyen Huynh Bao Nguyen.png"},
-    {"name": "Vũ Thị Thu Thảo", "image": "images/Vu Thi Thu Thao.png"},
-    {"name": "Nguyễn Bội Ngọc", "image": "images/Nguyen Boi Ngoc.png"},
+    {"name": "Nguyễn Kiều Anh", "image": "image/Nguyen Kieu Anh.png"},
+    {"name": "Lê Nguyễn Khánh Phương", "image": "image/Le Nguyen Khanh Phuong.png"},
+    {"name": "Nguyễn Bảo Ngọc", "image": "image/Nguyen Bao Ngoc.png"},
+    {"name": "Nguyễn Trần Khánh Linh", "image": "image/Nguyen Tran Khanh Linh.png"},
+    {"name": "Nguyễn Huỳnh Bảo Nguyên", "image": "image/Nguyen Huynh Bao Nguyen.png"},
+    {"name": "Vũ Thị Thu Thảo", "image": "image/Vu Thi Thu Thao.png"},
+    {"name": "Nguyễn Bội Ngọc", "image": "image/Nguyen Boi Ngoc.png"},
 ]
 
-# === Split into 2 rows ===
+# ==== Top row ====
 top_row = team_members[:4]
+cols_top = st.columns(len(top_row))
+for col, member in zip(cols_top, top_row):
+    with col:
+        st.image(member["image"], width=250)
+        st.markdown( f"<div style='text-align:center; font-weight:bold; font-size:15px; color:black'>{member['name']}</div>", unsafe_allow_html=True)
+
+# ==== Spacing ====
+st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
+
+# ==== Bottom row (3 people centered) ====
 bottom_row = team_members[4:]
-
-for row in [top_row, bottom_row]:
-    cols = st.columns(len(row))
-    for col, member in zip(cols, row):
-        with col:
-            st.image(member["image"], width=180)
-            st.markdown(f"<div class='member-name'>{member['name']}</div>", unsafe_allow_html=True)
-    if row == top_row:
-        st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
-
-st.markdown("</div>", unsafe_allow_html=True)
+cols_bot = st.columns([1, 3, 3, 3, 1])  # center 3 members
+for i, member in enumerate(bottom_row):
+    with cols_bot[i + 1]:
+        st.image(member["image"], width=250)
+        st.markdown(f"<div style='text-align:center; font-weight:bold; font-size:15px; color:black'>{member['name']}</div>", unsafe_allow_html=True)
