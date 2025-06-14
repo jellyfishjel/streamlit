@@ -197,9 +197,7 @@ with graph_tab[1]:
 
     else:
         st.warning("Not enough data to display charts.")
-    else:
-        col1, col2 = st.columns([1, 1])
-
+        
         # Density Area Chart
         with col1:
             fig_density = go.Figure()
