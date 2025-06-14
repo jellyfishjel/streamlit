@@ -59,12 +59,19 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("""
-    <div style="text-align: center; max-width: 800px; margin: auto; font-size: 20px; color: #444;">
-        Explore how age, gender, education and entreprenueship influence career advancement.<br>
-        This interactive web application is proudly developed by <b>Team Py7on</b> as part of the <b>Python Project 2</b><br>
-        for the <i>Business IT 2</i> course at <b>Vietnamese–German University</b>.
+    <div style="text-align: center; max-width: 900px; margin: auto; padding-top: 20px;">
+        <p style="font-size: 22px; color: #cf5a2e; font-weight: bold;">
+            Where data meets decisions.
+        </p>
+        <p style="font-size: 18px; color: #444;">
+            Discover how education, age, and experience shape career success — through the lens of interactive analytics.
+        </p>
+        <p style="font-size: 17px; color: #666;">
+            Built with ❤️ by <b>Team Py7on</b> for <i>Business IT 2</i> <br>at <b>Vietnamese–German University</b>.
+        </p>
     </div>
 """, unsafe_allow_html=True)
+
 
 
 
