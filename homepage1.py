@@ -1,8 +1,6 @@
 import streamlit as st
 from PIL import Image
 
-
-
 # ==== Page Config ====
 st.set_page_config(
     page_title="Education Career App",
@@ -20,7 +18,6 @@ st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
 
-
 # ==== Global CSS ====
 st.markdown("""
      <style>
@@ -30,7 +27,7 @@ st.markdown("""
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 80px 20px 80px;
+            padding: 80px 20px 40px;
         }
 
         .homepage h1 {
@@ -39,6 +36,15 @@ st.markdown("""
             color: #cf5a2e;
             line-height: 1.2;
             margin-bottom: 10px;
+        }
+
+        .intro-box {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            padding: 0 20px;
         }
 
         .team-title {
@@ -52,16 +58,34 @@ st.markdown("""
      </style>
 """, unsafe_allow_html=True)
 
+# ==== Main title ====
 st.markdown("""
     <div class="homepage">
         <h1>EDUCATION<br>CAREER<br>SUCCESS</h1>
     </div>
 """, unsafe_allow_html=True)
 
+# ==== Project Introduction ====
+st.markdown("""
+<div class="intro-box">
+    <p><strong>Education Career App</strong> là một nền tảng trực quan giúp bạn khám phá mối quan hệ giữa giáo dục và thành công trong sự nghiệp. Ứng dụng cung cấp các biểu đồ, số liệu và báo cáo giúp bạn:</p>
+    <ul>
+        <li>Hiểu rõ các yếu tố ảnh hưởng đến sự nghiệp</li>
+        <li>So sánh xu hướng giữa các nhóm học vấn</li>
+        <li>Đưa ra quyết định định hướng nghề nghiệp tốt hơn</li>
+    </ul>
+    <p>Đây là sản phẩm của nhóm <strong>BusinessIT2</strong> trong khuôn khổ môn học tại <em>[Tên trường hoặc giảng viên]</em>.</p>
+</div>
+""", unsafe_allow_html=True)
+
+# ==== Optional: Button dẫn đến phân tích ====
+st.markdown("<br>", unsafe_allow_html=True)
+if st.button("🚀 Khám phá ngay"):
+    st.switch_page("pages/1_📈_Phân_tích_tổng_quan.py")  # đảm bảo file này tồn tại trong folder "pages/"
+
 # ==== OUR TEAM section ====
 st.markdown('<a name="team"></a>', unsafe_allow_html=True)
 st.markdown('<div class="team-title">OUR TEAM</div>', unsafe_allow_html=True)
-
 
 # ==== Danh sách thành viên ====
 team_members = [
@@ -80,15 +104,15 @@ cols_top = st.columns(len(top_row))
 for col, member in zip(cols_top, top_row):
     with col:
         st.image(member["image"], width=250)
-        st.markdown( f"<div style='text-align:center; font-weight:bold; font-size:15px; color:black'>{member['name']}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align:center; font-weight:bold; font-size:15px; color:black'>{member['name']}</div>", unsafe_allow_html=True)
 
 # ==== Spacing ====
 st.markdown("<div class='row-spacing'></div>", unsafe_allow_html=True)
 
-# ==== Bottom row (3 people centered) ====
+# ==== Bottom row ====
 bottom_row = team_members[4:]
-cols_bot = st.columns([1, 3, 3, 3, 1])  # center 3 members
+cols_bot = st.columns([1, 3, 3, 3, 1])
 for i, member in enumerate(bottom_row):
     with cols_bot[i + 1]:
-        st.image(member["image"], width=250)
+        st.image(member["image"], width=300)
         st.markdown(f"<div style='text-align:center; font-weight:bold; font-size:15px; color:black'>{member['name']}</div>", unsafe_allow_html=True)
