@@ -31,6 +31,6 @@ header[data-testid="stHeader"] {
 }
 
 .fade-in {
-    animation: fadeIn 5s ease-out;
+    animation: fadeIn 2s ease-out;
 }
 
