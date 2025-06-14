@@ -6,7 +6,9 @@
 
 /* Nền gradient toàn trang */
 [data-testid="stAppViewContainer"] {
-   background-image: linear-gradient(#ff9248,#ffffff)
+  background-image: url('https://github.com/jellyfishjel/streamlit/blob/main/images/team_section_bg.png');
+  background-size: cover;
+  background-position: center;
 }
 
 /* === ĐỔI MÀU THANH HEADER === */
