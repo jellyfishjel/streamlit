@@ -54,7 +54,7 @@ if show_no:
     selected_statuses.append("No")
 
 if not (show_yes or show_no):
-    st.sidebar.warning("⚠️ No gender selected. Using full data. Please choose at least one option..")
+    st.sidebar.warning("⚠️ No status selected. Using full data. Please choose at least one option.")
     selected_statuses = ['Yes', 'No']
 
 color_map = {'Yes': '#FFD700', 'No': '#004080'}
@@ -75,7 +75,6 @@ with graph_tab[0]:
     if df_filtered.empty:
         st.warning("⚠️ Not enough data to display charts. Please adjust the filters.")
     else:
-        # Key Indicators - TAB 1
         k1, k2, k3 = st.columns(3)
         with k1:
             st.metric("Total Records", len(df_filtered))
@@ -198,7 +197,7 @@ with graph_tab[1]:
     if df_demo.empty:
         st.warning("⚠️ Not enough data to display charts. Please adjust the filters.")
     else:
-                if chart_option == 'Gender':
+        if chart_option == 'Gender':
             k1, k2, k3 = st.columns(3)
             with k1:
                 st.metric("Total Records", len(df_demo))
@@ -225,7 +224,6 @@ with graph_tab[1]:
 
         col1, col2 = st.columns(2)
 
-        # Density Area Chart
         with col1:
             fig_density = go.Figure()
             group_col = 'Gender' if chart_option == 'Gender' else 'Field_of_Study'
@@ -256,7 +254,6 @@ with graph_tab[1]:
             )
             st.plotly_chart(fig_density, use_container_width=True)
 
-        # Donut Chart
         with col2:
             if chart_option == 'Gender':
                 counts = df_demo['Gender'].value_counts().reset_index()
