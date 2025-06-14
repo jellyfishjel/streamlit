@@ -81,15 +81,15 @@ with graph_tab[0]:
                 <div style="display: flex; justify-content: space-around; text-align: center; line-height: 1.3;">
                     <div>
                         <div style="font-size: 14px; color: #555;">Total Records</div>
-                        <div style="font-size: 28px; font-weight: bold;">{}</div>
+                        <div style="font-size: 28px;">{}</div>
                     </div>
                     <div>
                         <div style="font-size: 14px; color: #555;">Median Age</div>
-                        <div style="font-size: 28px; font-weight: bold;">{:.1f}</div>
+                        <div style="font-size: 28px;">{:.1f}</div>
                     </div>
                     <div>
                         <div style="font-size: 14px; color: #555;">Entrepreneurs (%)</div>
-                        <div style="font-size: 28px; font-weight: bold;">{:.1f}%</div>
+                        <div style="font-size: 28px;">{:.1f}%</div>
                     </div>
                 </div>
             </div>
