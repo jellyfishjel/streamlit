@@ -52,21 +52,22 @@ graph_tab = st.tabs(["📊 Age & Job Offers", "📈 Age & Demographics"])
 # === TAB 1 ===
 with graph_tab[0]:
     st.title("Entrepreneurship and Job Offers by Age")
-    st.markdown("Analyze the relationship between entrepreneurship status, job level, and job offers across age groups.")
 
+    # Filtered data
     df_filtered = df[(df['Current_Job_Level'] == selected_level) &
                      (df['Age'].between(age_range[0], age_range[1])) &
                      (df['Entrepreneurship'].isin(selected_statuses))]
 
-    # KPIs for Tab 1
-    total_filtered = len(df_filtered)
-    avg_offers = df_filtered['Job_Offers'].mean() if not df_filtered.empty else 0
-    entre_percent = (df_filtered['Entrepreneurship'] == 'Yes').mean() * 100 if not df_filtered.empty else 0
-
-    kpi1, kpi2, kpi3 = st.columns(3)
-    kpi1.metric("Total Records", total_filtered)
-    kpi2.metric("Average Job Offers", f"{avg_offers:.2f}")
-    kpi3.metric("Entrepreneurs (%)", f"{entre_percent:.1f}%")
+    # Key Indicators - TAB 1
+    k1, k2, k3 = st.columns(3)
+    with k1:
+        st.metric("Total Records", len(df_filtered))
+    with k2:
+        median_age = df_filtered['Age'].median()
+        st.metric("Median Age", f"{median_age:.1f}")
+    with k3:
+        entre_percent = (df_filtered['Entrepreneurship'] == "Yes").mean() * 100
+        st.metric("Entrepreneurs (%)", f"{entre_percent:.1f}%")
 
     df_grouped = (
         df.groupby(['Current_Job_Level', 'Age', 'Entrepreneurship'])
@@ -175,17 +176,26 @@ with graph_tab[1]:
                  (df['Age'].between(age_range[0], age_range[1])) &
                  (df['Entrepreneurship'].isin(selected_statuses))]
 
-    # KPIs for Tab 2
-    total_demo = len(df_demo)
-    avg_age = df_demo['Age'].mean() if not df_demo.empty else 0
-    unique_fields = df_demo['Field_of_Study'].nunique() if not df_demo.empty else 0
+    # Key Indicators - TAB 2 (Dynamic)
+    if not df_demo.empty:
+        k1, k2, k3 = st.columns(3)
+        with k1:
+            st.metric("Total Records", len(df_demo))
+        with k2:
+            if chart_option == 'Gender':
+                percent_female = (df_demo['Gender'] == 'Female').mean() * 100
+                st.metric("% Female", f"{percent_female:.1f}%")
+            else:
+                unique_fields = df_demo['Field_of_Study'].nunique()
+                st.metric("Unique Fields of Study", unique_fields)
+        with k3:
+            if chart_option == 'Gender':
+                st.metric("Median Age", f"{df_demo['Age'].median():.1f}")
+            else:
+                top_field = df_demo['Field_of_Study'].mode().iloc[0] if not df_demo['Field_of_Study'].mode().empty else "N/A"
+                st.metric("Most Common Field", top_field)
 
-    kpi1, kpi2, kpi3 = st.columns(3)
-    kpi1.metric("Total Records", total_demo)
-    kpi2.metric("Average Age", f"{avg_age:.1f}")
-    kpi3.metric("Unique Fields of Study", unique_fields)
-
-    if df_demo.empty:
+    else:
         st.warning("Not enough data to display charts.")
     else:
         col1, col2 = st.columns([1, 1])
