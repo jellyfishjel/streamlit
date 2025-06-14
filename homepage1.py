@@ -64,7 +64,7 @@ st.markdown("""
 st.markdown("""
  <div class="fade-in" style="text-align: center; max-width: 900px; margin: auto; padding-top: 20px;">
     <p style="font-size: 30px; color: #cf5a2e; font-weight: bold;">
-        Where data meets decisions.
+        Insight into success, powered by data.
     </p>
     <p style="font-size: 18px; color: #444;">
         Discover how different factors shape career paths—through interactive analytics.
