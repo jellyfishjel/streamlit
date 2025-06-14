@@ -22,7 +22,7 @@ selected_genders = st.sidebar.multiselect("Select Gender(s)", gender_options, de
 
 # Handle Gender Filter
 if not selected_genders:
-    st.sidebar.warning("⚠️ No gender selected. Please choose at least one option.")
+    st.sidebar.warning("⚠️ No gender selected. Using full data. Please choose at least one option.")
     gender_filtered = df  # fallback to full data to avoid crash
 elif 'All' in selected_genders:
     gender_filtered = df
