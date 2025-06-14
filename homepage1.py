@@ -15,7 +15,7 @@ local_css("style/style.css")
 
 # ==== Import font ====
 st.markdown("""
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
 
 # ==== Global CSS ====
