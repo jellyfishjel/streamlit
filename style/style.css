@@ -6,7 +6,7 @@
 
 /* Nền gradient toàn trang */
 [data-testid="stAppViewContainer"] {
-  background-image: url('https://github.com/jellyfishjel/streamlit/blob/main/images/team_section_bg.png');
+  background-image: linear-gradient(red 0%, orange 25%, yellow 50%, green 75%, blue 100%);
   background-size: cover;
   background-position: center;
 }
