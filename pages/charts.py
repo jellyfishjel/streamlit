@@ -21,13 +21,13 @@ gender_options = ['All'] + sorted(df['Gender'].dropna().unique())
 selected_genders = st.sidebar.multiselect("Select Gender(s)", gender_options, default=['All'])
 
 # Handle Gender Filter
-if 'All' in selected_genders or not selected_genders:
+if not selected_genders:
+    st.sidebar.warning("⚠️ No gender selected. Please choose at least one option.")
+    gender_filtered = df  # fallback to full data to avoid crash
+elif 'All' in selected_genders:
     gender_filtered = df
 else:
     gender_filtered = df[df['Gender'].isin(selected_genders)]
-
-if not selected_genders or (len(selected_genders) == 1 and selected_genders[0] == 'All' and df['Gender'].nunique() > 1):
-    st.sidebar.warning("⚠️ No specific gender selected. Using all data.")
 
 # Job Level Filter
 job_levels = sorted(df['Current_Job_Level'].dropna().unique())
