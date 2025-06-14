@@ -75,31 +75,28 @@ with graph_tab[0]:
     if df_filtered.empty:
         st.warning("⚠️ Not enough data to display charts. Please adjust the filters.")
     else:
-        st.markdown("### 🧮 Key Indicators")
-        k1, k2, k3 = st.columns(3)
+        with st.container():
+            st.markdown("""
+            <div style="border: 1px solid #ccc; border-radius: 10px; padding: 20px; margin-top: 10px;">
+                <div style="display: flex; justify-content: space-around; text-align: center;">
+                    <div>
+                        <h4>Total Records</h4>
+                        <p style="font-size: 24px;">{}</p>
+                    </div>
+                    <div>
+                        <h4>Median Age</h4>
+                        <p style="font-size: 24px;">{:.1f}</p>
+                    </div>
+                    <div>
+                        <h4>Entrepreneurs (%)</h4>
+                        <p style="font-size: 24px;">{:.1f}%</p>
+                    </div>
+                </div>
+            </div>
+            """.format(len(df_filtered), df_filtered['Age'].median(),
+                       (df_filtered['Entrepreneurship'] == "Yes").mean() * 100),
+            unsafe_allow_html=True)
 
-        with k1:
-            st.markdown(
-                f"""<div style="text-align:center; padding:10px; background-color:#f0f8ff; border-radius:10px;">
-                    <h2>📊 {len(df_filtered)}</h2>
-                    <p>Total Records</p>
-                </div>""", unsafe_allow_html=True)
-
-        with k2:
-            median_age = df_filtered['Age'].median()
-            st.markdown(
-                f"""<div style="text-align:center; padding:10px; background-color:#e6ffe6; border-radius:10px;">
-                    <h2>🎂 {median_age:.1f}</h2>
-                    <p>Median Age</p>
-                </div>""", unsafe_allow_html=True)
-
-        with k3:
-            entre_percent = (df_filtered['Entrepreneurship'] == "Yes").mean() * 100
-            st.markdown(
-                f"""<div style="text-align:center; padding:10px; background-color:#fff5e6; border-radius:10px;">
-                    <h2>🚀 {entre_percent:.1f}%</h2>
-                    <p>Entrepreneurs</p>
-                </div>""", unsafe_allow_html=True)
 
         df_grouped = (
             df.groupby(['Current_Job_Level', 'Age', 'Entrepreneurship'])
