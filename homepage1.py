@@ -60,7 +60,7 @@ st.markdown("""
 
 st.markdown("""
     <div style="text-align: center; max-width: 800px; margin: auto; font-size: 20px; color: #444;">
-        Explore how education, age, gender, and experience influence career advancement.<br>
+        Explore how age, gender, education and entreprenueyship influence career advancement.<br>
         Use interactive tools to visualize data, gain insights, and plan your future!
     </div>
 """, unsafe_allow_html=True)
