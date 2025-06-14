@@ -17,7 +17,9 @@ df = load_data()
 st.sidebar.title("Global Filters")
 
 # RESET FILTER BUTTON
-if st.sidebar.button("🔄 Reset Filters"):
+reset_clicked = st.sidebar.button("🔄 Reset Filters")
+if reset_clicked:
+    st.session_state.clear()
     st.experimental_rerun()
 
 # GENDER FILTER
