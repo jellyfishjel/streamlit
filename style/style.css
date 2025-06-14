@@ -7,7 +7,7 @@
 /* Nền gradient toàn trang */
 [data-testid="stAppViewContainer"] {
    background: 
-      radial-gradient(at top right, #e7c5bd, transparent 70%),
+      radial-gradient(at top right, #ead4c6, transparent 70%),
       radial-gradient(at bottom left, #ecd1b2, transparent 70%),
       #ebe5d4;
 }
