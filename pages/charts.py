@@ -210,30 +210,49 @@ with graph_tab[1]:
         st.warning("⚠️ Not enough data to display charts. Please adjust the filters.")
     else:
         if chart_option == 'Gender':
-            k1, k2, k3 = st.columns(3)
-            with k1:
-                st.metric("Total Records", len(df_demo))
-            with k2:
-                st.metric("Median Age", f"{df_demo['Age'].median():.1f}")
-            with k3:
-                percent_female = (df_demo['Gender'] == 'Female').mean() * 100
-                st.metric("% Female", f"{percent_female:.1f}%")
-        else:
-            k1, k2 = st.columns(2)
-            with k1:
-                st.metric("Total Records", len(df_demo))
-            with k2:
-                top_fields = (
-                    df_demo['Field_of_Study']
-                    .value_counts()
-                    .head(3)
-                    .index.tolist()
-                )
-                if top_fields:
-                    st.metric("Top 3 Most Common Fields", ", ".join(top_fields))
-                else:
-                    st.metric("Top 3 Most Common Fields", "N/A")
+            with st.container():
+                st.markdown("""
+                <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 15px; margin-top: 10px;">
+                    <div style="display: flex; justify-content: space-around; text-align: center; line-height: 1.3;">
+                        <div>
+                            <div style="font-size: 14px; color: #555;">Total Records</div>
+                            <div style="font-size: 28px;">{}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 14px; color: #555;">Median Age</div>
+                            <div style="font-size: 28px;">{:.1f}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 14px; color: #555;">% Female</div>
+                            <div style="font-size: 28px;">{:.1f}%</div>
+                        </div>
+                    </div>
+                </div>
+                """.format(len(df_demo), df_demo['Age'].median(),
+                           (df_demo['Gender'] == 'Female').mean() * 100),
+                unsafe_allow_html=True)
 
+        else:
+            top_fields = df_demo['Field_of_Study'].value_counts().head(3).index.tolist()
+            display_fields = ", ".join(top_fields) if top_fields else "N/A"
+            
+            with st.container():
+                st.markdown("""
+                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 20px; margin-top: 10px;">
+                    <div style="display: flex; justify-content: space-around; text-align: center;">
+                        <div>
+                            <h4>Total Records</h4>
+                            <p style="font-size: 24px;">{}</p>
+                        </div>
+                        <div>
+                            <h4>Top 3 Most Common Fields</h4>
+                            <p style="font-size: 20px;">{}</p>
+                        </div>
+                    </div>
+                </div>
+                """.format(len(df_demo), display_fields),
+                unsafe_allow_html=True)
+                
         col1, col2 = st.columns(2)
 
         with col1:
