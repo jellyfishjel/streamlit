@@ -63,7 +63,7 @@ st.markdown("""
 
 st.markdown("""
  <div class="fade-in" style="text-align: center; max-width: 900px; margin: auto; padding-top: 20px;">
-    <p style="font-size: 30px; color: #cf5a2e; font-weight: bold;">
+    <p style="font-size: 25px; color: #cf5a2e; font-weight: bold;">
         Insight into success, powered by data.
     </p>
     <p style="font-size: 18px; color: #444;">
