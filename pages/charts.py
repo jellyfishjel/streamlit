@@ -17,8 +17,8 @@ df = load_data()
 st.sidebar.title("Global Filters")
 
 # Gender Filter - Multiselect
-gender_options = ['All'] + sorted(df['Gender'].dropna().unique())
-selected_genders = st.sidebar.multiselect("Select Gender(s)", gender_options, default=['All'])
+gender_options = sorted(df['Gender'].dropna().unique())
+selected_genders = st.sidebar.multiselect("Select Gender(s)", gender_options, default=gender_options)
 
 # Handle Gender Filter
 if not selected_genders:
