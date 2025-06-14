@@ -65,17 +65,6 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# ==== Short catchy intro ====
-st.markdown("""
-<div style='text-align: center; max-width: 900px; margin: 0 auto; padding-top: 10px; font-size: 18px; color: #444; line-height: 1.6'>
-    🎓 Ever wondered how your education shapes your future career?  
-    <br>Let data show you the way!
-</div>
-""", unsafe_allow_html=True)
-
-
-# ==== Project Introduction ====
-
 st.markdown("""
 <div style="padding: 2rem 2rem 3rem; background: linear-gradient(135deg, #ffe9d6, #fbe3e3); border-radius: 20px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); text-align: center;">
     
