@@ -6,7 +6,7 @@
 
 /* Nền gradient toàn trang */
 [data-testid="stAppViewContainer"] {
-   background: https://github.com/jellyfishjel/streamlit/edit/main/style/style.css
+   background: 
       radial-gradient(at top right, #e6c3bc, transparent 70%),
       radial-gradient(at bottom left, #efd0b0, transparent 70%),
       #ebe5d4;
@@ -17,22 +17,6 @@ header[data-testid="stHeader"] {
     background-color: 		#ebe5d4
   }
 
-st.markdown("""
-    <style>
-        /* Áp dụng font Inter cho toàn bộ văn bản trừ tiêu đề */
-        html, body, div, p, span {
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Giữ nguyên font Bungee cho header và OUR TEAM */
-        .homepage h1,
-        .team-title {
-            font-family: 'Bungee', sans-serif !important;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
-
 @keyframes fadeIn {
     0% { opacity: 0; transform: translateY(30px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -42,3 +26,13 @@ st.markdown("""
     animation: fadeIn 2s ease-out;
 }
 
+/* ===== Use Inter font for all text ===== */
+html, body, div, p, span {
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===== Keep Bungee for headers only ===== */
+.homepage h1,
+.team-title {
+    font-family: 'Bungee', sans-serif !important;
+}
