@@ -6,7 +6,7 @@
 
 /* Nền gradient toàn trang */
 [data-testid="stAppViewContainer"] {
-   background: 
+   background: https://github.com/jellyfishjel/streamlit/edit/main/style/style.css
       radial-gradient(at top right, #e6c3bc, transparent 70%),
       radial-gradient(at bottom left, #efd0b0, transparent 70%),
       #ebe5d4;
@@ -17,12 +17,20 @@ header[data-testid="stHeader"] {
     background-color: 		#ebe5d4
   }
 
-.homepage h1 {
-    font-family: 'Bungee', sans-serif;
-}
-.intro-box, .team-title {
-    font-family: 'Poppins', sans-serif;
-}
+st.markdown("""
+    <style>
+        /* Áp dụng font Inter cho toàn bộ văn bản trừ tiêu đề */
+        html, body, div, p, span {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Giữ nguyên font Bungee cho header và OUR TEAM */
+        .homepage h1,
+        .team-title {
+            font-family: 'Bungee', sans-serif !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 
 @keyframes fadeIn {
