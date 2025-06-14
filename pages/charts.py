@@ -139,6 +139,8 @@ with graph_tab[0]:
                     ))
 
             fig_density.update_layout(
+                paper_bgcolor='rgba(0,0,0,0)',
+                plot_bgcolor='rgba(0,0,0,0)',
                 title=title,
                 xaxis_title="Age",
                 yaxis_title="Density",
@@ -160,6 +162,8 @@ with graph_tab[0]:
 
             fig_donut = go.Figure(data=[go.Pie(labels=labels, values=values, hole=0.5)])
             fig_donut.update_layout(
+                paper_bgcolor='rgba(0,0,0,0)',
+                plot_bgcolor='rgba(0,0,0,0)',
                 title=f"{chart_option} Distribution (Donut Chart)",
                 height=350,
                 margin=dict(t=40, l=40, r=40, b=40),
@@ -237,6 +241,8 @@ with graph_tab[1]:
         )
 
         fig_bar.update_layout(
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
             margin=dict(t=40, l=40, r=40, b=40),
             legend_title_text='Entrepreneurship',
             xaxis_tickangle=0,
@@ -267,6 +273,8 @@ with graph_tab[1]:
             ))
 
         fig_line.update_layout(
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
             margin=dict(t=40, l=40, r=40, b=40),
             legend_title_text='Entrepreneurship',
             xaxis_tickangle=0,
