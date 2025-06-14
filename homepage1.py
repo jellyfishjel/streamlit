@@ -19,7 +19,9 @@ local_css("style/style.css")
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
-
+st.markdown("""
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+""", unsafe_allow_html=True)
 
 # ==== Global CSS ====
 st.markdown("""
