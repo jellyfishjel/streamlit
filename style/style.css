@@ -17,3 +17,9 @@ header[data-testid="stHeader"] {
     background-color: 		#ebe5d4
   }
 
+.homepage h1 {
+    font-family: 'Bungee', sans-serif;
+}
+.intro-box, .team-title {
+    font-family: 'Poppins', sans-serif;
+}
