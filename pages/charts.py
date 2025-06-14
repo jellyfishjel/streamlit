@@ -198,24 +198,30 @@ with graph_tab[1]:
     if df_demo.empty:
         st.warning("⚠️ Not enough data to display charts. Please adjust the filters.")
     else:
-        k1, k2, k3 = st.columns(3)
-        with k1:
-            st.metric("Total Records", len(df_demo))
-        
-        with k3:
-            if chart_option == 'Gender':
+                if chart_option == 'Gender':
+            k1, k2, k3 = st.columns(3)
+            with k1:
+                st.metric("Total Records", len(df_demo))
+            with k2:
                 st.metric("Median Age", f"{df_demo['Age'].median():.1f}")
-            else:
-                top_field = df_demo['Field_of_Study'].mode().iloc[0] if not df_demo['Field_of_Study'].mode().empty else "N/A"
-                st.metric("Most Common Field", top_field)
-
-        with k2:
-            if chart_option == 'Gender':
+            with k3:
                 percent_female = (df_demo['Gender'] == 'Female').mean() * 100
                 st.metric("% Female", f"{percent_female:.1f}%")
-            else:
-                unique_fields = df_demo['Field_of_Study'].nunique()
-                st.metric("Unique Fields of Study", unique_fields)
+        else:
+            k1, k2 = st.columns(2)
+            with k1:
+                st.metric("Total Records", len(df_demo))
+            with k2:
+                top_fields = (
+                    df_demo['Field_of_Study']
+                    .value_counts()
+                    .head(3)
+                    .index.tolist()
+                )
+                if top_fields:
+                    st.metric("Top 3 Most Common Fields", ", ".join(top_fields))
+                else:
+                    st.metric("Top 3 Most Common Fields", "N/A")
 
         col1, col2 = st.columns(2)
 
