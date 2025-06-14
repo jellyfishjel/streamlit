@@ -238,15 +238,15 @@ with graph_tab[1]:
             
             with st.container():
                 st.markdown("""
-                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 20px; margin-top: 10px;">
-                    <div style="display: flex; justify-content: space-around; text-align: center;">
+                <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 15px; margin-top: 10px;">
+                    <div style="display: flex; justify-content: space-around; text-align: center; line-height: 1.3;">
                         <div>
-                            <h4>Total Records</h4>
-                            <p style="font-size: 24px;">{}</p>
+                            <div style="font-size: 14px; color: #555;">Total Records</div>
+                            <div style="font-size: 28px;">{}</div>
                         </div>
                         <div>
-                            <h4>Top 3 Most Common Fields</h4>
-                            <p style="font-size: 20px;">{}</p>
+                            <div style="font-size: 14px; color: #555;">Top 3 Fields</div>
+                            <div style="font-size: 20px;">{}</div>
                         </div>
                     </div>
                 </div>
