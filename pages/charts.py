@@ -77,26 +77,25 @@ with graph_tab[0]:
     else:
         with st.container():
             st.markdown("""
-            <div style="border: 1px solid #ccc; border-radius: 10px; padding: 20px; margin-top: 10px;">
-                <div style="display: flex; justify-content: space-around; text-align: center;">
+            <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 15px; margin-top: 10px;">
+                <div style="display: flex; justify-content: space-around; text-align: center; line-height: 1.3;">
                     <div>
-                        <h4>Total Records</h4>
-                        <p style="font-size: 24px;">{}</p>
+                        <div style="font-size: 14px; color: #555;">Total Records</div>
+                        <div style="font-size: 28px; font-weight: bold;">{}</div>
                     </div>
                     <div>
-                        <h4>Median Age</h4>
-                        <p style="font-size: 24px;">{:.1f}</p>
+                        <div style="font-size: 14px; color: #555;">Median Age</div>
+                        <div style="font-size: 28px; font-weight: bold;">{:.1f}</div>
                     </div>
                     <div>
-                        <h4>Entrepreneurs (%)</h4>
-                        <p style="font-size: 24px;">{:.1f}%</p>
+                        <div style="font-size: 14px; color: #555;">Entrepreneurs (%)</div>
+                        <div style="font-size: 28px; font-weight: bold;">{:.1f}%</div>
                     </div>
                 </div>
             </div>
             """.format(len(df_filtered), df_filtered['Age'].median(),
                        (df_filtered['Entrepreneurship'] == "Yes").mean() * 100),
             unsafe_allow_html=True)
-
 
         df_grouped = (
             df.groupby(['Current_Job_Level', 'Age', 'Entrepreneurship'])
