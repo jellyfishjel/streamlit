@@ -1,4 +1,5 @@
 import streamlit as st
+from PIL import Image
 
 # ==== Cấu hình trang ====
 st.set_page_config(page_title="Education & Career App", layout="wide")
