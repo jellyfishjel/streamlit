@@ -64,7 +64,7 @@ graph_tab = st.tabs(["📈 Demographics", "📊 Job Offers"])
 
 # === TAB 1 (Demographics) ===
 with graph_tab[0]:
-    st.title("Demographics by Age")
+    st.title("Demographics")
 
     chart_option = st.selectbox("Select Variable for Visualization", ['Gender Distribution', 'Field of Study'])
 
@@ -173,7 +173,7 @@ with graph_tab[0]:
 
 # === TAB 2 (Job Offers) ===
 with graph_tab[1]:
-    st.title("Entrepreneurship and Job Offers by Age")
+    st.title("Job Offers")
 
     df_filtered = gender_filtered[
         (gender_filtered['Current_Job_Level'] == selected_level) &
