@@ -8,17 +8,10 @@ import numpy as np
 st.set_page_config(page_title="Entrepreneurship Insights", layout="wide")
 
 @st.cache_data
-
 def load_data():
     return pd.read_excel("education_career_success.xlsx")
 
 df = load_data()
-
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
-
-local_css("style/style.css")
 
 # Sidebar Filters
 st.sidebar.title("Global Filters")
@@ -48,14 +41,12 @@ if show_yes:
 if show_no:
     selected_statuses.append("No")
 
-# Nếu không chọn gì, mặc định chọn cả 2 để tránh lỗi dữ liệu rỗng
 if not selected_statuses:
     selected_statuses = ['Yes', 'No']
-    
-# Color mapping
+
 color_map = {'Yes': '#FFD700', 'No': '#004080'}
 
-# --- Main Tabs ---
+# Main Tabs
 graph_tab = st.tabs(["📊 Age & Job Offers", "📈 Age & Demographics"])
 
 # === TAB 1 ===
@@ -63,12 +54,20 @@ with graph_tab[0]:
     st.title("Entrepreneurship and Job Offers by Age")
     st.markdown("Analyze the relationship between entrepreneurship status, job level, and job offers across age groups.")
 
-    # Filtered data
     df_filtered = df[(df['Current_Job_Level'] == selected_level) &
                      (df['Age'].between(age_range[0], age_range[1])) &
                      (df['Entrepreneurship'].isin(selected_statuses))]
 
-    # Grouped data for bar chart
+    # KPIs for Tab 1
+    total_filtered = len(df_filtered)
+    avg_offers = df_filtered['Job_Offers'].mean() if not df_filtered.empty else 0
+    entre_percent = (df_filtered['Entrepreneurship'] == 'Yes').mean() * 100 if not df_filtered.empty else 0
+
+    kpi1, kpi2, kpi3 = st.columns(3)
+    kpi1.metric("Total Records", total_filtered)
+    kpi2.metric("Average Job Offers", f"{avg_offers:.2f}")
+    kpi3.metric("Entrepreneurs (%)", f"{entre_percent:.1f}%")
+
     df_grouped = (
         df.groupby(['Current_Job_Level', 'Age', 'Entrepreneurship'])
         .size()
@@ -106,8 +105,6 @@ with graph_tab[0]:
     )
 
     fig_bar.update_layout(
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
         margin=dict(t=40, l=40, r=40, b=40),
         legend_title_text='Entrepreneurship',
         xaxis_tickangle=0,
@@ -138,8 +135,6 @@ with graph_tab[0]:
         ))
 
     fig_line.update_layout(
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
         margin=dict(t=40, l=40, r=40, b=40),
         legend_title_text='Entrepreneurship',
         xaxis_tickangle=0,
@@ -180,6 +175,16 @@ with graph_tab[1]:
                  (df['Age'].between(age_range[0], age_range[1])) &
                  (df['Entrepreneurship'].isin(selected_statuses))]
 
+    # KPIs for Tab 2
+    total_demo = len(df_demo)
+    avg_age = df_demo['Age'].mean() if not df_demo.empty else 0
+    unique_fields = df_demo['Field_of_Study'].nunique() if not df_demo.empty else 0
+
+    kpi1, kpi2, kpi3 = st.columns(3)
+    kpi1.metric("Total Records", total_demo)
+    kpi2.metric("Average Age", f"{avg_age:.1f}")
+    kpi3.metric("Unique Fields of Study", unique_fields)
+
     if df_demo.empty:
         st.warning("Not enough data to display charts.")
     else:
@@ -207,8 +212,6 @@ with graph_tab[1]:
                     ))
 
             fig_density.update_layout(
-                paper_bgcolor='rgba(0,0,0,0)',
-                plot_bgcolor='rgba(0,0,0,0)',
                 title=title,
                 xaxis_title="Age",
                 yaxis_title="Density",
@@ -231,8 +234,6 @@ with graph_tab[1]:
 
             fig_donut = go.Figure(data=[go.Pie(labels=labels, values=values, hole=0.5)])
             fig_donut.update_layout(
-                paper_bgcolor='rgba(0,0,0,0)',
-                plot_bgcolor='rgba(0,0,0,0)',
                 title=f"{chart_option} Distribution (Donut Chart)",
                 height=350,
                 margin=dict(t=40, l=40, r=40, b=40),
