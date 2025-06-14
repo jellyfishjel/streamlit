@@ -14,9 +14,7 @@
 
 /* === ĐỔI MÀU THANH HEADER === */
 header[data-testid="stHeader"] {
-     background:
-       radial-gradient(at top left, #efd0b0, transparent 70%),
-       radial-gradient(at bottom right, #e6c3bc, transparent 70%),
+     background: linear-gradient(#e66465, #9198e5);
   }
 
 @keyframes fadeIn {
