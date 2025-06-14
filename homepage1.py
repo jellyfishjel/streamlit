@@ -30,7 +30,7 @@ st.markdown("""
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 80px 20px 80px;
+            padding: 60px 20px 80px;
         }
 
         .homepage h1 {
