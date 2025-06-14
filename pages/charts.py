@@ -176,8 +176,10 @@ with graph_tab[1]:
                  (df['Age'].between(age_range[0], age_range[1])) &
                  (df['Entrepreneurship'].isin(selected_statuses))]
 
-    # Key Indicators - TAB 2 (Dynamic)
-    if not df_demo.empty:
+    if df_demo.empty:
+        st.warning("Not enough data to display charts.")
+    else:
+        # Key Indicators
         k1, k2, k3 = st.columns(3)
         with k1:
             st.metric("Total Records", len(df_demo))
@@ -195,9 +197,9 @@ with graph_tab[1]:
                 top_field = df_demo['Field_of_Study'].mode().iloc[0] if not df_demo['Field_of_Study'].mode().empty else "N/A"
                 st.metric("Most Common Field", top_field)
 
-    else:
-        st.warning("Not enough data to display charts.")
-        
+        # --- VẼ BIỂU ĐỒ ---
+        col1, col2 = st.columns(2)
+
         # Density Area Chart
         with col1:
             fig_density = go.Figure()
