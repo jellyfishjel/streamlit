@@ -13,13 +13,17 @@ local_css("style/style.css")  # Optional, nếu bạn có file riêng
 
 # ==== Import Google Fonts ====
 st.markdown("""
-<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 <style>
-    body, p, li {
-        font-family: 'Quicksand', sans-serif !important;
-        color: #333;
+    html, body, p, li, h1, h2, h3, h4, h5, h6, div {
+        font-family: 'Poppins', sans-serif !important;
+        font-weight: 500 !important;
     }
+</style>
+""", unsafe_allow_html=True)
 
+st.markdown("""
+<style>
     .homepage {
         display: flex;
         flex-direction: column;
