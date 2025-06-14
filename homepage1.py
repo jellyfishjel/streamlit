@@ -67,7 +67,7 @@ st.markdown("""
             Discover how education, age, and experience shape career success — through the lens of interactive analytics.
         </p>
         <p style="font-size: 17px; color: #666;">
-            Built with ❤️ by <b>Team Py7on</b> for <i>Business IT 2</i> <br>at <b>Vietnamese–German University</b>.
+            Built by <b>Team</b> for <i>Business IT 2</i> <br>at <b>Vietnamese–German University</b>.
         </p>
     </div>
 """, unsafe_allow_html=True)
