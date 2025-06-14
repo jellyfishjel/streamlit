@@ -5,29 +5,7 @@ import plotly.graph_objects as go
 from scipy.stats import gaussian_kde
 import numpy as np
 
-# PAGE CONFIG
 st.set_page_config(page_title="Entrepreneurship Insights", layout="wide")
-
-# === CUSTOM STYLES ===
-st.markdown("""
-    <style>
-        html, body, [class*="css"]  {
-            font-family: 'Arial', sans-serif;
-        }
-        .block-container {
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-        }
-        .stMetric {
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            padding: 10px;
-        }
-        h1, h2, h3 {
-            color: #004080;
-        }
-    </style>
-""", unsafe_allow_html=True)
 
 @st.cache_data
 def load_data():
@@ -36,29 +14,60 @@ def load_data():
 df = load_data()
 
 # === SIDEBAR ===
-st.sidebar.title("🎯 Global Filters")
+st.sidebar.title("Global Filters")
+
+# Session state for Reset functionality
+if "reset" not in st.session_state:
+    st.session_state.reset = False
+
+# Reset Button
+if st.sidebar.button("🔄 Reset Filters"):
+    st.session_state.reset = True
+else:
+    st.session_state.reset = False
 
 # Gender Filter
-st.sidebar.markdown("#### 👤 Select Gender")
 gender_options = ['All'] + sorted(df['Gender'].dropna().unique())
-selected_genders = st.sidebar.multiselect("Select Gender(s)", gender_options, default=['All'])
+default_gender = ['All'] if st.session_state.reset else st.session_state.get("selected_genders", ['All'])
+selected_genders = st.sidebar.multiselect("Select Gender(s)", gender_options, default=default_gender)
+
+# Logic: Auto-select 'All' if nothing selected
+if not selected_genders or (set(selected_genders) - {'All'} == set()):
+    selected_genders = ['All']
+
 if 'All' not in selected_genders:
     df = df[df['Gender'].isin(selected_genders)]
 
-# Job Level Filter
-st.sidebar.markdown("#### 💼 Job Level")
+# Save selection to session
+st.session_state["selected_genders"] = selected_genders
+
+# Job Level
 job_levels = sorted(df['Current_Job_Level'].dropna().unique())
-selected_level = st.sidebar.selectbox("Select Job Level", job_levels)
+default_level = job_levels[0] if st.session_state.reset else st.session_state.get("selected_level", job_levels[0])
+selected_level = st.sidebar.selectbox("Select Job Level", job_levels, index=job_levels.index(default_level))
+st.session_state["selected_level"] = selected_level
 
-# Age Filter
-st.sidebar.markdown("#### 📊 Age Range")
+# Age Range
 min_age, max_age = int(df['Age'].min()), int(df['Age'].max())
-age_range = st.sidebar.slider("Select Age Range", min_value=min_age, max_value=max_age, value=(min_age, max_age))
+default_age = (min_age, max_age) if st.session_state.reset else st.session_state.get("age_range", (min_age, max_age))
+age_range = st.sidebar.slider("Select Age Range", min_value=min_age, max_value=max_age, value=default_age)
+st.session_state["age_range"] = age_range
 
-# Entrepreneurship Filter
-st.sidebar.markdown("#### 🚀 Entrepreneurship Status")
-show_yes = st.sidebar.checkbox("Yes", value=True)
-show_no = st.sidebar.checkbox("No", value=True)
+# Entrepreneurship Checkboxes
+st.sidebar.markdown("**Select Entrepreneurship Status**")
+default_yes = True if st.session_state.reset else st.session_state.get("show_yes", True)
+default_no = True if st.session_state.reset else st.session_state.get("show_no", True)
+
+show_yes = st.sidebar.checkbox("Yes", value=default_yes)
+show_no = st.sidebar.checkbox("No", value=default_no)
+
+# Logic: Auto-select both if neither selected
+if not show_yes and not show_no:
+    show_yes, show_no = True, True
+
+# Save to session state
+st.session_state["show_yes"] = show_yes
+st.session_state["show_no"] = show_no
 
 selected_statuses = []
 if show_yes:
@@ -66,22 +75,7 @@ if show_yes:
 if show_no:
     selected_statuses.append("No")
 
-if not selected_statuses:
-    selected_statuses = ['Yes', 'No']
-
-# Reset Filters Button
-if st.sidebar.button("🔄 Reset Filters"):
-    st.experimental_rerun()
-
-# === COLOR MAP ===
 color_map = {'Yes': '#FFD700', 'No': '#004080'}
-
-# === HEADER ===
-st.markdown("""
-## 🌟 Entrepreneurship Insights Dashboard
-Welcome to the interactive dashboard exploring how **age, gender, education** and **entrepreneurship** relate to **career success**!
-Use the filters on the left to dive into the data and discover patterns.
-""")
 
 # === TABS ===
 graph_tab = st.tabs(["📊 Age & Job Offers", "📈 Age & Demographics"])
@@ -90,16 +84,17 @@ graph_tab = st.tabs(["📊 Age & Job Offers", "📈 Age & Demographics"])
 with graph_tab[0]:
     st.title("Entrepreneurship and Job Offers by Age")
 
-    df_filtered = df[(df['Current_Job_Level'] == selected_level) &
-                     (df['Age'].between(age_range[0], age_range[1])) &
-                     (df['Entrepreneurship'].isin(selected_statuses))]
+    df_filtered = df[
+        (df['Current_Job_Level'] == selected_level) &
+        (df['Age'].between(age_range[0], age_range[1])) &
+        (df['Entrepreneurship'].isin(selected_statuses))
+    ]
 
     k1, k2, k3 = st.columns(3)
     with k1:
         st.metric("Total Records", len(df_filtered))
     with k2:
-        median_age = df_filtered['Age'].median()
-        st.metric("Median Age", f"{median_age:.1f}")
+        st.metric("Median Age", f"{df_filtered['Age'].median():.1f}")
     with k3:
         entre_percent = (df_filtered['Entrepreneurship'] == "Yes").mean() * 100
         st.metric("Entrepreneurs (%)", f"{entre_percent:.1f}%")
@@ -145,8 +140,6 @@ with graph_tab[0]:
         legend_title_text='Entrepreneurship',
         xaxis_tickangle=0,
         bargap=0.1,
-        plot_bgcolor="white",
-        paper_bgcolor="white",
         xaxis=dict(tickvals=even_ages),
         yaxis=dict(title="Percentage", range=[0, 1], tickformat=".0%"),
         legend=dict(orientation='h', yanchor='bottom', y=-0.3, xanchor='center', x=0.5)
@@ -177,8 +170,6 @@ with graph_tab[0]:
         legend_title_text='Entrepreneurship',
         xaxis_tickangle=0,
         hovermode="x unified",
-        plot_bgcolor="#f8f9fa",
-        paper_bgcolor="#f8f9fa",
         width=1250,
         xaxis=dict(
             showspikes=True,
@@ -204,7 +195,6 @@ with graph_tab[0]:
         st.plotly_chart(fig_bar, use_container_width=True)
     with col2:
         st.plotly_chart(fig_line, use_container_width=True)
-        st.markdown("💡 Tip: Click on the legend to show/hide lines!")
 
 # === TAB 2 ===
 with graph_tab[1]:
@@ -217,7 +207,7 @@ with graph_tab[1]:
                  (df['Entrepreneurship'].isin(selected_statuses))]
 
     if df_demo.empty:
-        st.warning("⚠️ Not enough data for this selection. Try adjusting filters!")
+        st.warning("Not enough data to display charts.")
     else:
         k1, k2, k3 = st.columns(3)
         with k1:
