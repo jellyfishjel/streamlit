@@ -13,52 +13,39 @@ def load_data():
 
 df = load_data()
 
-# --- Sidebar Filters ---
+# Sidebar Filters
 st.sidebar.title("Global Filters")
 
-# RESET FILTER BUTTON
-reset_clicked = st.sidebar.button("🔄 Reset Filters")
-if reset_clicked:
-    st.session_state.clear()
-    st.experimental_rerun()
-
-# GENDER FILTER
+# Gender Filter - Multiselect
 gender_options = sorted(df['Gender'].dropna().unique())
-selected_genders = st.sidebar.multiselect(
-    "Select Gender(s)", gender_options, default=gender_options, key="gender_filter"
-)
+selected_genders = st.sidebar.multiselect("Select Gender(s)", gender_options, default=gender_options)
 
-# Handle if none selected => auto reset to all
+# Handle Gender Filter
 if not selected_genders:
-    selected_genders = gender_options
-    st.sidebar.warning("⚠️ No gender selected. Reset to all genders.")
-gender_filtered = df[df['Gender'].isin(selected_genders)]
+    st.sidebar.warning("⚠️ No gender selected. Using full data. Please choose at least one option.")
+    gender_filtered = df  # fallback to full data to avoid crash
+elif 'All' in selected_genders:
+    gender_filtered = df
+else:
+    gender_filtered = df[df['Gender'].isin(selected_genders)]
 
-# JOB LEVEL
+# Job Level Filter
 job_levels = sorted(df['Current_Job_Level'].dropna().unique())
-selected_level = st.sidebar.selectbox(
-    "Select Job Level", job_levels, key="job_level_filter"
-)
+selected_level = st.sidebar.selectbox("Select Job Level", job_levels)
 
-# AGE RANGE
+# Age Filter
 min_age, max_age = int(df['Age'].min()), int(df['Age'].max())
-age_range = st.sidebar.slider(
-    "Select Age Range", min_value=min_age, max_value=max_age,
-    value=(min_age, max_age), key="age_filter"
-)
+age_range = st.sidebar.slider("Select Age Range", min_value=min_age, max_value=max_age, value=(min_age, max_age))
 
+# Check if only one age selected
 if age_range[0] == age_range[1]:
-    st.sidebar.warning(f"⚠️ Only one age ({age_range[0]}) selected. Using full range.")
+    st.sidebar.warning(f"⚠️ Only one age ({age_range[0]}) selected. Using full age range.")
     age_range = (min_age, max_age)
 
-# ENTREPRENEURSHIP STATUS CHECKBOXES
+# Entrepreneurship Status Filter - Individual Checkboxes
 st.sidebar.markdown("**Select Entrepreneurship Status**")
-show_yes = st.sidebar.checkbox("Yes", value=True, key="entre_yes")
-show_no = st.sidebar.checkbox("No", value=True, key="entre_no")
-
-if not (show_yes or show_no):
-    show_yes, show_no = True, True
-    st.sidebar.warning("⚠️ No status selected. Reset to Yes and No.")
+show_yes = st.sidebar.checkbox("Yes", value=True)
+show_no = st.sidebar.checkbox("No", value=True)
 
 selected_statuses = []
 if show_yes:
@@ -66,9 +53,13 @@ if show_yes:
 if show_no:
     selected_statuses.append("No")
 
+if not (show_yes or show_no):
+    st.sidebar.warning("⚠️ No gender selected. Using full data. Please choose at least one option..")
+    selected_statuses = ['Yes', 'No']
+
 color_map = {'Yes': '#FFD700', 'No': '#004080'}
 
-# === MAIN TABS ===
+# Main Tabs
 graph_tab = st.tabs(["📊 Age & Job Offers", "📈 Age & Demographics"])
 
 # === TAB 1 ===
@@ -82,8 +73,9 @@ with graph_tab[0]:
     ]
 
     if df_filtered.empty:
-        st.warning("⚠️ Not enough data. Please adjust the filters.")
+        st.warning("⚠️ Not enough data to display charts. Please adjust the filters.")
     else:
+        # Key Indicators - TAB 1
         k1, k2, k3 = st.columns(3)
         with k1:
             st.metric("Total Records", len(df_filtered))
@@ -225,7 +217,7 @@ with graph_tab[1]:
 
         col1, col2 = st.columns(2)
 
-        # DENSITY PLOT
+        # Density Area Chart
         with col1:
             fig_density = go.Figure()
             group_col = 'Gender' if chart_option == 'Gender' else 'Field_of_Study'
@@ -256,7 +248,7 @@ with graph_tab[1]:
             )
             st.plotly_chart(fig_density, use_container_width=True)
 
-        # DONUT CHART
+        # Donut Chart
         with col2:
             if chart_option == 'Gender':
                 counts = df_demo['Gender'].value_counts().reset_index()
