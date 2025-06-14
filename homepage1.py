@@ -61,9 +61,11 @@ st.markdown("""
 st.markdown("""
     <div style="text-align: center; max-width: 800px; margin: auto; font-size: 20px; color: #444;">
         Explore how age, gender, education and entreprenueship influence career advancement.<br>
-        Use interactive tools to visualize data, gain insights, and plan your future!
+        This interactive web application is proudly developed by <b>Team Py7on</b> as part of the <b>Python Project 2</b><br>
+        for the <i>Business IT 2</i> course at <b>Vietnamese–German University</b>.
     </div>
 """, unsafe_allow_html=True)
+
 
 
 # ==== OUR TEAM section ====
